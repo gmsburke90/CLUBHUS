@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="CLUBHUS crest">
+  <defs>
+    <path id="crest-top" d="M100,100 m-74,0 a74,74 0 1,1 148,0" fill="none"/>
+    <path id="crest-bottom" d="M100,100 m74,0 a74,74 0 1,1 -148,0" fill="none"/>
+  </defs>
+  <circle cx="100" cy="100" r="96" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  <circle cx="100" cy="100" r="88" fill="none" stroke="currentColor" stroke-width="0.75"/>
+  <circle cx="100" cy="100" r="58" fill="none" stroke="currentColor" stroke-width="1"/>
+
+  <text font-family="'Fraunces', Georgia, serif" font-size="13" letter-spacing="5" fill="currentColor" text-anchor="middle">
+    <textPath href="#crest-top" startOffset="50%">CLUBHUS</textPath>
+  </text>
+  <text font-family="'Inter', sans-serif" font-size="7.5" letter-spacing="4" fill="currentColor" text-anchor="middle">
+    <textPath href="#crest-bottom" startOffset="50%">EST · MMXXVI · DANMARK</textPath>
+  </text>
+
+  <!-- crossed golf clubs -->
+  <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- shafts -->
+    <path d="M80,130 L116,78" stroke-width="2.2"/>
+    <path d="M120,130 L84,78" stroke-width="2.2"/>
+    <!-- club heads (wedge/iron) -->
+    <path d="M116,78 q3,-5 9,-3 q4,1 2,6 q-2,4 -8,3 z" stroke-width="1.6" fill="currentColor"/>
+    <path d="M84,78 q-3,-5 -9,-3 q-4,1 -2,6 q2,4 8,3 z" stroke-width="1.6" fill="currentColor"/>
+    <!-- grips -->
+    <path d="M80,130 l-3,4" stroke-width="3.4"/>
+    <path d="M120,130 l3,4" stroke-width="3.4"/>
+  </g>
+  <!-- center mark -->
+  <circle cx="100" cy="100" r="4" fill="currentColor"/>
+  <!-- small stars -->
+  <g fill="currentColor">
+    <circle cx="38" cy="100" r="1.6"/>
+    <circle cx="162" cy="100" r="1.6"/>
+  </g>
+</svg>
