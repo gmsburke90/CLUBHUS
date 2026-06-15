@@ -14,20 +14,15 @@
     <textPath href="#crest-bottom" startOffset="50%">EST · MMXXVI · DANMARK</textPath>
   </text>
 
-  <!-- crossed golf clubs -->
-  <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none">
-    <!-- shafts -->
-    <path d="M80,130 L116,78" stroke-width="2.2"/>
-    <path d="M120,130 L84,78" stroke-width="2.2"/>
-    <!-- club heads (wedge/iron) -->
-    <path d="M116,78 q3,-5 9,-3 q4,1 2,6 q-2,4 -8,3 z" stroke-width="1.6" fill="currentColor"/>
-    <path d="M84,78 q-3,-5 -9,-3 q-4,1 -2,6 q2,4 8,3 z" stroke-width="1.6" fill="currentColor"/>
-    <!-- grips -->
-    <path d="M80,130 l-3,4" stroke-width="3.4"/>
-    <path d="M120,130 l3,4" stroke-width="3.4"/>
+  <!-- clubhouse mark -->
+  <g transform="translate(64,62) scale(1.5)" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7,23 L24,8 L41,23"/>
+    <path d="M11,23 L11,40 L37,40 L37,23"/>
+    <path d="M20,40 L20,31 a4,4 0 0 1 8,0 L28,40"/>
+    <path d="M24,8 L24,3"/>
+    <path d="M24,4 C28,4 31,6 34,6 C31,8 28,9 24,9 Z" fill="currentColor" stroke="none"/>
   </g>
-  <!-- center mark -->
-  <circle cx="100" cy="100" r="4" fill="currentColor"/>
+
   <!-- small stars -->
   <g fill="currentColor">
     <circle cx="38" cy="100" r="1.6"/>

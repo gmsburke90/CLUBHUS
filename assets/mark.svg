@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="CLUBHUS clubhouse mark">
+  <path d="M7,23 L24,8 L41,23"/>
+  <path d="M11,23 L11,40 L37,40 L37,23"/>
+  <path d="M20,40 L20,31 a4,4 0 0 1 8,0 L28,40"/>
+  <path d="M24,8 L24,3"/>
+  <path d="M24,4 C28,4 31,6 34,6 C31,8 28,9 24,9 Z" fill="currentColor" stroke="none"/>
+</svg>
