@@ -42,15 +42,47 @@
     reveals.forEach(function (el) { el.classList.add('is-in'); });
   }
 
-  /* Subtle can parallax on pointer move (desktop, motion-allowed) */
-  var can = document.getElementById('heroCan');
   var allowMotion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (can && allowMotion && window.matchMedia('(pointer:fine)').matches) {
-    window.addEventListener('mousemove', function (ev) {
-      var x = (ev.clientX / window.innerWidth - 0.5) * 14;
-      var y = (ev.clientY / window.innerHeight - 0.5) * 10;
-      can.style.transform = 'translate(' + x + 'px,' + y + 'px) rotate(' + (x * 0.15) + 'deg)';
-    }, { passive: true });
+
+  /* Scroll progress bar */
+  var bar = document.getElementById('progress');
+  if (bar) {
+    var setProgress = function () {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+    };
+    window.addEventListener('scroll', setProgress, { passive: true });
+    window.addEventListener('resize', setProgress, { passive: true });
+    setProgress();
+  }
+
+  /* Animated count-up for stats */
+  var counts = document.querySelectorAll('[data-count]');
+  var runCount = function (el) {
+    var target = parseFloat(el.getAttribute('data-count'));
+    var suffix = el.getAttribute('data-suffix') || '';
+    var decimals = (el.getAttribute('data-count').split('.')[1] || '').length;
+    if (!allowMotion) { el.textContent = target.toFixed(decimals) + suffix; return; }
+    var start = null, dur = 1400;
+    var tick = function (ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = (target * eased).toFixed(decimals) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  if ('IntersectionObserver' in window) {
+    var co = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { runCount(e.target); co.unobserve(e.target); }
+      });
+    }, { threshold: 0.6 });
+    counts.forEach(function (el) { co.observe(el); });
+  } else {
+    counts.forEach(runCount);
   }
 
   /* Form (front-end only for now) */
