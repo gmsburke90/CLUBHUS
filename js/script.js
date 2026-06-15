@@ -89,19 +89,35 @@
   var form = document.getElementById('joinForm');
   var note = document.getElementById('formNote');
   if (form) {
+    var setError = function (field, on) {
+      field.classList.toggle('is-error', on);
+      field.setAttribute('aria-invalid', on ? 'true' : 'false');
+    };
+    /* clear a field's error the moment the user corrects it */
+    form.querySelectorAll('input').forEach(function (input) {
+      input.addEventListener('input', function () {
+        if (input.classList.contains('is-error')) setError(input, false);
+      });
+    });
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var email = form.querySelector('#email');
       var name = form.querySelector('#name');
-      if (!name.value.trim() || !email.checkValidity()) {
-        note.textContent = 'Please add your name and a valid email.';
+      var nameBad = !name.value.trim();
+      var emailBad = !email.checkValidity();
+      setError(name, nameBad);
+      setError(email, emailBad);
+      if (nameBad || emailBad) {
+        note.textContent = nameBad
+          ? 'Please add your name so we know who to welcome.'
+          : 'That email doesn’t look right — mind checking it?';
         note.classList.remove('is-success');
-        (name.value.trim() ? email : name).focus();
+        (nameBad ? name : email).focus();
         return;
       }
       note.textContent = 'Thank you — your place is reserved. We’ll be in touch.';
       note.classList.add('is-success');
-      form.querySelector('button[type="submit"]').textContent = 'Request Sent';
+      form.querySelector('button[type="submit"]').textContent = 'Request Sent ✓';
       form.querySelectorAll('input').forEach(function (i) { i.disabled = true; });
     });
   }

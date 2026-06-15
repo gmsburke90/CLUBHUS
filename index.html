@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#072A20" />
+  <meta name="color-scheme" content="light only" />
   <title>CLUBHUS — The Clubhouse Lager · Members Only</title>
   <meta name="description" content="CLUBHUS is a premium Danish lager brewed exclusively for membership-only sports clubhouses. Heritage, craft, and quiet exclusivity — beginning with golf clubs in Denmark." />
   <meta name="robots" content="noindex, nofollow" />
@@ -22,6 +24,8 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- Announcement bar -->
   <div class="announce" id="top">
@@ -57,6 +61,7 @@
         <a href="#membership">Membership</a>
         <a href="#rewards">Rewards</a>
         <a href="#future">What's Next</a>
+        <a href="#join" class="btn btn--gold nav__menu-cta">Become a Member</a>
       </nav>
       <a href="#join" class="btn btn--ghost nav__cta">Become a Member</a>
       <button class="nav__burger" aria-label="Open menu" aria-expanded="false" id="burger">
@@ -66,7 +71,7 @@
   </header>
 
   <!-- Hero -->
-  <section class="hero">
+  <section class="hero" id="main">
     <div class="hero__bg" aria-hidden="true"></div>
     <div class="hero__aurora" aria-hidden="true"></div>
     <div class="hero__inner">
@@ -137,7 +142,7 @@
     <div class="beer__inner">
       <div class="beer__visual reveal">
         <div class="beer__crest" aria-hidden="true">
-          <img src="assets/crest-heritage.svg" alt="" />
+          <img src="assets/crest-heritage.svg" alt="CLUBHUS heritage crest" width="260" height="322" loading="lazy" decoding="async" />
         </div>
       </div>
       <div class="beer__content reveal">
@@ -265,21 +270,21 @@
         <h2 class="display">Request your membership.</h2>
         <p>Tell us where you play. We'll let you know the moment CLUBHUS arrives at your clubhouse — and reserve your place among the first members.</p>
       </div>
-      <form class="join__form reveal" id="joinForm" novalidate>
+      <form class="join__form reveal" id="joinForm" novalidate aria-describedby="formNote">
         <div class="field">
           <label for="name">Full name</label>
-          <input type="text" id="name" name="name" autocomplete="name" placeholder="Your name" required />
+          <input type="text" id="name" name="name" autocomplete="name" autocapitalize="words" placeholder="Your name" required aria-required="true" />
         </div>
         <div class="field">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" autocomplete="email" placeholder="you@email.com" required />
+          <input type="email" id="email" name="email" autocomplete="email" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="you@email.com" required aria-required="true" />
         </div>
         <div class="field">
-          <label for="club">Your club</label>
-          <input type="text" id="club" name="club" placeholder="e.g. Rungsted Golf Klub" />
+          <label for="club">Your club <span class="field__opt">(optional)</span></label>
+          <input type="text" id="club" name="club" autocapitalize="words" placeholder="e.g. Rungsted Golf Klub" />
         </div>
         <button type="submit" class="btn btn--gold btn--block">Request Membership</button>
-        <p class="join__note" id="formNote" role="status">No spam. Just the clubhouse, when it's ready.</p>
+        <p class="join__note" id="formNote" role="status" aria-live="polite">Free to join · No spam · Unsubscribe anytime.</p>
       </form>
     </div>
   </section>
