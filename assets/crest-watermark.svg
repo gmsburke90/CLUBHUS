@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 264" role="img" aria-label="CLUBHUS regal crest" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 264" role="img" aria-label="CLUBHUS regal crest" fill="none" stroke="#0B3D2E" stroke-linecap="round" stroke-linejoin="round">
   <defs>
     <!-- a single barley ear, base at origin, tip toward -y -->
     <g id="ear">
@@ -19,7 +19,7 @@
     <path d="M86,46 L86,54"/><path d="M134,46 L134,54"/>
     <path d="M110,16 L110,9"/><path d="M107,12 L113,12"/>
   </g>
-  <g fill="currentColor" stroke="none">
+  <g fill="#0B3D2E" stroke="none">
     <circle cx="94" cy="22" r="2.6"/>
     <circle cx="110" cy="16" r="3"/>
     <circle cx="126" cy="22" r="2.6"/>
@@ -46,7 +46,7 @@
     <path d="M11,23 L11,40 L37,40 L37,23"/>
     <path d="M20,40 L20,31 a4,4 0 0 1 8,0 L28,40"/>
     <path d="M24,8 L24,3"/>
-    <path d="M24,4 C28,4 31,6 34,6 C31,8 28,9 24,9 Z" fill="currentColor" stroke="none"/>
+    <path d="M24,4 C28,4 31,6 34,6 C31,8 28,9 24,9 Z" fill="#0B3D2E" stroke="none"/>
   </g>
 
   <!-- crossed barley + star (lower field) -->
@@ -54,7 +54,7 @@
     <use href="#ear" transform="translate(110,190) rotate(-21) scale(0.7)"/>
     <use href="#ear" transform="translate(110,190) rotate(21) scale(0.7)"/>
   </g>
-  <path fill="currentColor" stroke="none"
+  <path fill="#0B3D2E" stroke="none"
     d="M110,135 L112.5,142.5 L120.5,142.6 L114.1,147.3 L116.5,154.9 L110,150.3 L103.5,154.9 L105.9,147.3 L99.5,142.6 L107.5,142.5 Z"/>
 
   <!-- motto banner -->
@@ -64,7 +64,7 @@
     <path d="M162,216 L176,211 L170,224 L176,236 L162,231"/>
   </g>
   <text x="110" y="228" font-family="'Fraunces', Georgia, serif" font-size="13" letter-spacing="3.5"
-    fill="currentColor" stroke="none" text-anchor="middle">CLUBHUS</text>
+    fill="#0B3D2E" stroke="none" text-anchor="middle">CLUBHUS</text>
   <text x="110" y="254" font-family="'Inter', sans-serif" font-size="7" letter-spacing="3.5"
-    fill="currentColor" stroke="none" text-anchor="middle" opacity="0.85">EST · MMXXVI · DANMARK</text>
+    fill="#0B3D2E" stroke="none" text-anchor="middle" opacity="0.85">EST · MMXXVI · DANMARK</text>
 </svg>

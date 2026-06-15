@@ -171,14 +171,21 @@ body::after{
   color:var(--green);
   transition:opacity .3s var(--ease);
 }
-.nav__brand:hover{ opacity:.72; }
+.nav__brand:hover{ opacity:.92; }
 .nav__mark{ width:26px; height:26px; flex:none; transition:transform .5s var(--ease); }
 .nav__mark .flag, .footer__logomark .flag{ fill:var(--brass); }
 .nav__brand:hover .nav__mark{ transform:translateY(-2px) rotate(-4deg); }
 .nav__word{
   font-family:var(--logo); font-weight:700;
-  font-size:1.18rem; letter-spacing:.04em; text-transform:uppercase;
+  font-size:1.18rem; letter-spacing:.14em; text-transform:uppercase;
+  position:relative; padding-right:.02em;
 }
+.nav__word::after{
+  content:''; position:absolute; left:0; right:0; bottom:-3px; height:1.5px;
+  background:var(--brass); transform:scaleX(0); transform-origin:left;
+  transition:transform .45s var(--ease);
+}
+.nav__brand:hover .nav__word::after{ transform:scaleX(1); }
 .nav__links{ display:flex; gap:2rem; margin-left:auto; }
 .nav__links a{
   font-size:.8rem; letter-spacing:.1em; text-transform:uppercase;
@@ -362,7 +369,14 @@ body::after{
 /* ============================================================
    Story
    ============================================================ */
-.story{ background:var(--cream); padding:clamp(4rem,9vw,8rem) 0; }
+.story{ background:var(--cream); padding:clamp(4rem,9vw,8rem) 0; position:relative; overflow:hidden; }
+.story::before{
+  content:''; position:absolute; right:-7%; top:50%; transform:translateY(-50%);
+  width:min(48%, 540px); aspect-ratio:220/264;
+  background:url(../assets/crest-watermark.svg) center/contain no-repeat;
+  opacity:.05; pointer-events:none; z-index:0;
+}
+.story__inner{ position:relative; z-index:1; }
 .story__inner{
   max-width:var(--maxw); margin:0 auto; padding:0 var(--pad);
   display:grid; grid-template-columns:.3fr .7fr; gap:clamp(2rem,5vw,4rem);
