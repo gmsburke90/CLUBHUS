@@ -280,7 +280,7 @@ body::after{
 @keyframes bob{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-7px); } }
 @media (prefers-reduced-motion: reduce){ .hero__emblem{ animation:none; } }
 .hero__emblem .ld{
-  fill:none; stroke:currentColor; stroke-width:3.8;
+  fill:none; stroke:currentColor; stroke-width:3.2;
   stroke-dasharray:1; stroke-dashoffset:1;
   animation:draw 1.5s var(--ease) forwards .15s;
 }
@@ -388,8 +388,8 @@ body::after{
 .story{ background:var(--cream); padding:clamp(4rem,9vw,8rem) 0; position:relative; overflow:hidden; }
 .story::before{
   content:''; position:absolute; right:-8%; top:50%; transform:translateY(-50%);
-  width:min(46%, 520px); aspect-ratio:1; opacity:.05; pointer-events:none; z-index:0;
-  background:url(../assets/seal.svg) center/contain no-repeat;
+  width:min(42%, 460px); aspect-ratio:1; opacity:.05; pointer-events:none; z-index:0;
+  background:url(../assets/house.svg) center/contain no-repeat;
 }
 .story__inner{ position:relative; z-index:1; }
 .story__inner{
