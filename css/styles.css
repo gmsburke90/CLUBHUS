@@ -391,8 +391,8 @@ body::after{
   content:''; position:absolute; inset:-8%;
   background:radial-gradient(circle, rgba(183,144,85,.1), transparent 68%);
 }
-.beer__crest img{ width:100%; animation:spin 80s linear infinite; }
-@keyframes spin{ to{ transform:rotate(360deg);} }
+.beer__crest img{ display:block; height:100%; width:auto; max-width:100%; margin-inline:auto; animation:crestFloat 7s ease-in-out infinite; }
+@keyframes crestFloat{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-9px);} }
 @media (prefers-reduced-motion: reduce){ .beer__crest img{ animation:none; } }
 .beer__content .num{ margin-top:0; }
 .beer__content .display{ margin-bottom:1.4rem; max-width:16ch; }
