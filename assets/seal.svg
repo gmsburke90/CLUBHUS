@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="CLUBHUS members' club seal">
+  <defs>
+    <path id="top" d="M120,120 m-88,0 a88,88 0 1,1 176,0"/>
+    <path id="bot" d="M34,120 A86,86 0 0 0 206,120"/>
+  </defs>
+  <circle cx="120" cy="120" r="111" fill="none" stroke="#0B3D2E" stroke-width="2"/>
+  <circle cx="120" cy="120" r="103" fill="none" stroke="#0B3D2E" stroke-width="0.8"/>
+  <circle cx="120" cy="120" r="62" fill="none" stroke="#0B3D2E" stroke-width="1"/>
+  <text font-family="'Fraunces',Georgia,'Times New Roman',serif" font-size="21" letter-spacing="6" fill="#0B3D2E" text-anchor="middle"><textPath href="#top" startOffset="50%">CLUBHUS</textPath></text>
+  <text font-family="'Fraunces',Georgia,serif" font-size="10.5" letter-spacing="5" fill="#0B3D2E" text-anchor="middle"><textPath href="#bot" startOffset="50%">MEMBERS’ CLUB · DANMARK</textPath></text>
+  <g fill="#B79055"><circle cx="30.5" cy="120" r="2"/><circle cx="209.5" cy="120" r="2"/></g>
+  <g stroke="#0B3D2E" stroke-width="3.2" stroke-linecap="round"><line x1="112" y1="150" x2="112" y2="90"/></g>
+  <circle cx="112" cy="89" r="2.6" fill="#0B3D2E"/><circle cx="112" cy="150" r="2.6" fill="#0B3D2E"/>
+  <path d="M112,94 L141,98 L133,102 L141,106 L112,110 Z" fill="#B79055"/>
+</svg>
