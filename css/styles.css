@@ -358,18 +358,6 @@ body::after{
 }
 .hero__meta span{ font-size:.66rem; letter-spacing:.18em; text-transform:uppercase; color:rgba(244,240,230,.6); }
 
-.hero__scroll{
-  position:absolute; left:50%; bottom:18px; transform:translateX(-50%); z-index:3;
-  font-size:.62rem; letter-spacing:.3em; text-transform:uppercase; color:rgba(244,240,230,.5);
-}
-.hero__scroll::after{
-  content:''; display:block; width:1px; height:34px; margin:8px auto 0;
-  background:linear-gradient(var(--brass-soft), transparent);
-  animation:scrolldrop 2.4s ease-in-out infinite;
-}
-@keyframes scrolldrop{ 0%{ transform:scaleY(0); transform-origin:top;} 50%{ transform:scaleY(1); transform-origin:top;} 51%{ transform-origin:bottom;} 100%{ transform:scaleY(0); transform-origin:bottom;} }
-@media (prefers-reduced-motion: reduce){ .hero__scroll::after{ animation:none; } }
-
 /* ============================================================
    Strip (running line)
    ============================================================ */
