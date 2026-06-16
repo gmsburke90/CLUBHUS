@@ -110,12 +110,12 @@
       if (nameBad || emailBad) {
         note.textContent = nameBad
           ? 'Please add your name so we know who to welcome.'
-          : 'That email doesn’t look right — mind checking it?';
+          : 'That email doesn’t look right. Mind checking it?';
         note.classList.remove('is-success');
         (nameBad ? name : email).focus();
         return;
       }
-      note.textContent = 'Thank you — your place is reserved. We’ll be in touch.';
+      note.textContent = 'Thank you, your place is reserved. We’ll be in touch.';
       note.classList.add('is-success');
       form.querySelector('button[type="submit"]').textContent = 'Request Sent ✓';
       form.querySelectorAll('input').forEach(function (i) { i.disabled = true; });
