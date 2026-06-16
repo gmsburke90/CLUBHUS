@@ -190,8 +190,9 @@ body::after{
 .nav__mark .flag, .footer__logomark .flag{ fill:var(--brass); }
 .nav__brand:hover .nav__mark{ transform:translateY(-2px) rotate(-4deg); }
 .nav__word{
-  font-family:var(--logo); font-weight:700;
-  font-size:1.18rem; letter-spacing:.14em; text-transform:uppercase;
+  font-family:"Fraunces", ui-serif, Georgia, serif;
+  font-weight:600; font-style:italic;
+  font-size:1.5rem; letter-spacing:-0.025em;
   position:relative; padding-right:.02em;
 }
 .nav__word::after{
@@ -578,7 +579,7 @@ body::after{
 }
 .footer__mark{ display:inline-flex; align-items:center; gap:.6rem; color:var(--cream); }
 .footer__logomark{ width:34px; height:34px; flex:none; }
-.footer__mark span{ font-family:var(--logo); font-weight:700; font-size:1.5rem; letter-spacing:.05em; text-transform:uppercase; }
+.footer__mark span{ font-family:"Fraunces", ui-serif, Georgia, serif; font-weight:600; font-style:italic; font-size:1.5rem; letter-spacing:-0.025em; }
 .footer__tag{ font-size:.9rem; color:rgba(244,240,230,.68); margin:1rem 0 0; line-height:1.7; }
 .footer__col h4{ font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--brass-soft); margin:0 0 1.1rem; }
 .footer__col a{ display:block; font-size:.9rem; color:rgba(244,240,230,.78); padding:.32rem 0; transition:color .3s var(--ease); }
