@@ -422,6 +422,17 @@ body::after{
 .notes__k{ font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--brass); }
 .notes__v{ font-family:var(--serif); font-size:1.05rem; text-align:right; }
 
+.ingredients{
+  margin-top:2.2rem; padding:1.5rem 1.6rem;
+  background:rgba(11,61,46,.035); border:1px solid var(--line);
+  border-left:3px solid var(--brass); border-radius:8px;
+}
+.ingredients__title{ font-size:.7rem; letter-spacing:.22em; text-transform:uppercase; color:var(--brass); margin:0 0 1.1rem; }
+.ingredients__list{ list-style:none; margin:0; padding:0; display:grid; gap:1rem; }
+.ingredients__list li{ display:grid; grid-template-columns:58px 1fr; gap:1rem; align-items:baseline; }
+.ingredients__k{ font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; color:var(--brass); }
+.ingredients__v{ font-family:var(--serif); font-size:1.02rem; line-height:1.4; color:#1C1B16; }
+
 /* ============================================================
    Membership
    ============================================================ */
