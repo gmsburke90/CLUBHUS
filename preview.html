@@ -1,563 +1,630 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CLUBHUS · A lager for after the round</title>
-<meta name="description" content="CLUBHUS Lager. A 5% Danish-brewed lager built for the moment after the match. Draught only, made for golf, tennis, padel and rowing clubhouses.">
-<meta property="og:title" content="CLUBHUS · A lager for after the round">
-<meta property="og:description" content="One tap. No commitment. See if your members notice.">
-<meta property="og:type" content="website">
-<meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#2E5339">
-<script>document.documentElement.classList.add('js');</script>
+<title>CLUBHUS Lager</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --green:#2E5339;
-    --green-deep:#1E3A28;
-    --chalk:#F4F1EA;
-    --wood:#8C6A4F;
-    --ink:#1A1A1A;
-    --brass:#A98D5C;
-    --line: rgba(26,26,26,0.12);
-    --serif: 'Fraunces', Georgia, serif;
-    --sans: 'Inter', -apple-system, sans-serif;
-    --maxw: 1120px;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--chalk);
-    color:var(--ink);
-    font-family:var(--sans);
-    font-size:16px;
-    line-height:1.5;
-    -webkit-font-smoothing:antialiased;
-  }
-  a{color:inherit;text-decoration:none;}
-  img{max-width:100%;display:block;}
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
 
-  /* ---------- ticker ---------- */
-  .ticker{
-    background:var(--green-deep);
-    color:var(--chalk);
-    font-size:12px;
-    letter-spacing:.06em;
-    text-transform:uppercase;
-    padding:7px 0;
-    overflow:hidden;
-    white-space:nowrap;
-  }
-  .ticker span{padding:0 18px; opacity:.85;}
+/* ============ TOKENS ============ */
+:root{
+  --green-deep:   #1F3B28;
+  --green:        #2E5339;
+  --chalk:        #F4F1EA;
+  --wood:         #8C6A4F;
+  --ink:          #1A1A1A;
+  --chalk-dim:    #E7E2D6;
+  --green-line:   rgba(46,83,57,0.18);
 
-  /* ---------- nav ---------- */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:var(--chalk);
-    border-bottom:1px solid var(--line);
-  }
-  nav{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:18px 28px;
-    max-width:var(--maxw); margin:0 auto;
-  }
-  .logo{
-    font-family:var(--serif); font-weight:600; font-size:22px;
-    letter-spacing:.02em;
-  }
-  .navlinks{display:flex; gap:28px; font-size:14px; font-weight:500;}
-  .navlinks a{opacity:.75; transition:opacity .15s;}
-  .navlinks a:hover{opacity:1;}
-  .nav-cta{
-    background:var(--green); color:var(--chalk);
-    padding:10px 18px; border-radius:3px;
-    font-size:14px; font-weight:600;
-    transition:background .15s, transform .15s;
-  }
-  .nav-cta:hover{background:var(--green-deep); transform:translateY(-1px);}
-  .navlinks-mobile{display:none;}
+  --display: "Fraunces", Georgia, serif;
+  --body: "Inter", -apple-system, sans-serif;
 
-  /* ---------- hero ---------- */
-  .hero{
-    background:linear-gradient(180deg, var(--green) 0%, var(--green-deep) 100%);
-    color:var(--chalk);
-    padding:88px 0 80px;
-  }
-  .hero .wrap{display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:center;}
-  .eyebrow{
-    font-size:13px; letter-spacing:.08em; text-transform:uppercase;
-    color:var(--brass); font-weight:600; margin-bottom:18px;
-  }
-  .hero h1{
-    font-family:var(--serif); font-weight:600;
-    font-size:clamp(34px,4.6vw,54px);
-    line-height:1.08; margin:0 0 22px;
-  }
-  .hero h1 em{font-style:italic; color:var(--brass);}
-  .hero p.lede{
-    font-size:18px; line-height:1.55; color:rgba(244,241,234,0.88);
-    max-width:480px; margin:0 0 32px;
-  }
-  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
-  .btn{
-    display:inline-block; padding:14px 24px; border-radius:3px;
-    font-size:15px; font-weight:600; transition:transform .15s, background .15s;
-  }
-  .btn-primary{background:var(--brass); color:var(--green-deep);}
-  .btn-primary:hover{background:#BFA06F;}
-  .btn-ghost{border:1px solid rgba(244,241,234,0.4); color:var(--chalk);}
-  .btn-ghost:hover{border-color:var(--chalk);}
+  --container: 1180px;
+  --gutter: clamp(24px, 6vw, 96px);
+}
 
-  .hero-card{
-    background:rgba(244,241,234,0.06);
-    border:1px solid rgba(244,241,234,0.18);
-    border-radius:6px;
-    padding:28px;
-  }
-  .hero-card .label{font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--brass); margin-bottom:14px; font-weight:600;}
-  .factrow{display:flex; justify-content:space-between; padding:11px 0; border-top:1px solid rgba(244,241,234,0.14); font-size:14px;}
-  .factrow:first-of-type{border-top:none;}
-  .factrow span:first-child{opacity:.7;}
-  .factrow span:last-child{font-weight:600; text-align:right;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--chalk);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
 
-  /* ---------- section shells ---------- */
-  section{padding:84px 0;}
-  .section-label{
-    font-size:13px; letter-spacing:.08em; text-transform:uppercase;
-    color:var(--wood); font-weight:600; margin-bottom:14px;
-  }
-  h2{
-    font-family:var(--serif); font-weight:600;
-    font-size:clamp(26px,3.2vw,36px); line-height:1.18; margin:0 0 18px;
-    max-width:680px;
-  }
-  .lede-2{font-size:17px; line-height:1.6; color:rgba(26,26,26,0.78); max-width:600px; margin:0 0 36px;}
-  hr.rule{border:none; border-top:1px solid var(--line); margin:0;}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.01ms !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+}
 
-  /* ---------- partner band (top, since B2B leads) ---------- */
-  .partner-band{
-    background:var(--ink); color:var(--chalk); padding:40px 0;
-  }
-  .partner-band .wrap{
-    display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;
-  }
-  .partner-band p{margin:0; font-size:16px; max-width:560px; line-height:1.55;}
-  .partner-band strong{color:var(--brass);}
+a{color:inherit;}
+a:focus-visible, button:focus-visible{
+  outline:2px solid var(--wood);
+  outline-offset:3px;
+}
 
-  /* ---------- the offer (B2B pitch) ---------- */
-  .offer-grid{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:8px;
-  }
-  .offer-card{
-    background:#fff; border:1px solid var(--line); border-radius:6px; padding:28px;
-  }
-  .offer-card .num{
-    font-family:var(--serif); font-size:13px; color:var(--wood); font-weight:600; margin-bottom:14px;
-  }
-  .offer-card h3{font-family:var(--serif); font-size:19px; margin:0 0 10px; font-weight:600;}
-  .offer-card p{font-size:14.5px; color:rgba(26,26,26,0.7); margin:0; line-height:1.55;}
+img{max-width:100%;display:block;}
 
-  /* ---------- beer section ---------- */
-  .beer{background:#fff;}
-  .beer-grid{display:grid; grid-template-columns:.95fr 1.05fr; gap:60px; align-items:start;}
-  .spec-list{margin-top:28px;}
-  .spec{display:flex; justify-content:space-between; padding:14px 0; border-top:1px solid var(--line); font-size:15px;}
-  .spec:first-child{border-top:none;}
-  .spec span:first-child{color:rgba(26,26,26,0.55);}
-  .spec span:last-child{font-weight:600; text-align:right;}
-  .beer-quote{
-    font-family:var(--serif); font-style:italic; font-size:19px; line-height:1.5;
-    color:var(--green-deep); border-left:3px solid var(--brass); padding-left:20px; margin:32px 0 0;
-  }
-  .beer-art{
-    background:var(--chalk); border:1px solid var(--line); border-radius:6px;
-    padding:48px; display:flex; align-items:center; justify-content:center; min-height:380px;
-  }
-  .beer-art img{width:100%; max-width:220px; opacity:.92;}
+/* ============ TAP LINE (signature structural device) ============
+   A vertical brass-toned rule runs the length of the page, like the
+   line down a tap handle. Section markers sit on it like engraved
+   plaques. Hidden on narrow viewports where it would just be noise. */
 
-  /* ---------- audience split ---------- */
-  .audience{background:var(--chalk);}
-  .audience-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
-  .aud-card{
-    background:#fff; border:1px solid var(--line); border-radius:6px; padding:32px;
-  }
-  .aud-card .tag{
-    font-size:12px; letter-spacing:.07em; text-transform:uppercase; font-weight:600;
-    color:var(--green); margin-bottom:14px;
-  }
-  .aud-card h3{font-family:var(--serif); font-size:21px; margin:0 0 12px;}
-  .aud-card p{font-size:15px; color:rgba(26,26,26,0.72); line-height:1.6; margin:0 0 20px;}
+.tapline{
+  position:absolute;
+  left:calc(var(--gutter) - 1px);
+  top:0;
+  bottom:0;
+  width:2px;
+  background:linear-gradient(to bottom, transparent 0%, var(--wood) 8%, var(--wood) 92%, transparent 100%);
+  opacity:0.35;
+  z-index:0;
+}
+@media (max-width: 720px){
+  .tapline{display:none;}
+}
 
-  /* ---------- member perk (the loyalty/app piece) ---------- */
-  .perk{background:var(--ink); color:var(--chalk);}
-  .perk h2{color:var(--chalk);}
-  .perk .lede-2{color:rgba(244,241,234,0.75);}
-  .perk-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:36px;}
-  .perk-card{
-    border:1px solid rgba(244,241,234,0.16); border-radius:6px; padding:26px;
-    background:rgba(244,241,234,0.03);
-  }
-  .perk-card .roman{font-family:var(--serif); color:var(--brass); font-size:14px; margin-bottom:12px; font-weight:600;}
-  .perk-card h3{font-size:17px; margin:0 0 8px; font-weight:600;}
-  .perk-card p{font-size:14px; color:rgba(244,241,234,0.68); margin:0; line-height:1.55;}
-  .perk-note{
-    margin-top:28px; font-size:13.5px; color:rgba(244,241,234,0.5);
-    border-top:1px solid rgba(244,241,234,0.14); padding-top:20px; max-width:620px;
-  }
+.plaque{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-family:var(--body);
+  font-size:12px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--wood);
+  font-weight:600;
+}
+.plaque::before{
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--wood);
+  display:inline-block;
+}
 
-  /* ---------- roadmap ---------- */
-  .roadmap{background:#fff;}
-  .road-row{
-    display:grid; grid-template-columns:140px 1fr 200px; gap:20px; align-items:start;
-    padding:22px 0; border-top:1px solid var(--line);
-  }
-  .road-row:first-child{border-top:none;}
-  .road-phase{font-family:var(--serif); font-weight:600; font-size:15px; color:var(--green-deep);}
-  .road-phase small{display:block; font-family:var(--sans); font-weight:500; color:rgba(26,26,26,0.45); font-size:12px; margin-top:3px;}
-  .road-desc h4{margin:0 0 5px; font-size:15.5px; font-weight:600;}
-  .road-desc p{margin:0; font-size:14px; color:rgba(26,26,26,0.62); line-height:1.5;}
-  .road-trigger{font-size:12.5px; color:var(--wood); text-align:right; line-height:1.5;}
-  .road-trigger strong{display:block; color:rgba(26,26,26,0.4); font-weight:600; text-transform:uppercase; letter-spacing:.05em; font-size:10.5px; margin-bottom:4px;}
+/* ============ LAYOUT SHELL ============ */
+.wrap{
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 var(--gutter);
+  position:relative;
+}
 
-  /* ---------- contact split ---------- */
-  .contact{background:var(--chalk);}
-  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--line); border-radius:6px; overflow:hidden; background:#fff;}
-  .contact-panel{padding:44px;}
-  .contact-panel + .contact-panel{border-left:1px solid var(--line);}
-  .contact-panel .tag{font-size:12px; letter-spacing:.07em; text-transform:uppercase; font-weight:600; margin-bottom:14px;}
-  .panel-b2b .tag{color:var(--green);}
-  .panel-consumer .tag{color:var(--wood);}
-  .contact-panel h3{font-family:var(--serif); font-size:23px; margin:0 0 12px;}
-  .contact-panel p{font-size:14.5px; color:rgba(26,26,26,0.68); line-height:1.6; margin:0 0 24px;}
-  .field{margin-bottom:14px;}
-  .field input{
-    width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:3px;
-    font-family:var(--sans); font-size:14.5px; background:var(--chalk);
-  }
-  .field input:focus{outline:2px solid var(--green); outline-offset:1px;}
-  .fineprint{font-size:12px; color:rgba(26,26,26,0.45); margin-top:12px;}
+section{
+  position:relative;
+  padding:96px 0;
+}
+@media (max-width:720px){
+  section{padding:64px 0;}
+}
 
-  /* ---------- footer ---------- */
-  footer{background:var(--green-deep); color:rgba(244,241,234,0.7); padding:48px 0 28px; font-size:13.5px;}
-  .foot-grid{display:flex; justify-content:space-between; gap:40px; flex-wrap:wrap; padding-bottom:28px; border-bottom:1px solid rgba(244,241,234,0.14);}
-  .foot-logo{font-family:var(--serif); font-size:20px; color:var(--chalk); font-weight:600; margin-bottom:10px;}
-  .foot-col h5{font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:rgba(244,241,234,0.5); margin:0 0 12px;}
-  .foot-col a{display:block; margin-bottom:8px; opacity:.85;}
-  .foot-bottom{padding-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12.5px; opacity:.7;}
+/* ============ NAV ============ */
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(244,241,234,0.88);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--green-line);
+}
+.nav{
+  max-width:var(--container);
+  margin:0 auto;
+  padding:20px var(--gutter);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.wordmark{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:22px;
+  letter-spacing:0.02em;
+  color:var(--green-deep);
+  text-decoration:none;
+}
+.nav-links{
+  display:flex;
+  gap:32px;
+  list-style:none;
+  font-size:14px;
+  font-weight:500;
+}
+.nav-links a{
+  text-decoration:none;
+  color:var(--ink);
+  opacity:0.7;
+  transition:opacity 0.2s ease;
+}
+.nav-links a:hover{opacity:1;}
+@media (max-width:600px){
+  .nav-links{display:none;}
+}
 
-  /* ---------- 3D + motion ---------- */
-  .scene{ perspective:1100px; }
-  .tilt{ transform-style:preserve-3d; transition:transform .3s ease; will-change:transform; }
-  .hero-card{ transform-style:preserve-3d; animation:floaty 7s ease-in-out infinite; }
-  .hero-card .label{ transform:translateZ(34px); }
-  .hero-card .factrow{ transform:translateZ(18px); }
-  @keyframes floaty{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-9px); } }
+/* ============ HERO ============ */
+.hero{
+  padding-top:clamp(60px, 12vh, 140px);
+  padding-bottom:clamp(60px, 10vh, 120px);
+  min-height:80vh;
+  display:flex;
+  align-items:center;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.1fr 0.9fr;
+  gap:clamp(32px, 6vw, 80px);
+  align-items:center;
+  width:100%;
+}
+@media (max-width:880px){
+  .hero-grid{grid-template-columns:1fr; gap:48px;}
+  .hero-art{order:-1;}
+}
 
-  .beer-art{ perspective:1000px; }
-  .beer-art img{ animation:sway 6.5s ease-in-out infinite; transform-style:preserve-3d; }
-  @keyframes sway{ 0%,100%{ transform:rotateY(-15deg) rotateX(5deg); } 50%{ transform:rotateY(15deg) rotateX(-5deg); } }
+.hero-eyebrow{
+  opacity:0;
+  animation:rise 0.7s ease forwards;
+  animation-delay:0.05s;
+}
+.hero h1{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:clamp(46px, 7vw, 88px);
+  line-height:0.98;
+  letter-spacing:-0.01em;
+  color:var(--green-deep);
+  margin:18px 0 28px;
+  opacity:0;
+  animation:rise 0.8s ease forwards;
+  animation-delay:0.15s;
+}
+.hero h1 em{
+  font-style:italic;
+  font-weight:400;
+  color:var(--wood);
+}
+.hero p{
+  font-size:clamp(17px, 1.6vw, 20px);
+  max-width:46ch;
+  color:var(--ink);
+  opacity:0;
+  animation:rise 0.8s ease forwards;
+  animation-delay:0.3s;
+}
+.hero-meta{
+  margin-top:36px;
+  display:flex;
+  gap:28px;
+  flex-wrap:wrap;
+  opacity:0;
+  animation:rise 0.8s ease forwards;
+  animation-delay:0.45s;
+}
+.meta-item{
+  font-size:13px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--green);
+  font-weight:600;
+  border-top:1px solid var(--green-line);
+  padding-top:10px;
+  min-width:90px;
+}
+.meta-item b{
+  display:block;
+  font-family:var(--display);
+  font-size:22px;
+  letter-spacing:0;
+  text-transform:none;
+  color:var(--green-deep);
+  font-weight:600;
+  margin-top:4px;
+}
 
-  .offer-grid,.audience-grid,.perk-grid{ perspective:1200px; }
-  .offer-card,.aud-card,.perk-card{ transition:transform .3s ease, box-shadow .3s ease; transform-style:preserve-3d; }
-  .offer-card:hover,.aud-card:hover{ transform:translateY(-6px) rotateX(3deg); box-shadow:0 18px 40px rgba(26,26,26,0.14); }
-  .perk-card:hover{ transform:translateY(-6px) rotateX(3deg); box-shadow:0 18px 40px rgba(0,0,0,0.35); }
+@keyframes rise{
+  from{opacity:0; transform:translateY(16px);}
+  to{opacity:1; transform:translateY(0);}
+}
 
-  html.js [data-reveal]{ opacity:0; transform:translateY(28px) rotateX(8deg); transform-origin:50% 0; transition:opacity .7s ease, transform .7s ease; }
-  html.js [data-reveal].in{ opacity:1; transform:none; }
+/* ---- Hero art: tap handle, drawn in line art ---- */
+.hero-art{
+  display:flex;
+  justify-content:center;
+  opacity:0;
+  animation:rise 1s ease forwards;
+  animation-delay:0.2s;
+}
+.tap-illustration{
+  width:min(280px, 70%);
+  height:auto;
+}
+.tap-illustration .pour{
+  stroke-dasharray:4 7;
+  animation:flow 1.8s linear infinite;
+}
+@media (prefers-reduced-motion: reduce){
+  .tap-illustration .pour{animation:none;}
+}
+@keyframes flow{
+  to{stroke-dashoffset:-110;}
+}
 
-  @media (max-width:860px){
-    .hero .wrap, .beer-grid, .audience-grid, .contact-grid{grid-template-columns:1fr;}
-    .offer-grid, .perk-grid{grid-template-columns:1fr;}
-    .navlinks{display:none;}
-    .road-row{grid-template-columns:1fr; gap:6px;}
-    .road-trigger{text-align:left;}
-    .contact-panel + .contact-panel{border-left:none; border-top:1px solid var(--line);}
-    .partner-band .wrap{flex-direction:column; align-items:flex-start;}
-  }
+/* ============ SECTION HEADINGS ============ */
+.section-head{
+  margin-bottom:48px;
+  max-width:680px;
+}
+.section-head .plaque{margin-bottom:18px;}
+.section-head h2{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:clamp(30px, 4vw, 44px);
+  color:var(--green-deep);
+  line-height:1.1;
+}
 
-  @media (prefers-reduced-motion: reduce){
-    .hero-card, .beer-art img{ animation:none !important; }
-    .tilt{ transition:none !important; }
-    html.js [data-reveal]{ opacity:1 !important; transform:none !important; }
-  }
+/* ============ MANIFESTO ============ */
+.manifesto{
+  background:var(--green-deep);
+  color:var(--chalk);
+}
+.manifesto .tapline{background:linear-gradient(to bottom, transparent 0%, var(--wood) 8%, var(--wood) 92%, transparent 100%); opacity:0.5;}
+.manifesto .plaque{color:var(--chalk-dim); opacity:0.8;}
+.manifesto .plaque::before{background:var(--wood);}
+.manifesto-text{
+  max-width:760px;
+  font-family:var(--display);
+  font-size:clamp(24px, 3.4vw, 38px);
+  font-weight:400;
+  line-height:1.32;
+  letter-spacing:-0.005em;
+}
+.manifesto-text .accent{
+  color:var(--wood);
+  font-style:italic;
+}
+
+/* ============ THE BEER ============ */
+.beer-grid{
+  display:grid;
+  grid-template-columns:0.85fr 1.15fr;
+  gap:clamp(40px, 6vw, 90px);
+  align-items:start;
+}
+@media (max-width:880px){
+  .beer-grid{grid-template-columns:1fr; gap:40px;}
+}
+.glass-art{
+  display:flex;
+  justify-content:center;
+  padding-top:8px;
+}
+.glass-illustration{
+  width:min(220px, 60%);
+}
+
+.beer-copy h3{
+  font-family:var(--display);
+  font-size:clamp(28px,3.2vw,40px);
+  font-weight:600;
+  color:var(--green-deep);
+  margin-bottom:18px;
+}
+.beer-copy p{
+  font-size:17px;
+  max-width:56ch;
+  margin-bottom:16px;
+}
+.beer-copy p:last-of-type{margin-bottom:0;}
+
+.facts{
+  margin-top:36px;
+  border-top:1px solid var(--green-line);
+  padding-top:28px;
+  display:grid;
+  grid-template-columns:repeat(3, auto);
+  gap:28px 48px;
+}
+@media (max-width:540px){
+  .facts{grid-template-columns:repeat(2, auto);}
+}
+.fact dt{
+  font-size:12px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--wood);
+  font-weight:600;
+  margin-bottom:6px;
+}
+.fact dd{
+  font-family:var(--display);
+  font-size:19px;
+  color:var(--green-deep);
+  font-weight:600;
+}
+
+/* ============ ABOUT / CLUBS ROW ============ */
+.about-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(32px, 6vw, 72px);
+}
+@media (max-width:820px){
+  .about-row{grid-template-columns:1fr; gap:48px;}
+}
+.about-row p{
+  font-size:17px;
+  margin-bottom:16px;
+  max-width:48ch;
+}
+.about-row p:last-child{margin-bottom:0;}
+
+.clubs-list{
+  margin-top:22px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.club-tag{
+  font-size:13px;
+  letter-spacing:0.04em;
+  padding:8px 16px;
+  border:1px solid var(--green-line);
+  border-radius:100px;
+  color:var(--green-deep);
+  font-weight:500;
+  background:rgba(46,83,57,0.04);
+}
+
+/* ============ FIND IT ============ */
+.find{
+  background:var(--chalk-dim);
+}
+.find-grid{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:40px;
+  flex-wrap:wrap;
+}
+.find-text h2{
+  font-family:var(--display);
+  font-size:clamp(28px,3.6vw,42px);
+  color:var(--green-deep);
+  font-weight:600;
+  margin-bottom:14px;
+  max-width:14ch;
+}
+.find-text p{
+  max-width:42ch;
+  font-size:16.5px;
+}
+
+.club-cta{
+  border-top:1px solid var(--wood);
+  padding-top:20px;
+  max-width:320px;
+}
+.club-cta p{
+  font-size:14.5px;
+  color:var(--ink);
+  opacity:0.85;
+  margin-bottom:14px;
+}
+.club-cta a{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:600;
+  font-size:14.5px;
+  text-decoration:none;
+  color:var(--green-deep);
+  border-bottom:1px solid var(--green-deep);
+  padding-bottom:2px;
+  transition:gap 0.2s ease;
+}
+.club-cta a:hover{gap:13px;}
+
+/* ============ FOOTER ============ */
+footer{
+  background:var(--ink);
+  color:var(--chalk-dim);
+  padding:48px 0 32px;
+}
+.footer-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:16px;
+  font-size:13px;
+  opacity:0.6;
+}
+.footer-word{
+  font-family:var(--display);
+  font-size:18px;
+  color:var(--chalk);
+  opacity:1;
+  font-weight:600;
+}
+
+/* ============ REVEAL ON SCROLL ============ */
+.reveal{
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
 </style>
 </head>
 <body>
 
-<div class="ticker" aria-hidden="true">
-  <span>ONE TAP, NO COMMITMENT</span><span>DRAUGHT ONLY</span><span>BREWED IN DENMARK</span><span>GOLF · TENNIS · PADEL · ROWING</span><span>ONE TAP, NO COMMITMENT</span><span>DRAUGHT ONLY</span><span>BREWED IN DENMARK</span><span>GOLF · TENNIS · PADEL · ROWING</span>
-</div>
-
 <header>
-  <nav>
-    <a class="logo" href="#top">CLUBHUS</a>
-    <div class="navlinks">
-      <a href="#beer">The lager</a>
-      <a href="#clubs">For clubs</a>
-      <a href="#members">For members</a>
-      <a href="#next">What's next</a>
-    </div>
-    <a class="nav-cta" href="#clubs">Get CLUBHUS on tap</a>
+  <nav class="nav">
+    <a href="#top" class="wordmark">CLUBHUS</a>
+    <ul class="nav-links">
+      <li><a href="#beer">The beer</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#find">Find it</a></li>
+    </ul>
   </nav>
 </header>
 
-<section class="hero" id="top">
-  <div class="wrap">
-    <div>
-      <div class="eyebrow">For Danish club bar managers</div>
-      <h1>A beer for the moment <em>after</em> the match.</h1>
-      <p class="lede">CLUBHUS Lager. Brewed for the first one after sport, not before it, not instead of it. One tap, no commitment. See if your members notice.</p>
-      <div class="hero-ctas">
-        <a class="btn btn-primary" href="#clubs">Talk to us about a trial tap</a>
-        <a class="btn btn-ghost" href="#beer">See the beer</a>
-      </div>
-    </div>
-    <div class="scene">
-      <div class="tilt" id="heroTilt">
-        <div class="hero-card">
-          <div class="label">CLUBHUS Lager</div>
-          <div class="factrow"><span>ABV</span><span>5%</span></div>
-          <div class="factrow"><span>Style</span><span>Danish-brewed lager</span></div>
-          <div class="factrow"><span>Malt</span><span>Gyrup organic Pilsner</span></div>
-          <div class="factrow"><span>Hops</span><span>German Perle</span></div>
-          <div class="factrow"><span>Yeast</span><span>White Labs Copenhagen WLP830</span></div>
-          <div class="factrow"><span>Format</span><span>Draught only</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<main id="top">
 
-<div class="partner-band">
-  <div class="wrap">
-    <p>Your members are already discerning. We just want <strong>five minutes</strong> and one tap to show you why CLUBHUS fits.</p>
-    <a class="btn btn-primary" href="#clubs">Request a trial</a>
-  </div>
-</div>
-
-<section id="clubs">
-  <div class="wrap">
-    <div class="section-label">For clubs</div>
-    <h2>One tap. No commitment. That's the whole pitch.</h2>
-    <p class="lede-2">We're not asking you to switch everything or sign anything long. Pour CLUBHUS for a season, see what members say, decide from there.</p>
-    <div class="offer-grid">
-      <div class="offer-card">
-        <div class="num">01</div>
-        <h3>We bring the keg</h3>
-        <p>We drop off a trial keg and walk you through it. No pitch deck, just a pour.</p>
-      </div>
-      <div class="offer-card">
-        <div class="num">02</div>
-        <h3>You pour it for a season</h3>
-        <p>Sits next to whatever's already on your tap wall. We're not asking for the whole list, just one line.</p>
-      </div>
-      <div class="offer-card">
-        <div class="num">03</div>
-        <h3>Members earn a real perk</h3>
-        <p>Once you're pouring, members who've signed up to CLUBHUS earn points worth 10% back on it, a perk you can point to at no cost to you.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="beer" id="beer">
-  <div class="wrap">
-    <div class="beer-grid">
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="tapline" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
       <div>
-        <div class="section-label">The lager</div>
-        <h2>Crisp, bright, balanced. Made to quench thirst, not make a statement.</h2>
-        <p class="lede-2">A clean lager built for one moment: the first one after the match. Brewed with White Labs yeast (the strain expertise we use daily for breweries across Denmark) at a price that makes sense for a clubhouse, not a bottle shop.</p>
-        <div class="spec-list">
-          <div class="spec"><span>ABV</span><span>5%</span></div>
-          <div class="spec"><span>Malt</span><span>Gyrup organic Pilsner malt</span></div>
-          <div class="spec"><span>Hops</span><span>German Perle</span></div>
-          <div class="spec"><span>Yeast</span><span>White Labs Copenhagen WLP830 Organic German Lager Yeast</span></div>
-          <div class="spec"><span>Format</span><span>Draught only · keg and tap handle</span></div>
+        <div class="plaque hero-eyebrow">CLUBHUS Lager &middot; 5%</div>
+        <h1>The one<br>you've <em>earned.</em></h1>
+        <p>A Danish lager, brewed for the first pour after the match. Cold, simple, and exactly where it should be.</p>
+        <div class="hero-meta">
+          <div class="meta-item">ABV<b>5%</b></div>
+          <div class="meta-item">Style<b>Lager</b></div>
+          <div class="meta-item">Format<b>Draught</b></div>
         </div>
-        <p class="beer-quote">"Light enough for after sport, proper enough for the bar."</p>
       </div>
-      <div class="beer-art">
-        <img src="assets/house.svg" alt="CLUBHUS clubhouse emblem" loading="lazy">
+      <div class="hero-art">
+        <svg class="tap-illustration" viewBox="0 0 200 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Line illustration of a tap handle pouring into a glass">
+          <!-- tap handle -->
+          <rect x="86" y="14" width="28" height="64" rx="6" stroke="#2E5339" stroke-width="2.5"/>
+          <line x1="100" y1="78" x2="100" y2="108" stroke="#2E5339" stroke-width="2.5"/>
+          <circle cx="100" cy="46" r="9" stroke="#8C6A4F" stroke-width="2"/>
+          <!-- spout -->
+          <path d="M82 108 H118 V120 Q118 128 110 128 H90 Q82 128 82 120 Z" stroke="#2E5339" stroke-width="2.5" stroke-linejoin="round"/>
+          <!-- pour stream -->
+          <line class="pour" x1="100" y1="128" x2="100" y2="206" stroke="#8C6A4F" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- glass -->
+          <path d="M64 206 L72 296 Q73 304 81 304 H119 Q127 304 128 296 L136 206 Z" stroke="#1A1A1A" stroke-width="2.5" stroke-linejoin="round"/>
+          <line x1="70" y1="246" x2="130" y2="246" stroke="#1A1A1A" stroke-width="1.4" opacity="0.4"/>
+        </svg>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="audience">
-  <div class="wrap">
-    <div class="section-label">Who it's for</div>
-    <h2>Built for the clubhouse, not the sport.</h2>
-    <p class="lede-2">CLUBHUS doesn't borrow sports culture as a vibe. One beer, one name, that travels to every club type. The post-match quiet is the same whether it's a course, a court, or a final set.</p>
-    <div class="audience-grid">
-      <div class="aud-card">
-        <div class="tag">Golf · Tennis · Padel · Rowing</div>
-        <h3>Every clubhouse, one beer</h3>
-        <p>Same lager, same name, no sport-specific branding to retire later. CLUBHUS works on a golf clubhouse wall as well as it works on a rowing club boathouse.</p>
-      </div>
-      <div class="aud-card">
-        <div class="tag">Members, 25–50</div>
-        <h3>The first one after</h3>
-        <p>Cold, simple, proper: the round you've earned, not a lifestyle you're being sold. Sits on the tap wall next to what your members already drink, not apart from it.</p>
-      </div>
+  <!-- ============ MANIFESTO ============ -->
+  <section class="manifesto">
+    <div class="tapline" aria-hidden="true"></div>
+    <div class="wrap reveal">
+      <div class="plaque">Why we made it</div>
+      <p class="manifesto-text" style="margin-top:22px;">
+        Most beers want you to feel something about them. CLUBHUS doesn't.
+        It's brewed for one specific moment, <span class="accent">the first pour after the match</span>,
+        and built to do that one thing well.
+      </p>
+      <p class="manifesto-text" style="margin-top:28px;">
+        No lifestyle. No statement. Just a clean, crisp lager that's already
+        there when you walk off the course, the court, the river.
+      </p>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="perk" id="members">
-  <div class="wrap">
-    <div class="section-label" style="color:var(--brass);">For members</div>
-    <h2>Once your club pours CLUBHUS, your members get more than a beer.</h2>
-    <p class="lede-2">Sign up to CLUBHUS, and when your club is a partner, every pour earns you points worth 10% back, plus rewards from CLUBHUS and affiliate partners.</p>
-    <div class="perk-grid">
-      <div class="perk-card">
-        <div class="roman">I</div>
-        <h3>Sign up to start earning</h3>
-        <p>Create a free CLUBHUS account. Once your club is a partner, every pour you order earns points, with nothing to scan at the bar.</p>
+  <!-- ============ THE BEER ============ -->
+  <section id="beer">
+    <div class="tapline" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="plaque">The beer</div>
+        <h2>One lager. One moment.</h2>
       </div>
-      <div class="perk-card">
-        <div class="roman">II</div>
-        <h3>Redeem for 10% back</h3>
-        <p>Your points are worth the equivalent of 10% off CLUBHUS, so the discount lives in what you've earned, not a flat markdown at the till.</p>
-      </div>
-      <div class="perk-card">
-        <div class="roman">III</div>
-        <h3>Or spend on affiliate rewards</h3>
-        <p>The same points redeem in the CLUBHUS app, against CLUBHUS itself or deals from affiliate partners, the next thing we build once clubs are pouring and members are asking for it.</p>
+      <div class="beer-grid reveal">
+        <div class="glass-art">
+          <svg class="glass-illustration" viewBox="0 0 160 240" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Line illustration of a glass of lager">
+            <path d="M22 18 L34 210 Q35 222 47 222 H113 Q125 222 126 210 L138 18 Z" stroke="#2E5339" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M30 90 H130" stroke="#2E5339" stroke-width="1.2" opacity="0.3"/>
+            <path d="M26 50 H134" stroke="#8C6A4F" stroke-width="2.5"/>
+            <path d="M20 18 H140" stroke="#1A1A1A" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="beer-copy">
+          <h3>CLUBHUS Lager</h3>
+          <p>A 5% lager brewed in Denmark for one moment: the first one after the match. Crisp, bright, balanced. Made to quench thirst, not to make a statement.</p>
+          <p>Brewed with White Labs Copenhagen's own German lager yeast, the same strain expertise used daily for breweries across Denmark. Light enough for after sport, proper enough for the bar.</p>
+          <dl class="facts">
+            <div class="fact"><dt>ABV</dt><dd>5%</dd></div>
+            <div class="fact"><dt>Style</dt><dd>German lager</dd></div>
+            <div class="fact"><dt>Format</dt><dd>Draught only</dd></div>
+          </dl>
+        </div>
       </div>
     </div>
-    <p class="perk-note">The 10% is unlocked by two things: your club is a partner, and you've signed up to CLUBHUS. The app and affiliate rewards are where it's headed, not all live today; we'll let members know the moment it's live at their club, see the form below.</p>
-  </div>
-</section>
+  </section>
 
-<section class="roadmap" id="next">
-  <div class="wrap">
-    <div class="section-label">What's next</div>
-    <h2>This is the first beer, not the last idea.</h2>
-    <p class="lede-2">Nothing past the flagship gets built until clubs are pouring it and members are asking for more. Each phase only happens on a real demand signal, not because it sounded good in a meeting.</p>
-
-    <div class="road-row">
-      <div class="road-phase">Phase 1<small>Now</small></div>
-      <div class="road-desc"><h4>CLUBHUS Lager</h4><p>One flagship beer, draught only, landing first accounts.</p></div>
-      <div class="road-trigger"><strong>Status</strong>Live · first batches brewing</div>
-    </div>
-    <div class="road-row">
-      <div class="road-phase">Phase 2<small>Member loyalty app</small></div>
-      <div class="road-desc"><h4>Points, spendable with affiliate brands</h4><p>10% off plus a points-based app with deals from affiliate partners.</p></div>
-      <div class="road-trigger"><strong>Trigger</strong>Active accounts with real member uptake</div>
-    </div>
-    <div class="road-row">
-      <div class="road-phase">Phase 3<small>More beer</small></div>
-      <div class="road-desc"><h4>White Labs yeast portfolio</h4><p>Same supply chain, same buyer, once a club already pours CLUBHUS and asks for variety.</p></div>
-      <div class="road-trigger"><strong>Trigger</strong>Repeat-order accounts</div>
-    </div>
-    <div class="road-row">
-      <div class="road-phase">Phase 4<small>Cocktails in a can</small></div>
-      <div class="road-desc"><h4>For the course, not the clubhouse</h4><p>A mid-round occasion, not a post-match one. A different drink for a different moment.</p></div>
-      <div class="road-trigger"><strong>Trigger</strong>Clubs asking for a non-beer option</div>
-    </div>
-    <div class="road-row">
-      <div class="road-phase">Phase 5<small>Merch</small></div>
-      <div class="road-desc"><h4>Proof, not a revenue line</h4><p>Only once members are asking for it unprompted, the signal the brand has real pull.</p></div>
-      <div class="road-trigger"><strong>Trigger</strong>Unprompted member demand</div>
-    </div>
-  </div>
-</section>
-
-<section class="contact" id="contact">
-  <div class="wrap">
-    <div class="section-label">Get in touch</div>
-    <h2>Two ways in. Pick the one that's yours.</h2>
-    <div class="contact-grid">
-      <div class="contact-panel panel-b2b">
-        <div class="tag">For clubs</div>
-        <h3>Get CLUBHUS on tap</h3>
-        <p>Tell us your club and what you're already pouring. We'll get back to you about a trial keg. No pitch deck, no long call.</p>
-        <form onsubmit="event.preventDefault(); this.querySelector('button').textContent='Got it, we\'ll be in touch';">
-          <div class="field"><input type="text" placeholder="Club name" required></div>
-          <div class="field"><input type="text" placeholder="Your name and role" required></div>
-          <div class="field"><input type="email" placeholder="Email" required></div>
-          <button class="btn btn-primary" type="submit" style="width:100%; border:none; cursor:pointer;">Request a trial tap</button>
-        </form>
-        <p class="fineprint">Or email us directly: <a href="mailto:hello@clubhus.dk" style="text-decoration:underline;">hello@clubhus.dk</a></p>
+  <!-- ============ ABOUT ============ -->
+  <section id="about">
+    <div class="tapline" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="plaque">About</div>
+        <h2>Same moment,<br>different game.</h2>
       </div>
-      <div class="contact-panel panel-consumer">
-        <div class="tag">For members</div>
-        <h3>Sign up to CLUBHUS</h3>
-        <p>Create a free account to earn 10% back in points whenever your club is a partner, and we'll tell you the moment CLUBHUS lands at yours.</p>
-        <form onsubmit="event.preventDefault(); this.querySelector('button').textContent='Done, welcome to CLUBHUS';">
-          <div class="field"><input type="text" placeholder="Full name" required></div>
-          <div class="field"><input type="email" placeholder="Email" required></div>
-          <div class="field"><input type="text" placeholder="Your club (optional)"></div>
-          <button class="btn btn-ghost" type="submit" style="width:100%; background:none; border:1px solid var(--line); color:var(--ink); cursor:pointer;">Sign up</button>
-        </form>
-        <p class="fineprint">Free to join · No spam · Unsubscribe anytime</p>
+      <div class="about-row reveal">
+        <div>
+          <p>CLUBHUS started with a simple observation: the beer after the match rarely matches the moment. So we made one that does.</p>
+          <p>We're not chasing the hop arms race, and we're not borrowing sports culture as a vibe.</p>
+        </div>
+        <div>
+          <p>We're learning the actual rhythm of the clubhouse, the post-match quiet, the second beer with friends, one club at a time.</p>
+          <div class="clubs-list">
+            <span class="club-tag">Golf</span>
+            <span class="club-tag">Tennis</span>
+            <span class="club-tag">Padel</span>
+            <span class="club-tag">Rowing</span>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- ============ FIND IT ============ -->
+  <section id="find" class="find">
+    <div class="wrap find-grid reveal">
+      <div class="find-text">
+        <h2>Where to find it</h2>
+        <p>CLUBHUS Lager is on tap at clubhouses across Denmark. Ask at the bar.</p>
+      </div>
+      <div class="club-cta">
+        <p>Run a clubhouse and want to pour CLUBHUS?</p>
+        <a href="mailto:hello@clubhus.dk">Get in touch &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+</main>
 
 <footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <div class="foot-logo">CLUBHUS</div>
-        <p style="max-width:260px; margin:0;">A lager for after the round. Brewed in Denmark, draught only.</p>
-      </div>
-      <div class="foot-col">
-        <h5>Explore</h5>
-        <a href="#beer">The lager</a>
-        <a href="#clubs">For clubs</a>
-        <a href="#members">For members</a>
-        <a href="#next">What's next</a>
-      </div>
-      <div class="foot-col">
-        <h5>Contact</h5>
-        <a href="mailto:hello@clubhus.dk">hello@clubhus.dk</a>
-        <a href="#contact">Get in touch</a>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <span>© 2026 CLUBHUS · Brewed by White Labs Copenhagen ApS</span>
-      <span>Enjoy responsibly · Members must be 18+</span>
-    </div>
+  <div class="wrap footer-row">
+    <span class="footer-word">CLUBHUS</span>
+    <span>&copy; 2026 CLUBHUS. Brewed in Denmark.</span>
   </div>
 </footer>
 
 <script>
-(function(){
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // hero stat card: interactive 3D tilt toward the cursor
-  var tilt = document.getElementById('heroTilt');
-  if (tilt && !reduce){
-    var scene = tilt.parentElement;
-    scene.addEventListener('mousemove', function(e){
-      var r = scene.getBoundingClientRect();
-      var px = (e.clientX - r.left) / r.width - 0.5;
-      var py = (e.clientY - r.top) / r.height - 0.5;
-      tilt.style.transform = 'rotateY(' + (px*12).toFixed(2) + 'deg) rotateX(' + (-py*12).toFixed(2) + 'deg)';
+  // Scroll reveal — simple, no library, respects reduced motion via CSS above
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
     });
-    scene.addEventListener('mouseleave', function(){ tilt.style.transform = 'rotateY(0deg) rotateX(0deg)'; });
-  }
-
-  // scroll reveal with a subtle 3D rise (only enabled when JS + IO are available)
-  var sel = '.offer-card, .aud-card, .perk-card, .road-row, .contact-panel, .beer-art, .beer-quote, section > .wrap > h2, section > .wrap > .lede-2';
-  var els = Array.prototype.slice.call(document.querySelectorAll(sel));
-  if (!reduce && 'IntersectionObserver' in window){
-    els.forEach(function(el){ el.setAttribute('data-reveal',''); });
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
-      });
-    }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
-    els.forEach(function(el){ io.observe(el); });
-  }
-})();
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
 </script>
 
 </body>
