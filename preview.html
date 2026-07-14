@@ -10,7 +10,7 @@
 <script>document.documentElement.classList.add('js');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 <style>
 
 /* ============ TOKENS ============ */
@@ -24,8 +24,9 @@
   --chalk-dim:  #E7E2D6;
   --green-line: rgba(46,83,57,0.18);
 
-  --display: "Fraunces", Georgia, serif;
-  --body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --display: "Bricolage Grotesque", ui-sans-serif, sans-serif;
+  --body: "Newsreader", Georgia, serif;
+  --accent: "Instrument Serif", Georgia, serif;
 
   --container: 1160px;
   --gutter: clamp(22px, 6vw, 96px);
@@ -40,10 +41,10 @@
   --section-y: clamp(72px, 10vw, 120px);
 
   /* type scale: display steps down cleanly h1 > h2 > h3 > lead > body */
-  --fs-display:  clamp(46px, 6.6vw, 84px);
-  --fs-lead:     clamp(23px, 3vw, 34px);
-  --fs-h2:       clamp(29px, 3.6vw, 44px);
-  --fs-h3:       clamp(22px, 2.3vw, 29px);
+  --fs-display:  clamp(44px, 6.4vw, 80px);
+  --fs-lead:     clamp(22px, 2.8vw, 32px);
+  --fs-h2:       clamp(28px, 3.4vw, 42px);
+  --fs-h3:       clamp(21px, 2.2vw, 27px);
   --fs-body-lg:  clamp(17px, 1.4vw, 19px);
   --fs-body:     17px;
 
@@ -215,6 +216,7 @@ header{
   margin:var(--space-3) 0 var(--space-4);
 }
 .hero h1 em{
+  font-family:var(--accent);
   font-style:italic;
   font-weight:400;
   color:var(--wood);
@@ -315,6 +317,7 @@ header{
 }
 .manifesto-text + .manifesto-text{margin-top:var(--space-4);}
 .manifesto-text .accent{
+  font-family:var(--accent);
   color:var(--wood);
   font-style:italic;
 }
