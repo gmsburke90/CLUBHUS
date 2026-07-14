@@ -11,7 +11,7 @@
 <script>document.documentElement.classList.add('js');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 <style>
 
 /* ============ TOKENS ============ */
@@ -26,7 +26,7 @@
   --green-line: rgba(46,83,57,0.18);
 
   --display: "Bricolage Grotesque", ui-sans-serif, sans-serif;
-  --body: "Newsreader", Georgia, serif;
+  --body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --accent: "Instrument Serif", Georgia, serif;
 
   --container: 1160px;
@@ -69,10 +69,10 @@ body{
   overflow-x:hidden;
 }
 
-/* LOCKED TYPE SYSTEM: Bricolage Grotesque (display) + Newsreader (body)
-   + Instrument Serif (italic accent). Every display element shares one
-   treatment with optical sizing on, so it holds from 12px labels up to
-   the hero. */
+/* LOCKED TYPE SYSTEM: Bricolage Grotesque (display) + Inter (body/main
+   text) + Instrument Serif (italic accent). Every display element shares
+   one treatment with optical sizing on, so it holds from 12px labels up
+   to the hero. */
 h1, h2, h3, .wordmark, .footer-word, .fact dd, .provenance dd, .manifesto-text, .meta-item b{
   font-family:var(--display);
   font-optical-sizing:auto;
@@ -169,18 +169,21 @@ header{
 .brand{
   display:inline-flex;
   align-items:center;
-  gap:9px;
+  gap:8px;
   text-decoration:none;
 }
 .brand-mark{
-  width:26px;
-  height:26px;
+  width:22px;
+  height:auto;
   color:var(--green-deep);
   flex:none;
+  position:relative;
+  top:-0.5px; /* optical: sit the roofline against the cap height */
 }
 .wordmark{
   font-weight:600;
   font-size:21px;
+  line-height:1;
   letter-spacing:0.01em;
   color:var(--green-deep);
   text-decoration:none;
@@ -563,7 +566,7 @@ footer{
 <header>
   <nav class="nav">
     <a href="#top" class="brand" aria-label="CLUBHUS home">
-      <svg class="brand-mark" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <svg class="brand-mark" viewBox="5.5 6.5 37 35" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M7,23 L24,8 L41,23"/>
         <path d="M11,23 L11,40 L37,40 L37,23"/>
         <path d="M20,40 L20,31 a4,4 0 0 1 8,0 L28,40"/>
@@ -586,7 +589,7 @@ footer{
     <div class="wrap hero-grid">
       <div>
         <div class="plaque hero-eyebrow">CLUBHUS Lager &middot; 5%</div>
-        <h1>The game ends.<br>The clubhouse <em>opens.</em></h1>
+        <h1>The match ends.<br>The clubhouse <em>opens.</em></h1>
         <p>A Danish lager, brewed for the first pour after the match. Cold, simple, and exactly where it should be.</p>
         <div class="hero-meta">
           <div class="meta-item">ABV<b>5%</b></div>
