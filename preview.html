@@ -271,13 +271,12 @@ header{
   width:clamp(210px, 26vw, 300px);
   height:auto;
 }
-/* the pour draws in once as part of the entrance, then holds, no loop */
+/* graduated pour: dashed stream that flows continuously down into the glass */
 .tap-illustration .pour{
-  stroke-dasharray:82;
-  stroke-dashoffset:82;
-  animation:draw 0.9s var(--ease) forwards 0.75s;
+  stroke-dasharray:4 7;
+  animation:flow 1.8s linear infinite;
 }
-@keyframes draw{ to{stroke-dashoffset:0;} }
+@keyframes flow{ to{stroke-dashoffset:-110;} }
 @media (prefers-reduced-motion: reduce){
   .tap-illustration .pour{animation:none; stroke-dashoffset:0;}
 }
