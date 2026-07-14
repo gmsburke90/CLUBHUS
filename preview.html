@@ -7,6 +7,7 @@
 <meta name="description" content="CLUBHUS Lager. A 5% Danish lager, brewed for the first pour after the match. Draught only.">
 <meta name="theme-color" content="#2E5339">
 <meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%232E5339'/%3E%3Cg fill='none' stroke='%23F4F1EA' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 25 L24 12 L37 25'/%3E%3Cpath d='M15 25 L15 37 L33 37 L33 25'/%3E%3Cpath d='M20.6 37 L20.6 31 a3.4 3.4 0 0 1 6.8 0 L27.4 37'/%3E%3C/g%3E%3C/svg%3E">
 <script>document.documentElement.classList.add('js');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,8 +69,10 @@ body{
   overflow-x:hidden;
 }
 
-/* Every display element shares one serif treatment and optical sizing,
-   so Fraunces gets its age at large sizes and stays legible when small. */
+/* LOCKED TYPE SYSTEM: Bricolage Grotesque (display) + Newsreader (body)
+   + Instrument Serif (italic accent). Every display element shares one
+   treatment with optical sizing on, so it holds from 12px labels up to
+   the hero. */
 h1, h2, h3, .wordmark, .footer-word, .fact dd, .provenance dd, .manifesto-text, .meta-item b{
   font-family:var(--display);
   font-optical-sizing:auto;
@@ -162,6 +165,18 @@ header{
   display:flex;
   align-items:center;
   justify-content:space-between;
+}
+.brand{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  text-decoration:none;
+}
+.brand-mark{
+  width:26px;
+  height:26px;
+  color:var(--green-deep);
+  flex:none;
 }
 .wordmark{
   font-weight:600;
@@ -547,7 +562,14 @@ footer{
 
 <header>
   <nav class="nav">
-    <a href="#top" class="wordmark">CLUBHUS</a>
+    <a href="#top" class="brand" aria-label="CLUBHUS home">
+      <svg class="brand-mark" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M7,23 L24,8 L41,23"/>
+        <path d="M11,23 L11,40 L37,40 L37,23"/>
+        <path d="M20,40 L20,31 a4,4 0 0 1 8,0 L28,40"/>
+      </svg>
+      <span class="wordmark">CLUBHUS</span>
+    </a>
     <ul class="nav-links">
       <li><a href="#beer">The beer</a></li>
       <li><a href="#about">About</a></li>
@@ -597,7 +619,7 @@ footer{
       <div class="plaque">Why we made it</div>
       <p class="manifesto-text">
         Every clubhouse pours the same beer as the pub down the road.
-        We thought that was strange, so we decided to change that.
+        We thought that was strange, so we changed it.
       </p>
       <p class="manifesto-text">
         No billboard, no supermarket shelf. Just a clean, quietly confident
