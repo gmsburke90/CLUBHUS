@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0F0D0A">
+<meta name="color-scheme" content="dark">
+<title>CLUBHUS · The Nineteenth · Members Only</title>
+<meta name="description" content="CLUBHUS is a 4.8% Danish lager poured only in membership-only clubhouses. No shelves, no ads — just the low light of the bar after the round.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="CLUBHUS · The Nineteenth">
+<meta property="og:description" content="A lager for the room after the round. Members only.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='9' fill='%230F0D0A'/%3E%3Cg fill='none' stroke='%23E7A94C' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 24 L24 11 L39 24'/%3E%3Cpath d='M13 24 L13 38 L35 38 L35 24'/%3E%3C/g%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --void:        #0F0D0A;
+    --void-2:      #1B140D;
+    --void-3:      #241a10;
+    --parchment:   #F3E9D2;
+    --parchment-70: rgba(243,233,210,.68);
+    --parchment-45: rgba(243,233,210,.42);
+    --amber:       #E7A94C;
+    --amber-dim:   #B87A2A;
+    --ember:       #C4451B;
+    --moss:        #4C6B45;
+    --line:        rgba(243,233,210,.14);
+    --line-strong: rgba(243,233,210,.24);
+    --display: 'Bricolage Grotesque', ui-sans-serif, sans-serif;
+    --serif:   'Newsreader', Georgia, serif;
+    --script:  'Instrument Serif', Georgia, serif;
+    --maxw: 1180px;
+    --ease: cubic-bezier(.16,.84,.44,1);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--void);
+    color:var(--parchment);
+    font-family:var(--serif);
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+  a{color:inherit;}
+  img,svg{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+  ::selection{background:var(--amber); color:var(--void);}
+
+  /* grain overlay for atmosphere */
+  body::before{
+    content:"";
+    position:fixed; inset:0; z-index:200; pointer-events:none;
+    opacity:.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  h1,h2,h3,h4{font-family:var(--display); margin:0; font-weight:600; letter-spacing:-.01em;}
+  p{margin:0;}
+  .display{font-family:var(--display); font-weight:600; font-size:clamp(2rem,4.4vw,3.4rem); line-height:1.06; letter-spacing:-.015em; color:var(--parchment);}
+  .display em{font-family:var(--script); font-style:italic; font-weight:400; color:var(--amber);}
+  .script{font-family:var(--script); font-style:italic; font-weight:400;}
+  .eyebrow{
+    font-family:var(--display); font-weight:600; font-size:12.5px;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--amber);
+    margin:0 0 14px;
+  }
+  .num{
+    display:inline-block; font-family:var(--display); font-weight:300; font-size:13px;
+    color:var(--parchment-45); letter-spacing:.08em; margin-bottom:10px;
+  }
+
+  /* buttons */
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; justify-content:center;
+    font-family:var(--display); font-weight:600; font-size:14.5px; letter-spacing:.01em;
+    padding:14px 26px; border-radius:2px; border:1px solid transparent;
+    cursor:pointer; text-decoration:none; transition:transform .35s var(--ease), box-shadow .35s var(--ease), background .25s ease, border-color .25s ease;
+    white-space:nowrap;
+  }
+  .btn--ember{
+    background:linear-gradient(180deg,#D65826,var(--ember));
+    color:var(--parchment); box-shadow:0 1px 0 rgba(255,255,255,.18) inset, 0 10px 30px -12px rgba(196,69,27,.65);
+  }
+  .btn--ember:hover{transform:translateY(-2px); box-shadow:0 1px 0 rgba(255,255,255,.24) inset, 0 16px 34px -10px rgba(196,69,27,.85);}
+  .btn--line{border-color:var(--line-strong); color:var(--parchment);}
+  .btn--line:hover{border-color:var(--amber); color:var(--amber); transform:translateY(-2px);}
+  .btn--block{width:100%;}
+
+  .textlink{
+    font-family:var(--display); font-weight:600; font-size:14px; color:var(--amber);
+    text-decoration:none; border-bottom:1px solid rgba(231,169,76,.4); padding-bottom:2px;
+    transition:border-color .2s ease;
+  }
+  .textlink:hover{border-color:var(--amber);}
+
+  /* ---------- ticker ---------- */
+  .ticker{background:var(--void-2); border-bottom:1px solid var(--line); overflow:hidden; white-space:nowrap;}
+  .ticker__track{display:inline-flex; animation:tick 26s linear infinite;}
+  .ticker__track span{
+    display:inline-flex; align-items:center; gap:22px;
+    font-family:var(--display); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--parchment-45); padding:9px 22px; border-right:1px solid var(--line);
+  }
+  .ticker__track span i{color:var(--amber); font-style:normal;}
+  @keyframes tick{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+
+  /* ---------- nav ---------- */
+  header{position:sticky; top:0; z-index:100; backdrop-filter:blur(10px); background:rgba(15,13,10,.72); border-bottom:1px solid transparent; transition:border-color .3s ease, background .3s ease;}
+  header.scrolled{border-color:var(--line); background:rgba(15,13,10,.92);}
+  nav{display:flex; align-items:center; justify-content:space-between; padding:18px 32px; max-width:var(--maxw); margin:0 auto;}
+  .logo{display:flex; align-items:center; gap:10px; text-decoration:none;}
+  .logo svg{width:26px; height:26px; color:var(--amber);}
+  .logo span{font-family:var(--display); font-weight:700; font-size:19px; letter-spacing:.01em; color:var(--parchment);}
+  .navlinks{display:flex; gap:30px; align-items:center;}
+  .navlinks a{font-family:var(--display); font-size:13.5px; font-weight:500; text-decoration:none; color:var(--parchment-70); transition:color .2s ease; position:relative;}
+  .navlinks a:not(.btn):after{content:""; position:absolute; left:0; right:0; bottom:-4px; height:1px; background:var(--amber); transform:scaleX(0); transform-origin:right; transition:transform .3s var(--ease);}
+  .navlinks a:not(.btn):hover{color:var(--parchment);}
+  .navlinks a:not(.btn):hover:after{transform:scaleX(1); transform-origin:left;}
+  .burger{display:none; background:none; border:0; color:var(--parchment); width:34px; height:34px; cursor:pointer;}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative; padding:120px 0 90px; overflow:hidden;}
+  .hero__glow{
+    position:absolute; inset:-20% -10% auto -10%; height:120%; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(560px 420px at 78% 8%, rgba(231,169,76,.30), transparent 60%),
+      radial-gradient(700px 500px at 12% 55%, rgba(196,69,27,.16), transparent 62%),
+      radial-gradient(1100px 700px at 50% 100%, rgba(76,107,69,.10), transparent 65%);
+    animation:drift 18s ease-in-out infinite alternate;
+  }
+  @keyframes drift{from{transform:translate(0,0) scale(1);} to{transform:translate(-2%,2%) scale(1.04);}}
+  .hero__vignette{position:absolute; inset:0; z-index:0; pointer-events:none; background:radial-gradient(ellipse at 50% 30%, transparent 40%, var(--void) 92%);}
+  .hero__inner{position:relative; z-index:1; max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+
+  .hero__eyebrow{opacity:0; transform:translateY(14px); animation:rise .9s var(--ease) forwards; animation-delay:.1s;}
+  .hero__title{margin:0 0 26px;}
+  .hero__title .line{display:block; overflow:hidden;}
+  .hero__title .line span{display:block; opacity:0; transform:translateY(100%); animation:rise .9s var(--ease) forwards;}
+  .hero__title .line:nth-child(1) span{animation-delay:.22s;}
+  .hero__title .line:nth-child(2) span{animation-delay:.36s;}
+  .hero__title .line:nth-child(3) span{animation-delay:.5s;}
+  @keyframes rise{to{opacity:1; transform:translateY(0);}}
+
+  .hero__lede{max-width:560px; font-size:19px; color:var(--parchment-70); margin:0 0 22px; opacity:0; animation:rise .9s var(--ease) forwards; animation-delay:.64s;}
+  .hero__slogan{font-size:22px; color:var(--amber); margin:0 0 40px; display:inline-flex; flex-direction:column; opacity:0; animation:rise .9s var(--ease) forwards; animation-delay:.76s;}
+  .hero__flourish{width:220px; margin-top:6px;}
+  .hero__flourish path{fill:none; stroke:var(--amber-dim); stroke-width:1.5; stroke-dasharray:1; stroke-dashoffset:1; pathLength:1; animation:draw 1.4s var(--ease) forwards; animation-delay:1.1s;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+
+  .hero__actions{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:56px; opacity:0; animation:rise .9s var(--ease) forwards; animation-delay:.9s;}
+
+  .hero__meta{list-style:none; display:flex; gap:44px; padding:26px 0 0; margin:0; border-top:1px solid var(--line); max-width:560px; opacity:0; animation:rise .9s var(--ease) forwards; animation-delay:1.05s;}
+  .hero__meta strong{display:block; font-family:var(--display); font-size:26px; font-weight:700; color:var(--amber);}
+  .hero__meta span{font-size:12.5px; color:var(--parchment-45); letter-spacing:.04em;}
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease), transform .9s var(--ease);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- section shell ---------- */
+  section{position:relative;}
+  .section-dark{background:var(--void);}
+  .section-panel{background:var(--void-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+
+  /* ---------- story ---------- */
+  .story{padding:120px 0;}
+  .story__inner{max-width:var(--maxw); margin:0 auto; padding:0 32px; display:grid; grid-template-columns:.7fr 1.3fr; gap:60px;}
+  .story__body p{color:var(--parchment-70); font-size:18px; margin:22px 0; max-width:640px;}
+  .story__body h2{margin-bottom:8px;}
+
+  /* ---------- beer ---------- */
+  .beer{padding:120px 0;}
+  .beer__inner{max-width:var(--maxw); margin:0 auto; padding:0 32px; display:grid; grid-template-columns:.85fr 1.15fr; gap:70px; align-items:center;}
+  .beer__visual{position:relative; aspect-ratio:1/1.15; border:1px solid var(--line); border-radius:4px; display:flex; align-items:center; justify-content:center; background:
+      radial-gradient(circle at 50% 30%, rgba(231,169,76,.16), transparent 65%), var(--void-2);
+      overflow:hidden;}
+  .beer__visual:before{content:""; position:absolute; inset:0; background:repeating-linear-gradient(180deg, rgba(243,233,210,.02) 0 1px, transparent 1px 26px);}
+  .beer__glass{width:46%; color:var(--amber); position:relative; z-index:1; filter:drop-shadow(0 20px 40px rgba(0,0,0,.5));}
+  .beer__content .eyebrow{margin-top:0;}
+  .beer__lede{font-size:18px; color:var(--parchment-70); margin:16px 0 30px; max-width:520px;}
+  .notes{list-style:none; margin:0 0 34px; padding:0; display:grid; gap:0;}
+  .notes li{display:flex; justify-content:space-between; gap:20px; padding:13px 0; border-bottom:1px solid var(--line); font-size:14.5px;}
+  .notes__k{font-family:var(--display); color:var(--parchment-45); letter-spacing:.06em; text-transform:uppercase; font-size:11.5px; align-self:center;}
+  .notes__v{color:var(--parchment); text-align:right;}
+  .ingredients__title{font-family:var(--display); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--amber); margin:0 0 14px;}
+  .ingredients__list{list-style:none; margin:0; padding:0; display:grid; gap:10px;}
+  .ingredients__list li{display:flex; gap:14px; font-size:14px; color:var(--parchment-70);}
+  .ingredients__k{font-family:var(--display); font-weight:600; color:var(--parchment); min-width:64px;}
+
+  /* ---------- membership ---------- */
+  .membership{padding:120px 0 100px;}
+  .membership__head{max-width:640px; margin:0 auto 64px; text-align:center; padding:0 32px;}
+  .membership__head .display{margin-top:8px;}
+  .membership__lede{color:var(--parchment-70); font-size:18px; margin-top:18px;}
+  .steps{max-width:var(--maxw); margin:0 auto; padding:0 32px; display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .step{background:var(--void); padding:38px 30px; transition:background .3s ease;}
+  .step:hover{background:var(--void-2);}
+  .step__num{font-family:var(--script); font-style:italic; font-size:34px; color:var(--amber); display:block; margin-bottom:18px;}
+  .step h3{font-size:19px; margin-bottom:10px;}
+  .step p{color:var(--parchment-70); font-size:14.5px;}
+
+  /* ---------- rewards ---------- */
+  .rewards{padding:120px 0;}
+  .rewards__head{max-width:640px; padding:0 32px; margin:0 auto 56px; text-align:center;}
+  .rewards__lede{color:var(--parchment-70); font-size:18px; margin-top:18px;}
+  .rewards__grid{max-width:var(--maxw); margin:0 auto; padding:0 32px; display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  .reward{border:1px solid var(--line); border-radius:4px; padding:30px; background:var(--void-2); transition:border-color .3s ease, transform .3s var(--ease);}
+  .reward:hover{border-color:var(--amber-dim); transform:translateY(-4px);}
+  .reward--wide{grid-column:span 2; position:relative; min-height:260px; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden;
+    background:linear-gradient(160deg, var(--void-3), var(--void-2));}
+  .reward--wide:before{content:""; position:absolute; top:-30%; right:-10%; width:70%; height:160%;
+    background:radial-gradient(circle, rgba(231,169,76,.22), transparent 65%); pointer-events:none;}
+  .reward__tag{font-family:var(--display); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--amber); margin-bottom:12px; position:relative; z-index:1;}
+  .reward h3{font-size:20px; margin-bottom:8px; position:relative; z-index:1;}
+  .reward p{color:var(--parchment-70); font-size:14.5px; position:relative; z-index:1;}
+
+  /* ---------- roadmap ---------- */
+  .future{padding:120px 0;}
+  .future__head{max-width:640px; padding:0 32px; margin:0 auto 60px; text-align:center;}
+  .timeline{list-style:none; margin:0 auto; padding:0 32px; max-width:840px; display:grid; gap:0;}
+  .timeline li{display:grid; grid-template-columns:110px 1fr; gap:28px; padding:30px 0; border-top:1px solid var(--line);}
+  .timeline li:last-child{border-bottom:1px solid var(--line);}
+  .timeline__yr{font-family:var(--script); font-style:italic; font-size:24px; color:var(--amber);}
+  .timeline h3{font-size:18px; margin-bottom:8px;}
+  .timeline p{color:var(--parchment-70); font-size:14.5px; max-width:520px;}
+
+  /* ---------- join ---------- */
+  .join{padding:120px 0;}
+  .join__inner{max-width:var(--maxw); margin:0 auto; padding:0 32px; display:grid; grid-template-columns:.9fr 1.1fr; gap:70px; align-items:start;}
+  .join__copy p{color:var(--parchment-70); font-size:18px; margin-top:18px; max-width:440px;}
+  .join__form{background:var(--void-2); border:1px solid var(--line); border-radius:4px; padding:40px; display:grid; gap:20px;}
+  .field{display:grid; gap:8px;}
+  .field label{font-family:var(--display); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--parchment-45);}
+  .field__opt{text-transform:none; letter-spacing:0; opacity:.7;}
+  .field input{
+    background:var(--void); border:1px solid var(--line-strong); border-radius:2px; padding:13px 14px;
+    color:var(--parchment); font-family:var(--serif); font-size:15px; transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .field input:focus{outline:none; border-color:var(--amber); box-shadow:0 0 0 3px rgba(231,169,76,.16);}
+  .field input::placeholder{color:var(--parchment-45);}
+  .join__note{font-size:12.5px; color:var(--parchment-45); text-align:center; margin-top:2px;}
+
+  /* ---------- partner ---------- */
+  .partner{padding:100px 0; background:linear-gradient(180deg, var(--void-2), var(--void));}
+  .partner__inner{max-width:var(--maxw); margin:0 auto; padding:0 32px; display:flex; justify-content:space-between; align-items:center; gap:40px; flex-wrap:wrap;}
+  .partner__inner p{color:var(--parchment-70); font-size:16px; margin-top:14px; max-width:480px;}
+
+  /* ---------- signoff ---------- */
+  .signoff{display:flex; align-items:center; gap:22px; max-width:var(--maxw); margin:0 auto; padding:70px 32px;}
+  .signoff__rule{flex:1; height:1px; background:var(--line);}
+  .signoff__line{font-size:26px; color:var(--amber); white-space:nowrap;}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line); padding:70px 0 30px;}
+  .footer__inner{max-width:var(--maxw); margin:0 auto; padding:0 32px; display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px;}
+  .footer__mark{display:flex; align-items:center; gap:10px; margin-bottom:14px;}
+  .footer__mark svg{width:24px; height:24px; color:var(--amber);}
+  .footer__mark span{font-family:var(--display); font-weight:700; font-size:18px;}
+  .footer__tag{color:var(--parchment-45); font-size:14px; line-height:1.6;}
+  .footer__col h4{font-family:var(--display); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--parchment-45); margin-bottom:16px;}
+  .footer__col{display:flex; flex-direction:column; gap:11px;}
+  .footer__col a{text-decoration:none; color:var(--parchment-70); font-size:14.5px; transition:color .2s ease;}
+  .footer__col a:hover{color:var(--amber);}
+  .footer__base{max-width:var(--maxw); margin:50px auto 0; padding:22px 32px 0; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; font-size:12.5px; color:var(--parchment-45);}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:920px){
+    .story__inner,.beer__inner,.join__inner{grid-template-columns:1fr; gap:36px;}
+    .steps{grid-template-columns:1fr 1fr;}
+    .rewards__grid{grid-template-columns:1fr 1fr;}
+    .reward--wide{grid-column:span 2;}
+    .footer__inner{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:680px){
+    .navlinks{position:fixed; inset:64px 0 0 0; background:var(--void); flex-direction:column; align-items:flex-start; padding:30px 32px; gap:22px; transform:translateY(-12px); opacity:0; pointer-events:none; transition:opacity .25s ease, transform .25s ease;}
+    .navlinks.open{opacity:1; transform:translateY(0); pointer-events:auto;}
+    .burger{display:block;}
+    .nav-cta-inline{display:none;}
+    .steps{grid-template-columns:1fr;}
+    .rewards__grid{grid-template-columns:1fr;}
+    .reward--wide{grid-column:span 1;}
+    .timeline li{grid-template-columns:1fr;}
+    .partner__inner{flex-direction:column; align-items:flex-start;}
+    .footer__inner{grid-template-columns:1fr 1fr;}
+    .hero{padding:96px 0 60px;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- Ticker -->
+  <div class="ticker">
+    <div class="ticker__track">
+      <span><i>✦</i>Draught Only</span><span><i>✦</i>Members Only</span><span><i>✦</i>Brewed in København</span><span><i>✦</i>Est. MMXXVI</span>
+      <span><i>✦</i>Draught Only</span><span><i>✦</i>Members Only</span><span><i>✦</i>Brewed in København</span><span><i>✦</i>Est. MMXXVI</span>
+    </div>
+  </div>
+
+  <!-- Nav -->
+  <header id="header">
+    <nav>
+      <a href="#top" class="logo">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7,23 L24,8 L41,23"/>
+          <path d="M11,23 L11,40 L37,40 L37,23"/>
+          <path d="M20,40 L20,31 a4,4 0 0 1 8,0 L28,40"/>
+        </svg>
+        <span>CLUBHUS</span>
+      </a>
+      <div class="navlinks" id="navlinks">
+        <a href="#beer">The Lager</a>
+        <a href="#story">Heritage</a>
+        <a href="#membership">Membership</a>
+        <a href="#rewards">Rewards</a>
+        <a href="#future">What's Next</a>
+        <a href="#join" class="btn btn--ember">Request Membership</a>
+      </div>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="hero__vignette" aria-hidden="true"></div>
+    <div class="hero__inner">
+      <p class="eyebrow hero__eyebrow">The Clubhouse Lager · Members Only</p>
+      <h1 class="hero__title display">
+        <span class="line"><span>The round ends.</span></span>
+        <span class="line"><span>The clubhouse</span></span>
+        <span class="line"><span><em>opens.</em></span></span>
+      </h1>
+      <p class="hero__lede">A 4.8% Danish lager poured only where membership means something. No shelves, no billboards &mdash; just the low light of the bar after the round.</p>
+      <p class="hero__slogan script">
+        Last one in buys the first round.
+        <svg class="hero__flourish" viewBox="0 0 220 20" aria-hidden="true" preserveAspectRatio="none">
+          <path d="M4,12 C50,2 100,2 140,10 C165,15 195,15 216,6"></path>
+        </svg>
+      </p>
+      <div class="hero__actions">
+        <a href="#join" class="btn btn--ember">Request Membership</a>
+        <a href="#partner" class="btn btn--line">Partner Your Clubhouse</a>
+      </div>
+      <ul class="hero__meta">
+        <li><strong data-count="4.8" data-suffix="%">0</strong><span>ABV · Sessionable</span></li>
+        <li><strong data-static="Draught">0</strong><span>Pours Only</span></li>
+        <li><strong data-count="100" data-suffix="%">0</strong><span>Members Only</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Heritage -->
+  <section class="story section-dark" id="story">
+    <div class="story__inner">
+      <div class="reveal">
+        <span class="num">01 &mdash; The Idea</span>
+      </div>
+      <div class="story__body reveal">
+        <h2 class="display">A clubhouse isn't a bar. It's a standard &mdash; and it deserved a lager to match.</h2>
+        <p>Every clubhouse pours the same beer as the pub down the road. We thought that was strange, so we brewed something else: a clean, quietly confident Danish lager, made in small batches, poured only behind bars where membership still means something.</p>
+        <p>You won't find CLUBHUS on a billboard or a supermarket shelf. You'll find it exactly where you'd hope to &mdash; in your hand, after the round, among people you chose to belong with.</p>
+        <a href="#beer" class="textlink">Meet the lager &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Lager -->
+  <section class="beer section-panel" id="beer">
+    <div class="beer__inner">
+      <div class="beer__visual reveal" aria-hidden="true">
+        <svg class="beer__glass" viewBox="0 0 100 140" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M28 10 L26 122 a4 8 0 0 0 4 8 h40 a4 8 0 0 0 4 -8 L72 10 Z"/>
+          <path d="M28 40 L72 40" stroke-opacity=".5"/>
+          <path d="M74 46 c18 -4 18 30 0 26" />
+        </svg>
+      </div>
+      <div class="beer__content reveal">
+        <span class="num">02 &mdash; The Lager · No. 01</span>
+        <h2 class="display">Quietly exceptional. The way clubhouses prefer it.</h2>
+        <p class="beer__lede">A bottom-fermented pilsner brewed with Danish floor-malted barley and noble hops. Pale gold, gently bitter, built to outlast the nineteenth hole.</p>
+        <ul class="notes">
+          <li><span class="notes__k">Style</span><span class="notes__v">Premium Pilsner Lager</span></li>
+          <li><span class="notes__k">Nose</span><span class="notes__v">Fresh bread, meadow, faint citrus</span></li>
+          <li><span class="notes__k">Palate</span><span class="notes__v">Crisp, dry, clean bitterness</span></li>
+          <li><span class="notes__k">Serve</span><span class="notes__v">3&deg;C, tall glass, no rush</span></li>
+        </ul>
+        <div class="ingredients">
+          <p class="ingredients__title">Ingredients &amp; Provenance</p>
+          <ul class="ingredients__list">
+            <li><span class="ingredients__k">Malt</span><span>Gyrup Organic Danish Pilsner Malt</span></li>
+            <li><span class="ingredients__k">Hops</span><span>German Organic Perle</span></li>
+            <li><span class="ingredients__k">Yeast</span><span>White Labs Copenhagen WLP830 Lager Yeast</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Membership -->
+  <section class="membership section-dark" id="membership">
+    <div class="membership__head reveal">
+      <span class="num">03 &mdash; Membership</span>
+      <h2 class="display">Belong to your club. Then belong to ours.</h2>
+      <p class="membership__lede">Members of a partnered clubhouse are already halfway to CLUBHUS membership. The other half takes about a minute.</p>
+    </div>
+    <div class="steps">
+      <article class="step reveal">
+        <span class="step__num">I</span>
+        <h3>Walk in through your club</h3>
+        <p>Members of partnered golf and sports clubs are invited in automatically. Free, by association.</p>
+      </article>
+      <article class="step reveal">
+        <span class="step__num">II</span>
+        <h3>Ten percent, always</h3>
+        <p>A standing discount on every CLUBHUS pour at any partnered clubhouse. No card, no app, no fuss.</p>
+      </article>
+      <article class="step reveal">
+        <span class="step__num">III</span>
+        <h3>Points for every round</h3>
+        <p>Every pour earns toward merch and a growing bench of partner rewards.</p>
+      </article>
+      <article class="step reveal">
+        <span class="step__num">IV</span>
+        <h3>Spend them properly</h3>
+        <p>Redeem on club jerseys, or curated perks across travel, fashion and sport.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Rewards -->
+  <section class="rewards section-panel" id="rewards">
+    <div class="rewards__head reveal">
+      <span class="num">04 &mdash; The Rewards Locker</span>
+      <h2 class="display">Points, well spent.</h2>
+      <p class="rewards__lede">A members' currency that moves between the things our members already love.</p>
+    </div>
+    <div class="rewards__grid">
+      <article class="reward reward--wide reveal">
+        <div class="reward__tag">Merch &middot; The Jersey Series</div>
+        <h3>Wear the club.</h3>
+        <p>A rotating run of clubhouse staples &mdash; heritage cuts, amber trims, made to be kept, not just worn once.</p>
+      </article>
+      <article class="reward reveal">
+        <div class="reward__tag">Travel</div>
+        <h3>Hotels &amp; lounges</h3>
+        <p>Members' rates and quiet upgrades where you land.</p>
+      </article>
+      <article class="reward reveal">
+        <div class="reward__tag">Drive</div>
+        <h3>Car hire partners</h3>
+        <p>Preferred terms for the drive to the first tee.</p>
+      </article>
+      <article class="reward reveal">
+        <div class="reward__tag">Fashion</div>
+        <h3>Brand collaborations</h3>
+        <p>Limited drops with like-minded houses.</p>
+      </article>
+      <article class="reward reveal">
+        <div class="reward__tag">Sport</div>
+        <h3>Cross-club deals</h3>
+        <p>Access and offers across our partner clubs.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Roadmap -->
+  <section class="future section-dark" id="future">
+    <div class="future__head reveal">
+      <span class="num">05 &mdash; The Long Game</span>
+      <h2 class="display">This is the first pour, not the last.</h2>
+    </div>
+    <ol class="timeline">
+      <li class="reveal">
+        <span class="timeline__yr">Now</span>
+        <div><h3>The Lager</h3><p>CLUBHUS in Danish golf clubhouses. Membership and rewards go live.</p></div>
+      </li>
+      <li class="reveal">
+        <span class="timeline__yr">Next</span>
+        <div><h3>Cocktails in a Can</h3><p>Beyond lager &mdash; considered cans, like a King's Ginger for the shooting clubs.</p></div>
+      </li>
+      <li class="reveal">
+        <span class="timeline__yr">Then</span>
+        <div><h3>The Social Side</h3><p>Members' events, networking, and CLUBHUS-sponsored sport.</p></div>
+      </li>
+      <li class="reveal">
+        <span class="timeline__yr">Soon</span>
+        <div><h3>The App</h3><p>Points, partners, and a members' feed. The clubhouse, in your pocket.</p></div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- Join -->
+  <section class="join section-panel" id="join">
+    <div class="join__inner">
+      <div class="join__copy reveal">
+        <span class="num">06 &mdash; The Invitation</span>
+        <h2 class="display">Request your membership.</h2>
+        <p>Tell us where you play. We'll let you know the moment CLUBHUS arrives at your clubhouse, and hold your place among the first members.</p>
+      </div>
+      <form class="join__form reveal" id="joinForm" novalidate aria-describedby="formNote">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" autocomplete="name" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="you@email.com" required>
+        </div>
+        <div class="field">
+          <label for="club">Your club <span class="field__opt">(optional)</span></label>
+          <input type="text" id="club" name="club" placeholder="e.g. Rungsted Golf Klub">
+        </div>
+        <button type="submit" class="btn btn--ember btn--block">Request Membership</button>
+        <p class="join__note" id="formNote" role="status" aria-live="polite">Free to join &middot; No spam &middot; Unsubscribe anytime.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Partner -->
+  <section class="partner" id="partner">
+    <div class="partner__inner reveal">
+      <div>
+        <span class="num" style="margin-bottom:6px; display:block;">For Clubhouses</span>
+        <h2 class="display" style="font-size:clamp(1.6rem,3vw,2.2rem);">Pour CLUBHUS at your club.</h2>
+        <p>We partner with a select number of membership-only clubhouses each season. If yours sets a standard, we should talk.</p>
+      </div>
+      <a href="mailto:hello@clubhus.dk?subject=Clubhouse%20Partnership" class="btn btn--ember">Enquire about partnership</a>
+    </div>
+  </section>
+
+  <!-- Signoff -->
+  <div class="signoff">
+    <span class="signoff__rule"></span>
+    <p class="signoff__line script reveal">See you in the clubhouse.</p>
+    <span class="signoff__rule"></span>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer__inner">
+      <div>
+        <div class="footer__mark">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7,23 L24,8 L41,23"/>
+            <path d="M11,23 L11,40 L37,40 L37,23"/>
+            <path d="M20,40 L20,31 a4,4 0 0 1 8,0 L28,40"/>
+          </svg>
+          <span>CLUBHUS</span>
+        </div>
+        <p class="footer__tag">The Clubhouse Lager.<br>Brewed in Denmark, for members only.</p>
+      </div>
+      <nav class="footer__col" aria-label="Explore">
+        <h4>Explore</h4>
+        <a href="#beer">The Lager</a>
+        <a href="#membership">Membership</a>
+        <a href="#rewards">Rewards</a>
+        <a href="#future">What's Next</a>
+      </nav>
+      <nav class="footer__col" aria-label="House">
+        <h4>House</h4>
+        <a href="#partner">Partnerships</a>
+        <a href="mailto:hello@clubhus.dk">Contact</a>
+        <a href="#join">Membership</a>
+      </nav>
+      <div class="footer__col">
+        <h4>Social</h4>
+        <a href="#" aria-label="CLUBHUS on Instagram">Instagram</a>
+        <a href="#" aria-label="CLUBHUS on LinkedIn">LinkedIn</a>
+        <a href="#" aria-label="CLUBHUS journal">Journal</a>
+      </div>
+    </div>
+    <div class="footer__base">
+      <span>&copy; <span id="year">2026</span> CLUBHUS ApS &middot; K&oslash;benhavn</span>
+      <span>Enjoy responsibly &middot; Members must be 18+</span>
+    </div>
+  </footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // sticky nav shadow
+  const header = document.getElementById('header');
+  addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', scrollY > 8);
+  }, { passive: true });
+
+  // mobile menu
+  const burger = document.getElementById('burger');
+  const navlinks = document.getElementById('navlinks');
+  burger.addEventListener('click', () => {
+    const open = navlinks.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+  });
+  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navlinks.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  }));
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // stat counters
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const target = parseFloat(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const decimals = (el.dataset.count.split('.')[1] || '').length;
+    const counterIo = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        counterIo.unobserve(e.target);
+        const start = performance.now();
+        const dur = 1200;
+        function frame(t){
+          const p = Math.min(1, (t - start) / dur);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = (target * eased).toFixed(decimals) + suffix;
+          if (p < 1) requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+      });
+    }, { threshold: 0.6 });
+    counterIo.observe(el);
+  });
+  document.querySelectorAll('[data-static]').forEach(el => { el.textContent = el.dataset.static; });
+
+  // form
+  const form = document.getElementById('joinForm');
+  const note = document.getElementById('formNote');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    note.textContent = "You're on the list. See you in the clubhouse.";
+    form.querySelector('button').textContent = 'Request Received';
+    form.querySelectorAll('input, button').forEach(el => el.disabled = true);
+  });
+</script>
+</body>
+</html>
