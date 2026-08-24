@@ -1,77 +1,75 @@
 # CLUBHUS — Design System
 
-Reference doc for anyone (human or agent) touching `index.html`, `css/styles.css`,
-or `js/script.js`. Values are pulled directly from the CSS custom properties in
-`css/styles.css:5-26` — update there first, then reflect changes here.
+Reference doc for anyone (human or agent) touching `index.html` on `main`.
+As of the "Promote finalized draft to index.html" commit, `index.html` is a
+single self-contained file (inline `<style>`/`<script>`) — the old
+`css/styles.css` and `js/script.js` are no longer referenced from it and are
+legacy. Values below are pulled directly from the `:root` custom properties
+in `index.html`'s `<style>` block — update there first, then reflect changes
+here.
+
+> Note for this branch (`claude/add-skill-to-project-xi4qdg`): it forked
+> before the "tap redesign" landed on `main`, so files here (`versions/`,
+> the old `css/styles.css`) may still reference the earlier racing-green /
+> cream / brass / Fraunces system. This doc describes `main`'s current,
+> live design — treat it as the source of truth going forward.
 
 ## Brand direction
 
-- **Positioning:** premium yet authentic, heritage-led, members-only.
-- **Reference points:** Aimé Leon Dore, Rapha, Malbon, Copenhagen design studios.
-- **Voice:** confident, understated, clubhouse-insider — not shouty DTC.
+- **Positioning:** a Danish lager for the moment right after the match — understated, not a loyalty program or lifestyle brand.
+- **Voice:** short, plain sentences. Confident without being clever. "One lager. One moment." not "Discover a world of exclusive rewards."
+- **Signature device:** the "tapline" — a vertical wood-colored rule running the height of the page, like the line down a tap handle. It's the one recurring structural motif; don't add a second one.
 
 ## Color
 
 | Token | Value | Use |
 |---|---|---|
-| `--green` | `#0B3D2E` | Primary brand green (British Racing Green) |
-| `--green-deep` | `#072A20` | Dark sections, announcement bar |
-| `--green-soft` | `#14513D` | Hover/secondary green surfaces |
-| `--cream` | `#F4F0E6` | Page background (ecru canvas) |
-| `--cream-warm` | `#EFE9D8` | Warm cream surfaces |
-| `--paper` | `#FBFAF6` | Card/paper surfaces |
-| `--ink` | `#1C1B16` | Body text |
-| `--brass` | `#B79055` | Heritage gold accent, focus rings, links |
-| `--brass-soft` | `#C9A86E` | Brass hover state |
-| `--line` | `rgba(28,27,22,.14)` | Hairline borders on light surfaces |
-| `--line-light` | `rgba(244,240,230,.18)` | Hairline borders on dark surfaces |
+| `--green-deep` | `#1F3B28` | Manifesto section background, primary heading color |
+| `--green` | `#2E5339` | Secondary green (meta labels, SVG line art) |
+| `--chalk` | `#F4F1EA` | Page background |
+| `--chalk-dim` | `#E7E2D6` | "Find it" section background |
+| `--wood` | `#8C6A4F` | Accent — tapline, plaque dots, provenance labels, focus outline |
+| `--ink` | `#1A1A1A` | Body text, footer background |
+| `--green-line` | `rgba(46,83,57,0.18)` | Hairline borders/rules |
 
-Don't introduce new colors outside this palette without updating the tokens
-in `css/styles.css` first — no one-off hex values in markup or inline styles.
+No brass, no cream-warm/paper tiers, no line-light — this is a tighter, five-color system. Don't reintroduce the old racing-green/brass palette into new work on `main`.
 
 ## Type
 
 | Token | Stack | Role |
 |---|---|---|
-| `--serif` | Fraunces, Georgia, Times New Roman | Heritage display serif — headings (`.display`) |
-| `--sans` | Inter, system sans fallback | Body copy, UI labels, eyebrows |
-| `--logo` | Gabarito, Inter | Wordmark only |
-| `--script` | Caveat, Bradley Hand | Handwritten brand voice / slogans (`.script`) — use sparingly |
+| `--display` | Bricolage Grotesque, ui-sans-serif | All headings, wordmark, footer word, fact/provenance values, manifesto text — locked, one treatment scaling from 12px labels to the hero |
+| `--body` | Inter, system sans fallback | Body copy, nav, labels |
+| `--accent` | Instrument Serif, Georgia | Italic accent only (`<em>` in the hero headline, `.accent`) — used sparingly, never for full lines |
 
 Conventions:
-- `.display` — serif headings, `clamp(2rem, 4.6vw, 3.6rem)`, tight leading (1.04).
-- `.eyebrow` — small uppercase sans label, `.28em` letter-spacing, sits above headings.
-- `.num` — italic serif section numbers (e.g. "No. 01").
-- `.textlink` — underlined brass inline link.
+- `h1, h2, h3` get `text-wrap: balance` globally — don't override per-heading.
+- `.plaque` — small uppercase eyebrow label with a wood dot, `.16em` letter-spacing.
+- Type scale is fully tokenized (`--fs-display` through `--fs-body`) — use the existing steps, don't hardcode new font sizes.
 
 ## Layout
 
-- Max content width: `--maxw: 1240px`.
-- Side padding: `--pad: clamp(20px, 5vw, 72px)` — fluid, don't hardcode margins.
-- Breakpoints: `980px` (tablet), `560px` (mobile) — see `css/styles.css:604`, `:625`.
-- Standard ease: `--ease: cubic-bezier(.22,.61,.36,1)` — use for all transitions, don't invent new curves.
+- Max content width: `--container: 1160px`.
+- Side padding: `--gutter: clamp(22px, 6vw, 96px)`.
+- Spacing is one 8px rhythm: `--space-1` (8px) through `--space-6` (64px), plus `--section-y` for vertical section padding. Use these tokens, not arbitrary margins.
+- Single stacking breakpoint at `880px` for the two-column grids (hero, beer); `600px` hides nav links; a couple of narrower tweaks at `540px`/`480px`/`460px`.
+- Standard ease: `--ease: cubic-bezier(.22,.61,.36,1)`.
 
 ## Components
 
-**Buttons** (`.btn`) — uppercase, `.12em` letter-spacing, 2px radius, subtle lift on hover
-(`translateY(-2px)`). Variants: `.btn--gold` (brass fill, primary CTA), `.btn--line`
-(outlined, for dark sections), `.btn--ghost` (outlined green, for light sections),
-`.btn--block` (full width).
+- **Illustrations** — hand-built inline SVG line art only (tap handle + pour, glass), stroked in the three ink colors. No stock icon library, no photography.
+- **`.club-tag`** — pill-shaped, hairline border, for the About section's club list.
+- **`.club-cta a`** — text link with an arrow that grows its gap on hover; the site's only real "button"-equivalent.
 
 ## Motion & accessibility
 
-- Every animation (`marquee`, aurora, hero title reveal, scroll reveals) has a
-  matching `@media (prefers-reduced-motion: reduce)` override that disables it.
-  New motion must follow the same pattern.
-- Visible focus via `:focus-visible` with brass outline — never remove without
-  a replacement.
-- Skip link present (`.skip-link`) — keep it working when editing nav markup.
+- Global `@media (prefers-reduced-motion: reduce)` kills all animation/transition duration site-wide (one rule, not per-component overrides) — keep new motion inside that umbrella rather than writing a bespoke reduced-motion variant each time.
+- Hero entrance is one quiet staggered rise (opacity + 16px translateY), then still — resist adding more.
+- `a:focus-visible, button:focus-visible` get a global wood outline — don't override per-component.
+- `section[id] { scroll-margin-top: 88px }` clears the sticky nav on anchor jumps — keep this when adding sections.
+- Skip link: not present on `main` as of this writing — added in `versions/tap-refined.html`; worth porting back.
 
 ## Working with this doc
 
-- `/web-interface-guidelines` reviews UI code against general web-interface best
-  practices (accessibility, forms, focus, etc.) — this doc is CLUBHUS-specific
-  brand/token guidance, use both together.
-- The `design-taste-frontend` skill treats this file's contents as the
-  "brand tokens" starting material for any redesign or new section — extend it
-  rather than inventing a parallel system.
+- `/web-interface-guidelines` reviews UI code against general web-interface best practices (accessibility, forms, focus, etc.) — this doc is CLUBHUS-specific brand/token guidance, use both together.
+- The `design-taste-frontend` skill treats this file's contents as the "brand tokens" starting material for any redesign or new section on `main` — extend it rather than inventing a parallel system, and don't pull colors/type from the old `css/styles.css`.
