@@ -14,9 +14,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 <style>
 
-/* ============ Redesign — Preserve ============
+/* ============ Redesign - Preserve ============
    Audit-first evolution of origin/main's index.html (the "tap redesign"),
-   not the older css/styles.css version — that page is already careful
+   not the older css/styles.css version - that page is already careful
    work: text-wrap:balance, global reduced-motion handling, and consistent
    focus-visible were already in place. Two real gaps closed here: no
    skip link, and two straight apostrophes. One new motion moment added
@@ -53,7 +53,7 @@
   --section-y: clamp(72px, 10vw, 120px);
 
   /* type scale: display steps down cleanly h1 > h2 > h3 > lead > body */
-  --fs-display:  clamp(44px, 6.4vw, 80px);
+  --fs-display:  clamp(38px, 4.4vw, 54px);
   --fs-lead:     clamp(22px, 2.8vw, 32px);
   --fs-h2:       clamp(28px, 3.4vw, 42px);
   --fs-h3:       clamp(21px, 2.2vw, 27px);
@@ -242,7 +242,7 @@ header{
 }
 .hero-grid{
   display:grid;
-  grid-template-columns:1.05fr 0.95fr;
+  grid-template-columns:1.25fr 0.75fr;
   gap:clamp(32px, 6vw, 80px);
   align-items:center;
   width:100%;
@@ -387,7 +387,7 @@ header{
   width:clamp(170px, 20vw, 230px);
 }
 /* the fill line rises into place once the glass is on screen, echoing the
-   hero's pour — reveal.is-visible gates it so it never fires off-screen */
+   hero's pour - reveal.is-visible gates it so it never fires off-screen */
 .glass-illustration .fill{
   stroke-dasharray:108;
   stroke-dashoffset:108;
@@ -631,7 +631,7 @@ footer{
     <div class="wrap hero-grid">
       <div>
         <div class="plaque hero-eyebrow">CLUBHUS Lager &middot; 5%</div>
-        <h1>The match ends.<br>The clubhouse <em>opens.</em></h1>
+        <h1>The match ends. The clubhouse <em>opens.</em></h1>
         <p>A Danish lager, brewed for the first pour after the match. Cold, simple, and exactly where it should be.</p>
         <div class="hero-meta">
           <div class="meta-item">ABV<b>5%</b></div>
