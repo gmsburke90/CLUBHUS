@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B3D2E">
+<meta name="color-scheme" content="light only">
+<title>CLUBHUS · The Standard · Members Only</title>
+<meta name="description" content="CLUBHUS is a premium Danish lager brewed exclusively for membership-only sports clubhouses. Heritage, craft, and quiet exclusivity. Beginning with golf clubs in Denmark.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="CLUBHUS · The Standard">
+<meta property="og:description" content="A premium lager for membership-only clubhouses. Heritage in every pour.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='8' fill='%230B3D2E'/%3E%3Cg fill='none' stroke='%23F4F0E6' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 24 L24 12 L37 24'/%3E%3Cpath d='M14 24 L14 37 L34 37 L34 24'/%3E%3C/g%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Fraunces:ital,opsz,wght@0,9..144,340..600;1,9..144,340..600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============ Design Read ============
+   Premium consumer landing page for members-only clubhouse audience.
+   Language: quiet-luxury / Scandinavian editorial, not "AI premium."
+   Dials — VARIANCE 7 · MOTION 5 · DENSITY 3.
+   Brand tokens sourced from DESIGN.md — no parallel palette invented.
+   Anti-defaults avoided: no centered hero-over-mesh, no equal 3-card
+   grids, no purple gradients, no glassmorphism. */
+
+:root{
+  --green:      #0B3D2E;
+  --green-deep: #072A20;
+  --green-soft: #14513D;
+  --cream:      #F4F0E6;
+  --paper:      #FBFAF6;
+  --ink:        #1C1B16;
+  --ink-70:     rgba(28,27,22,.68);
+  --ink-45:     rgba(28,27,22,.45);
+  --brass:      #B79055;
+  --brass-soft: #C9A86E;
+  --line:       rgba(28,27,22,.14);
+  --line-light: rgba(244,240,230,.18);
+
+  --serif:  'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans:   'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --script: 'Caveat', 'Bradley Hand', cursive;
+
+  --maxw: 1320px;
+  --pad: clamp(20px, 5vw, 80px);
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
+body{
+  margin:0;
+  font-family:var(--sans);
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img,svg{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+h1,h2,h3,h4{ margin:0; font-weight:500; }
+::selection{ background:var(--brass); color:var(--green-deep); }
+
+:focus-visible{ outline:2px solid var(--brass); outline-offset:3px; border-radius:2px; }
+
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--pad); }
+
+.skip-link{
+  position:fixed; top:10px; left:50%; transform:translate(-50%,-160%); z-index:200;
+  background:var(--green); color:var(--cream);
+  padding:.7rem 1.2rem; border-radius:3px; font-size:.78rem;
+  letter-spacing:.12em; text-transform:uppercase;
+  transition:transform .25s var(--ease);
+}
+.skip-link:focus-visible{ transform:translate(-50%,0); }
+
+/* ---------- Type helpers ---------- */
+.eyebrow{
+  font-family:var(--sans); font-size:.72rem; font-weight:600;
+  letter-spacing:.26em; text-transform:uppercase; color:var(--green);
+  display:flex; align-items:center; gap:.6em;
+}
+.eyebrow::before{ content:''; width:22px; height:1px; background:var(--brass); flex:none; }
+.eyebrow--light{ color:var(--brass-soft); }
+.eyebrow--light::before{ background:var(--brass-soft); }
+
+.index-num{
+  font-family:var(--serif); font-style:italic; font-weight:400;
+  font-variant-numeric:tabular-nums; color:var(--brass); font-size:1rem;
+}
+
+.display{ font-family:var(--serif); font-weight:400; letter-spacing:-.01em; text-wrap:balance; }
+.display em{ font-style:italic; color:var(--green); }
+.display--light em{ color:var(--brass-soft); }
+
+.script{ font-family:var(--script); font-weight:600; line-height:1; }
+
+.rule{ border:0; border-top:1px solid var(--line); margin:0; }
+.rule--light{ border-top-color:var(--line-light); }
+
+.btn{
+  --bg:var(--green); --fg:var(--cream); --bd:var(--green);
+  display:inline-flex; align-items:center; gap:.5em;
+  font-family:var(--sans); font-size:.8rem; font-weight:600;
+  letter-spacing:.1em; text-transform:uppercase;
+  padding:1rem 1.8rem; border:1px solid var(--bd);
+  background:var(--bg); color:var(--fg); border-radius:2px; cursor:pointer;
+  transition:transform .35s var(--ease), background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease);
+  white-space:nowrap;
+}
+.btn:hover{ transform:translateY(-2px); }
+.btn--gold{ --bg:var(--brass); --fg:var(--green-deep); --bd:var(--brass); }
+.btn--gold:hover{ --bg:var(--brass-soft); --bd:var(--brass-soft); }
+.btn--line{ --bg:transparent; --fg:var(--cream); --bd:rgba(244,240,230,.4); }
+.btn--line:hover{ --bg:rgba(244,240,230,.08); --bd:var(--cream); }
+.btn--ghost{ --bg:transparent; --fg:var(--green); --bd:var(--green); }
+.btn--ghost:hover{ --bg:var(--green); --fg:var(--cream); }
+.btn--block{ width:100%; justify-content:center; }
+
+.reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+.reveal.is-in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
+
+/* ---------- Nav ---------- */
+.nav{ position:sticky; top:0; z-index:50; background:rgba(244,240,230,0); transition:background .3s var(--ease), border-color .3s var(--ease); border-bottom:1px solid transparent; }
+.nav.is-stuck{ background:rgba(251,250,246,.92); backdrop-filter:blur(10px); border-bottom-color:var(--line); }
+.nav__inner{ max-width:var(--maxw); margin:0 auto; padding:1.1rem var(--pad); display:flex; align-items:center; justify-content:space-between; gap:2rem; }
+.nav__brand{ display:flex; align-items:center; gap:.6rem; font-family:var(--serif); font-size:1.15rem; letter-spacing:-.01em; color:var(--green); flex:none; }
+.nav__mark{ width:26px; height:26px; color:var(--green); flex:none; }
+.nav__links{ display:flex; align-items:center; gap:2.1rem; font-size:.82rem; letter-spacing:.02em; }
+.nav__links a:not(.btn){ position:relative; padding:.2rem 0; }
+.nav__links a:not(.btn)::after{ content:''; position:absolute; left:0; right:100%; bottom:-2px; height:1px; background:var(--brass); transition:right .3s var(--ease); }
+.nav__links a:not(.btn):hover::after{ right:0; }
+.nav__burger{ display:none; }
+@media (max-width:900px){
+  .nav__links{ position:fixed; inset:0 0 0 auto; width:min(320px,86vw); height:100vh; background:var(--paper); flex-direction:column; align-items:flex-start; justify-content:center; gap:1.6rem; padding:2rem var(--pad); transform:translateX(100%); transition:transform .4s var(--ease); border-left:1px solid var(--line); }
+  .nav.is-open .nav__links{ transform:translateX(0); }
+  .nav__burger{ display:flex; flex-direction:column; justify-content:center; gap:5px; width:34px; height:34px; background:none; border:0; cursor:pointer; }
+  .nav__burger span{ width:100%; height:1.5px; background:var(--ink); transition:transform .3s var(--ease), opacity .3s var(--ease); }
+  .nav.is-open .nav__burger span:first-child{ transform:translateY(3.25px) rotate(45deg); }
+  .nav.is-open .nav__burger span:last-child{ transform:translateY(-3.25px) rotate(-45deg); }
+}
+
+/* ---------- Hero — asymmetric, not centered ---------- */
+.hero{ position:relative; padding:clamp(3rem,8vw,5rem) 0 clamp(3.5rem,9vw,6rem); border-bottom:1px solid var(--line); }
+.hero__grid{ display:grid; grid-template-columns:minmax(0,7fr) minmax(0,5fr); gap:clamp(2rem,5vw,4rem); align-items:end; }
+.hero__eyebrow{ margin-bottom:1.6rem; }
+.hero__title{ font-size:clamp(2.6rem,6vw,5.2rem); line-height:.98; }
+.hero__lede{ max-width:34ch; font-size:1.05rem; color:var(--ink-70); margin:1.6rem 0 0; }
+.hero__actions{ display:flex; flex-wrap:wrap; gap:.9rem; margin-top:2.2rem; }
+.hero__side{ display:flex; flex-direction:column; align-items:flex-end; gap:1.4rem; text-align:right; }
+.hero__crest{ width:clamp(96px,11vw,140px); color:var(--green); }
+.hero__slogan{ font-size:clamp(1.4rem,2.4vw,1.9rem); color:var(--green); }
+.hero__meta{ list-style:none; margin:2.6rem 0 0; padding:1.4rem 0 0; border-top:1px solid var(--line); display:flex; gap:clamp(1.6rem,4vw,3rem); flex-wrap:wrap; }
+.hero__meta li{ display:flex; flex-direction:column; gap:.2rem; }
+.hero__meta strong{ font-family:var(--serif); font-size:1.4rem; font-variant-numeric:tabular-nums; color:var(--green); }
+.hero__meta span{ font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-45); }
+@media (max-width:820px){
+  .hero__grid{ grid-template-columns:1fr; }
+  .hero__side{ align-items:flex-start; text-align:left; flex-direction:row; justify-content:space-between; }
+}
+
+/* ---------- Section shell ---------- */
+.section{ padding:clamp(3.5rem,8vw,6.5rem) 0; border-bottom:1px solid var(--line); }
+.section--dark{ background:var(--green-deep); color:var(--cream); border-bottom-color:var(--line-light); }
+.section__head{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,2.4fr); gap:clamp(1.5rem,4vw,3rem); align-items:start; }
+.section__head-label{ display:flex; flex-direction:column; gap:.8rem; }
+@media (max-width:760px){ .section__head{ grid-template-columns:1fr; } }
+
+/* ---------- Heritage — editorial, pull-quote ---------- */
+.story__body{ max-width:62ch; }
+.story h2{ font-size:clamp(1.9rem,3.6vw,2.9rem); line-height:1.12; }
+.story p{ margin:1.4rem 0 0; color:var(--ink-70); max-width:56ch; }
+.story__quote{ font-family:var(--script); font-size:clamp(1.5rem,2.6vw,2rem); color:var(--green); margin:2.2rem 0 0; line-height:1.3; }
+
+/* ---------- The Lager — spec-sheet, not card ---------- */
+.beer__body{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(2rem,5vw,4rem); align-items:start; }
+.beer h2{ font-size:clamp(1.9rem,3.6vw,2.9rem); line-height:1.12; max-width:16ch; }
+.beer__lede{ margin:1.2rem 0 0; color:var(--ink-70); max-width:44ch; }
+.specs{ list-style:none; margin:2.2rem 0 0; padding:0; border-top:1px solid var(--line); }
+.specs li{ display:grid; grid-template-columns:9ch 1fr; gap:1.2rem; padding:.85rem 0; border-bottom:1px solid var(--line); font-size:.92rem; }
+.specs__k{ font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-45); padding-top:.15rem; }
+.provenance{ border:1px solid var(--line); background:var(--paper); padding:1.6rem 1.8rem; }
+.provenance__title{ font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--green); margin:0 0 1rem; }
+.provenance dl{ margin:0; display:grid; gap:.7rem; }
+.provenance dt{ font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-45); }
+.provenance dd{ margin:.1rem 0 0; font-family:var(--serif); font-size:1.02rem; }
+
+/* ---------- Membership — numbered rule-list, not cards ---------- */
+.steps{ list-style:none; margin:2.6rem 0 0; padding:0; }
+.step{ display:grid; grid-template-columns:4.5rem minmax(0,1fr) minmax(0,1.6fr); gap:1.6rem; align-items:baseline; padding:1.7rem 0; border-top:1px solid var(--line-light); }
+.step:last-child{ border-bottom:1px solid var(--line-light); }
+.step__num{ font-family:var(--serif); font-style:italic; font-size:1.3rem; color:var(--brass-soft); }
+.step h3{ font-family:var(--serif); font-weight:400; font-size:1.35rem; color:var(--cream); }
+.step p{ margin:0; color:rgba(244,240,230,.62); max-width:52ch; }
+@media (max-width:760px){ .step{ grid-template-columns:2.5rem 1fr; } .step h3{ grid-column:2; } .step p{ grid-column:2; } }
+
+/* ---------- Rewards — honest bento, mixed cell sizes ---------- */
+.bento{ display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:2.6rem; }
+.bento > *{ background:var(--paper); padding:2rem clamp(1.4rem,2.4vw,2.2rem); }
+.bento__lead{ grid-column:span 4; display:flex; flex-direction:column; justify-content:space-between; gap:2rem; min-height:280px; }
+.bento__lead h3{ font-family:var(--serif); font-weight:400; font-size:clamp(1.5rem,2.4vw,2.1rem); max-width:16ch; }
+.bento__lead p{ margin:0; color:var(--ink-70); max-width:42ch; }
+.bento__tag{ font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--brass); }
+.bento__cell{ grid-column:span 2; display:flex; flex-direction:column; gap:.7rem; }
+.bento__cell h4{ font-family:var(--serif); font-weight:400; font-size:1.15rem; }
+.bento__cell p{ margin:0; color:var(--ink-70); font-size:.92rem; }
+@media (max-width:820px){ .bento{ grid-template-columns:repeat(2,minmax(0,1fr)); } .bento__lead,.bento__cell{ grid-column:span 2; min-height:0; } }
+
+/* ---------- Roadmap — connected horizontal line ---------- */
+.timeline{ list-style:none; margin:3rem 0 0; padding:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0; position:relative; }
+.timeline::before{ content:''; position:absolute; top:.55rem; left:0; right:0; height:1px; background:var(--line-light); }
+.timeline li{ position:relative; padding:2.4rem 1.4rem 0 0; }
+.timeline li::before{ content:''; position:absolute; top:0; left:0; width:9px; height:9px; border-radius:50%; background:var(--brass); }
+.timeline__yr{ font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; color:var(--brass-soft); }
+.timeline h3{ font-family:var(--serif); font-weight:400; font-size:1.25rem; color:var(--cream); margin:.7rem 0 0; }
+.timeline p{ margin:.6rem 0 0; color:rgba(244,240,230,.6); font-size:.92rem; }
+@media (max-width:760px){ .timeline{ grid-template-columns:1fr; gap:1.8rem; } .timeline::before{ top:0; bottom:0; left:.4rem; right:auto; width:1px; height:auto; } .timeline li{ padding:0 0 0 2rem; } }
+
+/* ---------- Join ---------- */
+.join__grid{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(2rem,5vw,4rem); align-items:start; }
+.join h2{ font-size:clamp(1.9rem,3.6vw,2.9rem); max-width:14ch; }
+.join p{ color:var(--ink-70); max-width:42ch; margin:1.2rem 0 0; }
+.field{ display:flex; flex-direction:column; gap:.4rem; margin-bottom:1.1rem; }
+.field label{ font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-45); }
+.field__opt{ text-transform:none; letter-spacing:0; }
+.field input{
+  font-family:var(--sans); font-size:.95rem; padding:.85rem 1rem;
+  border:1px solid var(--line); background:var(--paper); color:var(--ink); border-radius:2px;
+  transition:border-color .25s var(--ease);
+}
+.field input:focus-visible{ border-color:var(--brass); }
+.field input.is-error{ border-color:#B4432B; }
+.join__note{ margin:1rem 0 0; font-size:.82rem; color:var(--ink-45); }
+.join__note.is-success{ color:var(--green); font-weight:600; }
+
+/* ---------- Partner ---------- */
+.partner__inner{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:2rem; }
+.partner h2{ font-size:clamp(1.6rem,3vw,2.3rem); max-width:20ch; }
+.partner p{ margin:.8rem 0 0; color:rgba(244,240,230,.62); max-width:48ch; }
+
+/* ---------- Sign-off + footer ---------- */
+.signoff{ display:flex; align-items:center; justify-content:center; gap:1.4rem; padding:2.6rem var(--pad); }
+.signoff__line{ font-size:1.5rem; color:var(--green); }
+.footer{ background:var(--paper); border-top:1px solid var(--line); }
+.footer__inner{ max-width:var(--maxw); margin:0 auto; padding:3rem var(--pad) 2rem; display:grid; grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr)); gap:2.4rem; }
+.footer__brand{ display:flex; flex-direction:column; gap:.9rem; }
+.footer__mark{ display:flex; align-items:center; gap:.5rem; font-family:var(--serif); font-size:1.1rem; color:var(--green); }
+.footer__logomark{ width:22px; height:22px; }
+.footer__tag{ font-size:.85rem; color:var(--ink-45); margin:0; max-width:26ch; }
+.footer__col h4{ font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-45); margin:0 0 .9rem; }
+.footer__col{ display:flex; flex-direction:column; gap:.6rem; font-size:.88rem; }
+.footer__col a:hover{ color:var(--green); }
+.footer__base{ max-width:var(--maxw); margin:0 auto; padding:1.4rem var(--pad) 2rem; display:flex; flex-wrap:wrap; gap:.6rem 1.4rem; justify-content:space-between; border-top:1px solid var(--line); font-size:.76rem; color:var(--ink-45); }
+@media (max-width:760px){ .footer__inner{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#top" class="nav__brand" aria-label="CLUBHUS home" id="top">
+      <svg class="nav__mark" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M7,23 L24,8 L41,23"/>
+        <path d="M11,23 L11,40 L37,40 L37,23"/>
+        <path d="M20,40 L20,31 a4,4 0 0 1 8,0 L28,40"/>
+      </svg>
+      <span>CLUBHUS</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#beer">The Lager</a>
+      <a href="#story">Heritage</a>
+      <a href="#membership">Membership</a>
+      <a href="#rewards">Rewards</a>
+      <a href="#future">What&rsquo;s Next</a>
+      <a href="#join" class="btn btn--gold">Become a Member</a>
+    </nav>
+    <button class="nav__burger" aria-label="Open menu" aria-expanded="false" id="burger">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero — asymmetric split, headline anchored bottom-left -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <p class="eyebrow hero__eyebrow"><span class="index-num">No. 01</span> The Clubhouse Lager</p>
+        <h1 class="display hero__title">The room after<br>the round deserves<br><em>a lager of its own.</em></h1>
+        <p class="hero__lede">A premium Danish lager, poured exclusively in membership-only clubhouses. Quietly crafted, properly cold, reserved for those who belong.</p>
+        <div class="hero__actions">
+          <a href="#join" class="btn btn--gold">Become a Member</a>
+          <a href="#partner" class="btn btn--ghost">Partner Your Clubhouse</a>
+        </div>
+      </div>
+      <div class="hero__side">
+        <svg class="hero__crest" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M16,60 L60,24 L104,60"/>
+          <path d="M26,60 L26,98 L94,98 L94,60"/>
+          <path d="M50,98 L50,80 a10,10 0 0 1 20,0 L70,98"/>
+        </svg>
+        <p class="hero__slogan script">See you in the Clubhouse.</p>
+      </div>
+    </div>
+    <div class="wrap">
+      <ul class="hero__meta">
+        <li><strong data-count="4.8" data-suffix="%">0</strong><span>ABV · Sessionable</span></li>
+        <li><strong>Draught</strong><span>Pours Only</span></li>
+        <li><strong data-count="100" data-suffix="%">0</strong><span>Members Only</span></li>
+        <li><strong>Denmark</strong><span>Brewed &amp; Poured</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Heritage -->
+  <section class="section story reveal" id="story">
+    <div class="wrap section__head">
+      <div class="section__head-label">
+        <span class="index-num">01</span>
+        <p class="eyebrow">The Idea</p>
+      </div>
+      <div class="story__body">
+        <h2 class="display">A clubhouse is not a bar. It is a standard that deserves a lager of its own.</h2>
+        <p>CLUBHUS began with a simple conviction: the finest rooms in sport are served the same beer as everywhere else. So we brewed one that isn&rsquo;t &mdash; a clean, bright Danish lager, made in small batches from exceptional ingredients, poured only where membership means something.</p>
+        <p>You won&rsquo;t find us in supermarkets or on billboards. You&rsquo;ll find us behind the bar of your clubhouse, and increasingly, in the company you keep there.</p>
+        <p class="story__quote script">&ldquo;The same standard, wherever the round ends.&rdquo;</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Lager -->
+  <section class="section beer reveal" id="beer">
+    <div class="wrap">
+      <div class="section__head-label" style="margin-bottom:2rem;">
+        <span class="index-num">02</span>
+        <p class="eyebrow">The Lager · No. 01</p>
+      </div>
+      <div class="beer__body">
+        <div>
+          <h2 class="display">Quietly exceptional. The way the best things are.</h2>
+          <p class="beer__lede">A bottom-fermented pilsner brewed with Danish floor-malted barley and noble hops. Bright gold, softly bitter, and built for the long afternoon.</p>
+          <ul class="specs">
+            <li><span class="specs__k">Style</span><span>Premium Pilsner Lager</span></li>
+            <li><span class="specs__k">Nose</span><span>Fresh bread, meadow, faint citrus</span></li>
+            <li><span class="specs__k">Palate</span><span>Crisp, dry, clean bitterness</span></li>
+            <li><span class="specs__k">Serve</span><span>3&deg;C, tall glass, no rush</span></li>
+          </ul>
+        </div>
+        <div class="provenance">
+          <p class="provenance__title">Organic Ingredients &middot; Provenance</p>
+          <dl>
+            <div><dt>Malt</dt><dd>Gyrup Organic Danish Pilsner Malt</dd></div>
+            <div><dt>Hops</dt><dd>German Organic Perle</dd></div>
+            <div><dt>Yeast</dt><dd>White Labs Copenhagen WLP830 Organic German Lager Yeast</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Membership -->
+  <section class="section section--dark reveal" id="membership">
+    <div class="wrap section__head">
+      <div class="section__head-label">
+        <span class="index-num" style="color:var(--brass-soft)">03</span>
+        <p class="eyebrow eyebrow--light">Membership</p>
+      </div>
+      <div>
+        <h2 class="display display--light">Belong to your club.<br>Then belong to <em>ours.</em></h2>
+        <p style="color:rgba(244,240,230,.62); max-width:48ch; margin:1.2rem 0 0;">If you&rsquo;re a member of a partnered club, you can become a member of CLUBHUS, and your afternoons start working a little harder for you.</p>
+      </div>
+    </div>
+    <ol class="steps wrap" style="list-style:none;">
+      <li class="step"><span class="step__num">I</span><h3>Join through your club</h3><p>Members of partnered golf and sports clubs are invited into CLUBHUS. Free, by association.</p></li>
+      <li class="step"><span class="step__num">II</span><h3>10% off every pour</h3><p>Members enjoy a standing 10% on CLUBHUS at any partnered clubhouse. No fuss, no app required.</p></li>
+      <li class="step"><span class="step__num">III</span><h3>Earn points as you go</h3><p>Every round and every pour earns points toward merch and partner rewards across travel, fashion and sport.</p></li>
+      <li class="step"><span class="step__num">IV</span><h3>Spend them well</h3><p>Redeem on club jerseys or curated partner perks: hotels, lounges, car hire and more.</p></li>
+    </ol>
+  </section>
+
+  <!-- Rewards — honest bento -->
+  <section class="section rewards reveal" id="rewards">
+    <div class="wrap">
+      <div class="section__head-label" style="margin-bottom:.5rem;">
+        <span class="index-num">04</span>
+        <p class="eyebrow">The Rewards Locker</p>
+      </div>
+      <h2 class="display" style="font-size:clamp(1.9rem,3.6vw,2.9rem); max-width:16ch;">Points, well spent.</h2>
+      <div class="bento">
+        <article class="bento__lead">
+          <div>
+            <p class="bento__tag">Merch &middot; The Jersey Series</p>
+            <h3>Wear the club.</h3>
+          </div>
+          <p>A rotating collection of sport jerseys and clubhouse staples &mdash; heritage cuts, racing-green trims, made to be kept.</p>
+        </article>
+        <article class="bento__cell"><p class="bento__tag">Travel</p><h4>Hotels &amp; lounges</h4><p>Members&rsquo; rates and quiet upgrades where you land.</p></article>
+        <article class="bento__cell"><p class="bento__tag">Drive</p><h4>Car hire partners</h4><p>Preferred terms for the drive to the first tee.</p></article>
+        <article class="bento__cell"><p class="bento__tag">Fashion</p><h4>Brand collaborations</h4><p>Limited drops with like-minded houses.</p></article>
+        <article class="bento__cell"><p class="bento__tag">Sport</p><h4>Cross-club deals</h4><p>Access and offers across our partner clubs.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap -->
+  <section class="section section--dark reveal" id="future">
+    <div class="wrap">
+      <div class="section__head-label" style="margin-bottom:.5rem;">
+        <span class="index-num" style="color:var(--brass-soft)">05</span>
+        <p class="eyebrow eyebrow--light">The Long Game</p>
+      </div>
+      <h2 class="display display--light" style="font-size:clamp(1.9rem,3.6vw,2.9rem);">This is the first pour, not the last.</h2>
+      <ol class="timeline">
+        <li><span class="timeline__yr">Now</span><h3>The Lager</h3><p>Premium CLUBHUS lager in Danish golf clubhouses. Membership and rewards go live.</p></li>
+        <li><span class="timeline__yr">Next</span><h3>Cocktails in a Can</h3><p>Beyond lager &mdash; considered cans like a King&rsquo;s Ginger for the shooting clubs, and more by season.</p></li>
+        <li><span class="timeline__yr">Then</span><h3>The Social Side</h3><p>Exclusive members&rsquo; events, networking, and CLUBHUS-sponsored sport.</p></li>
+        <li><span class="timeline__yr">Soon</span><h3>The App</h3><p>Points, partners, and a members&rsquo; social feed. The clubhouse, in your pocket.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Join -->
+  <section class="section join reveal" id="join">
+    <div class="wrap join__grid">
+      <div>
+        <span class="index-num">06</span>
+        <p class="eyebrow" style="margin-top:.8rem;">The Invitation</p>
+        <h2 class="display">Request your membership.</h2>
+        <p>Tell us where you play. We&rsquo;ll let you know the moment CLUBHUS arrives at your clubhouse, and reserve your place among the first members.</p>
+      </div>
+      <form novalidate aria-describedby="formNote" id="joinForm">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" autocomplete="name" autocapitalize="words" placeholder="Your name&hellip;" required aria-required="true">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="you@email.com" required aria-required="true">
+        </div>
+        <div class="field">
+          <label for="club">Your club <span class="field__opt">(optional)</span></label>
+          <input type="text" id="club" name="club" autocapitalize="words" placeholder="e.g. Rungsted Golf Klub&hellip;">
+        </div>
+        <button type="submit" class="btn btn--gold btn--block">Request Membership</button>
+        <p class="join__note" id="formNote" role="status" aria-live="polite">Free to join &middot; No spam &middot; Unsubscribe anytime.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Partner -->
+  <section class="section section--dark partner reveal" id="partner">
+    <div class="wrap partner__inner">
+      <div>
+        <p class="eyebrow eyebrow--light">For Clubhouses</p>
+        <h2 class="display display--light">Pour CLUBHUS at your club.</h2>
+        <p>We partner with a select number of membership-only clubhouses each season. If yours sets a standard, we should talk.</p>
+      </div>
+      <a href="mailto:hello@clubhus.dk?subject=Clubhouse%20Partnership" class="btn btn--gold">Enquire about partnership</a>
+    </div>
+  </section>
+
+</main>
+
+<div class="signoff">
+  <span class="rule" style="flex:1;"></span>
+  <p class="signoff__line script reveal">See you in the Clubhouse</p>
+  <span class="rule" style="flex:1;"></span>
+</div>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <div class="footer__mark">
+        <svg class="footer__logomark" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7,23 L24,8 L41,23"/>
+          <path d="M11,23 L11,40 L37,40 L37,23"/>
+        </svg>
+        <span>CLUBHUS</span>
+      </div>
+      <p class="footer__tag">The Clubhouse Lager.<br>Brewed in Denmark, for members only.</p>
+    </div>
+    <nav class="footer__col" aria-label="Explore">
+      <h4>Explore</h4>
+      <a href="#beer">The Lager</a>
+      <a href="#membership">Membership</a>
+      <a href="#rewards">Rewards</a>
+      <a href="#future">What&rsquo;s Next</a>
+    </nav>
+    <nav class="footer__col" aria-label="House">
+      <h4>House</h4>
+      <a href="#partner">Partnerships</a>
+      <a href="mailto:hello@clubhus.dk">Contact</a>
+      <a href="#join">Membership</a>
+    </nav>
+    <div class="footer__col">
+      <h4>Social</h4>
+      <a href="#" aria-label="CLUBHUS on Instagram">Instagram</a>
+      <a href="#" aria-label="CLUBHUS on LinkedIn">LinkedIn</a>
+      <a href="#" aria-label="CLUBHUS journal">Journal</a>
+    </div>
+  </div>
+  <div class="footer__base">
+    <span>&copy; <span id="year">2026</span> CLUBHUS ApS &middot; K&oslash;benhavn &middot; Brewed by White Labs Copenhagen ApS</span>
+    <span>Enjoy responsibly &middot; Members must be 18+</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var nav = document.getElementById('nav');
+  var onScroll = function () {
+    if (window.scrollY > 24) nav.classList.add('is-stuck');
+    else nav.classList.remove('is-stuck');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var burger = document.getElementById('burger');
+  if (burger) {
+    burger.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('.nav__links a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        nav.classList.remove('is-open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-in'); });
+  }
+
+  var allowMotion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var counts = document.querySelectorAll('[data-count]');
+  var runCount = function (el) {
+    var target = parseFloat(el.getAttribute('data-count'));
+    var suffix = el.getAttribute('data-suffix') || '';
+    var decimals = (el.getAttribute('data-count').split('.')[1] || '').length;
+    if (!allowMotion) { el.textContent = target.toFixed(decimals) + suffix; return; }
+    var start = null, dur = 1400;
+    var tick = function (ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = (target * eased).toFixed(decimals) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  if ('IntersectionObserver' in window) {
+    var co = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { runCount(e.target); co.unobserve(e.target); } });
+    }, { threshold: 0.6 });
+    counts.forEach(function (el) { co.observe(el); });
+  } else {
+    counts.forEach(runCount);
+  }
+
+  var form = document.getElementById('joinForm');
+  var note = document.getElementById('formNote');
+  if (form) {
+    var setError = function (field, on) {
+      field.classList.toggle('is-error', on);
+      field.setAttribute('aria-invalid', on ? 'true' : 'false');
+    };
+    form.querySelectorAll('input').forEach(function (input) {
+      input.addEventListener('input', function () {
+        if (input.classList.contains('is-error')) setError(input, false);
+      });
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = form.querySelector('#email');
+      var name = form.querySelector('#name');
+      var nameBad = !name.value.trim();
+      var emailBad = !email.checkValidity();
+      setError(name, nameBad);
+      setError(email, emailBad);
+      if (nameBad || emailBad) {
+        note.textContent = nameBad
+          ? 'Please add your name so we know who to welcome.'
+          : 'That email doesn’t look right. Mind checking it?';
+        note.classList.remove('is-success');
+        (nameBad ? name : email).focus();
+        return;
+      }
+      note.textContent = 'Thank you, your place is reserved. We’ll be in touch.';
+      note.classList.add('is-success');
+      form.querySelector('button[type="submit"]').textContent = 'Request Sent ✓';
+      form.querySelectorAll('input').forEach(function (i) { i.disabled = true; });
+    });
+  }
+
+  var yr = document.getElementById('year');
+  if (yr) yr.textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
