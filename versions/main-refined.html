@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#072A20">
+<meta name="color-scheme" content="light only">
+<title>CLUBHUS · The Clubhouse Lager · Members Only</title>
+<meta name="description" content="CLUBHUS is a premium Danish lager brewed exclusively for membership-only sports clubhouses. Heritage, craft, and quiet exclusivity. Beginning with golf clubs in Denmark.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="CLUBHUS · The Clubhouse Lager">
+<meta property="og:description" content="A premium lager for membership-only clubhouses. Heritage in every pour.">
+<meta property="og:type" content="website">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='8' fill='%230B3D2E'/%3E%3Cg fill='none' stroke='%23F4F0E6' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 24 L24 12 L37 24'/%3E%3Cpath d='M14 24 L14 37 L34 37 L34 24'/%3E%3Cpath d='M24 12 L24 8'/%3E%3C/g%3E%3Cpath d='M24 8 C27 8 29 9.5 31 9.5 C29 11 27 12 24 12 Z' fill='%23B79055'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Gabarito:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============ Redesign — Preserve ============
+   Audit-first evolution of the live index.html, per design-taste-frontend
+   §11: same brand tokens (DESIGN.md), same structure and motion character
+   — dials matched to the existing page, motion nudged +1 with one new
+   tasteful moment (hero crest parallax). Not a new direction; a polish
+   pass. Fixes applied: curly quotes/ellipses, text-wrap:balance,
+   tabular-nums on stat counters, :focus-visible-only ring on form
+   fields (was :focus, showed on mouse click), touch-action on buttons. */
+
+:root{
+  --green:        #0B3D2E;
+  --green-deep:   #072A20;
+  --green-soft:   #14513D;
+  --cream:        #F4F0E6;
+  --cream-warm:   #EFE9D8;
+  --paper:        #FBFAF6;
+  --ink:          #1C1B16;
+  --brass:        #B79055;
+  --brass-soft:   #C9A86E;
+  --line:         rgba(28,27,22,.14);
+  --line-light:   rgba(244,240,230,.18);
+
+  --serif:  'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans:   'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --logo:   'Gabarito', 'Inter', sans-serif;
+  --script: 'Caveat', 'Bradley Hand', cursive;
+
+  --maxw: 1240px;
+  --pad:  clamp(20px, 5vw, 72px);
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
+body{
+  margin:0;
+  font-family:var(--sans);
+  background:var(--cream);
+  color:var(--ink);
+  font-weight:400;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+h1,h2,h3,h4{ margin:0; font-weight:500; text-wrap:balance; }
+
+:focus-visible{ outline:2px solid var(--brass); outline-offset:3px; border-radius:2px; }
+.btn{ touch-action:manipulation; }
+.btn:focus-visible{ outline-offset:4px; }
+
+.skip-link{
+  position:fixed; top:10px; left:50%; transform:translate(-50%,-160%); z-index:200;
+  background:var(--green); color:var(--cream);
+  padding:.7rem 1.2rem; border-radius:3px; font-size:.78rem;
+  letter-spacing:.12em; text-transform:uppercase;
+  transition:transform .25s var(--ease);
+}
+.skip-link:focus-visible{ transform:translate(-50%,0); outline-offset:2px; }
+
+.script{ font-family:var(--script); font-weight:600; line-height:1; }
+
+body::after{
+  content:''; position:fixed; inset:0; z-index:9999; pointer-events:none; opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.progress{
+  position:fixed; top:0; left:0; height:2px; width:0; z-index:60;
+  background:linear-gradient(90deg, var(--brass), var(--brass-soft));
+  transition:width .1s linear;
+}
+
+/* ---------- Typography helpers ---------- */
+.display{
+  font-family:var(--serif); font-weight:400; line-height:1.04; letter-spacing:-.01em;
+  font-size:clamp(2rem, 4.6vw, 3.6rem);
+}
+.display--light{ color:var(--cream); }
+.display em{ font-style:italic; }
+
+.eyebrow{
+  font-family:var(--sans); font-size:.72rem; font-weight:500;
+  letter-spacing:.28em; text-transform:uppercase; color:var(--green); margin:0 0 1.4rem;
+}
+.eyebrow--light{ color:var(--brass-soft); }
+
+.num{
+  font-family:var(--serif); font-style:italic; font-size:.95rem; color:var(--brass);
+  display:block; margin-bottom:.4rem;
+}
+.num--light{ color:var(--brass-soft); }
+
+.textlink{
+  font-family:var(--sans); font-size:.85rem; letter-spacing:.04em;
+  border-bottom:1px solid var(--brass); padding-bottom:3px;
+  transition:opacity .3s var(--ease); display:inline-block;
+}
+.textlink:hover{ opacity:.6; }
+
+/* ---------- Buttons ---------- */
+.btn{
+  --bg:var(--green); --fg:var(--cream); --bd:var(--green);
+  display:inline-flex; align-items:center; justify-content:center;
+  font-family:var(--sans); font-size:.8rem; font-weight:500;
+  letter-spacing:.12em; text-transform:uppercase; padding:.95rem 1.7rem;
+  border:1px solid var(--bd); background:var(--bg); color:var(--fg);
+  border-radius:2px; cursor:pointer;
+  transition:transform .35s var(--ease), background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease);
+  white-space:nowrap;
+}
+.btn:hover{ transform:translateY(-2px); }
+.btn--gold{ --bg:var(--brass); --fg:var(--green-deep); --bd:var(--brass); }
+.btn--gold:hover{ --bg:var(--brass-soft); --bd:var(--brass-soft); }
+.btn--line{ --bg:transparent; --fg:var(--cream); --bd:rgba(244,240,230,.45); }
+.btn--line:hover{ --bg:rgba(244,240,230,.08); --bd:var(--cream); }
+.btn--ghost{ --bg:transparent; --fg:var(--green); --bd:var(--green); padding:.7rem 1.2rem; }
+.btn--ghost:hover{ --bg:var(--green); --fg:var(--cream); }
+.btn--block{ width:100%; }
+
+/* ---------- Announcement bar ---------- */
+.announce{ background:var(--green-deep); color:var(--cream-warm); overflow:hidden; border-bottom:1px solid rgba(244,240,230,.08); }
+.announce__track{
+  display:flex; gap:1.4rem; align-items:center; white-space:nowrap; padding:.55rem 0;
+  font-size:.66rem; letter-spacing:.26em; text-transform:uppercase;
+  animation:marquee 38s linear infinite; width:max-content;
+}
+.announce .dot{ color:var(--brass); }
+@keyframes marquee{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+@media (prefers-reduced-motion: reduce){ .announce__track{ animation:none; } }
+
+/* ---------- Nav ---------- */
+.nav{
+  position:sticky; top:0; z-index:50; background:rgba(244,240,230,0);
+  transition:background .4s var(--ease), box-shadow .4s var(--ease), backdrop-filter .4s var(--ease);
+}
+.nav.is-stuck{ background:rgba(244,240,230,.86); backdrop-filter:saturate(140%) blur(12px); box-shadow:0 1px 0 var(--line); }
+.nav__inner{ max-width:var(--maxw); margin:0 auto; padding:1.1rem var(--pad); display:flex; align-items:center; justify-content:space-between; gap:1.5rem; }
+.nav__brand{ display:inline-flex; align-items:center; gap:.55rem; color:var(--green); transition:opacity .3s var(--ease); }
+.nav__brand:hover{ opacity:.92; }
+.nav__mark{ width:26px; height:26px; flex:none; transition:transform .5s var(--ease); }
+.nav__mark .flag, .footer__logomark .flag{ fill:var(--brass); }
+.nav__brand:hover .nav__mark{ transform:translateY(-2px) rotate(-4deg); }
+.nav__word{
+  font-family:"Fraunces", ui-serif, Georgia, serif; font-weight:600; font-style:italic;
+  font-size:1.5rem; letter-spacing:-0.025em; position:relative; padding-right:.02em;
+}
+.nav__word::after{
+  content:''; position:absolute; left:0; right:0; bottom:-3px; height:1.5px;
+  background:var(--brass); transform:scaleX(0); transform-origin:left;
+  transition:transform .45s var(--ease);
+}
+.nav__brand:hover .nav__word::after{ transform:scaleX(1); }
+.nav__links{ display:flex; gap:2rem; margin-left:auto; align-items:center; }
+.nav__menu-cta{ display:none; }
+.nav__links a{
+  font-size:.8rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); opacity:.82;
+  position:relative; padding:4px 0; transition:opacity .3s var(--ease);
+}
+.nav__links a::after{
+  content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--brass);
+  transition:width .35s var(--ease);
+}
+.nav__links a:hover{ opacity:1; }
+.nav__links a:hover::after{ width:100%; }
+.nav__cta{ margin-left:.5rem; }
+.nav__burger{ display:none; flex-direction:column; gap:5px; background:none; border:0; cursor:pointer; padding:8px; }
+.nav__burger span{ width:24px; height:1.5px; background:var(--green); transition:transform .3s var(--ease), opacity .3s; }
+.nav__burger[aria-expanded="true"] span:first-child{ transform:translateY(6.5px) rotate(45deg); }
+.nav__burger[aria-expanded="true"] span:last-child{ transform:translateY(-6.5px) rotate(-45deg); }
+
+/* ---------- Hero ---------- */
+.hero{
+  position:relative; background:var(--green); color:var(--cream); overflow:hidden;
+  min-height:calc(100vh - 90px); min-height:calc(100dvh - 90px);
+  display:flex; align-items:center; padding:clamp(2.2rem,4vw,3.4rem) 0 clamp(3rem,5vw,4rem);
+}
+.hero__bg{
+  position:absolute; inset:0; z-index:0;
+  background:
+    radial-gradient(110% 80% at 50% 0%, rgba(20,81,61,.7), transparent 60%),
+    radial-gradient(90% 80% at 50% 120%, rgba(7,42,32,.95), transparent 55%),
+    var(--green);
+}
+.hero__bg::after{
+  content:''; position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(244,240,230,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244,240,230,.045) 1px, transparent 1px);
+  background-size:68px 68px;
+  -webkit-mask-image:radial-gradient(circle at 50% 42%, #000 22%, transparent 72%);
+  mask-image:radial-gradient(circle at 50% 42%, #000 22%, transparent 72%);
+}
+.hero__aurora{
+  position:absolute; z-index:1; inset:-30% -10%;
+  background:
+    radial-gradient(40% 40% at 30% 35%, rgba(183,144,85,.16), transparent 60%),
+    radial-gradient(45% 45% at 72% 60%, rgba(20,81,61,.5), transparent 60%);
+  filter:blur(20px); animation:aurora 18s ease-in-out infinite alternate;
+}
+@keyframes aurora{ 0%{ transform:translate3d(-4%,-2%,0) scale(1); } 100%{ transform:translate3d(5%,3%,0) scale(1.12); } }
+@media (prefers-reduced-motion: reduce){ .hero__aurora{ animation:none; } }
+
+.hero__inner{
+  position:relative; z-index:3; max-width:880px; margin:0 auto; padding:0 var(--pad);
+  text-align:center; display:flex; flex-direction:column; align-items:center;
+}
+
+/* line-drawn crest emblem — now with a subtle pointer-parallax tilt (+1 motion) */
+.hero__emblem{
+  width:clamp(80px, 9vw, 108px); height:auto; color:var(--cream); margin-bottom:1.4rem;
+  animation:bob 6s ease-in-out infinite 2.2s;
+  transform:rotate3d(var(--ty,0), var(--tx,0), 0, var(--tilt,0deg));
+  transition:transform .4s var(--ease);
+}
+@keyframes bob{ 0%,100%{ transform:translateY(0) rotate3d(var(--ty,0), var(--tx,0), 0, var(--tilt,0deg)); } 50%{ transform:translateY(-7px) rotate3d(var(--ty,0), var(--tx,0), 0, var(--tilt,0deg)); } }
+@media (prefers-reduced-motion: reduce){ .hero__emblem{ animation:none; transform:none; } }
+.hero__emblem .ld{
+  fill:none; stroke:currentColor; stroke-width:3.2; stroke-dasharray:1; stroke-dashoffset:1;
+  animation:draw 1.5s var(--ease) forwards .15s;
+}
+.hero__emblem .ld.d1{ animation-delay:.5s; }
+.hero__emblem .ld.d2{ animation-delay:.85s; }
+.hero__emblem .em-head{ fill:var(--brass-soft); opacity:0; animation:fadein .6s ease forwards 1.25s; }
+@keyframes draw{ to{ stroke-dashoffset:0; } }
+@keyframes fadein{ to{ opacity:1; } }
+@media (prefers-reduced-motion: reduce){
+  .hero__emblem .ld{ stroke-dashoffset:0; animation:none; }
+  .hero__emblem .em-head{ opacity:1; animation:none; }
+}
+
+.hero__eyebrow{ margin-bottom:1.2rem; }
+
+.hero__title{
+  font-family:var(--serif); font-weight:400; font-size:clamp(2.6rem, 6.4vw, 5rem);
+  line-height:.98; letter-spacing:-.02em; margin:0 0 1.3rem;
+}
+.hero__title .line{ display:block; overflow:hidden; }
+.hero__title .line > span{ display:block; transform:translateY(110%); animation:riseUp .95s var(--ease) forwards; }
+.hero__title .line:nth-child(1) > span{ animation-delay:.25s; }
+.hero__title .line:nth-child(2) > span{ animation-delay:.38s; }
+.hero__title .line:nth-child(3) > span{ animation-delay:.51s; }
+.hero__title em{ font-style:italic; color:var(--brass-soft); }
+@keyframes riseUp{ to{ transform:translateY(0); } }
+@media (prefers-reduced-motion: reduce){ .hero__title .line > span{ transform:none; animation:none; } }
+
+.hero__lede{
+  font-size:clamp(1.02rem,1.4vw,1.2rem); max-width:44ch; color:rgba(244,240,230,.82);
+  margin:0 auto 1.1rem; opacity:0; animation:fadein .9s ease forwards .8s;
+}
+
+.hero__slogan{
+  position:relative; display:inline-block; font-size:clamp(1.7rem, 3.4vw, 2.5rem); color:var(--brass-soft);
+  margin:0 0 2.1rem; padding-bottom:.3rem; opacity:0; animation:fadein 1s ease forwards 1s;
+}
+.hero__flourish{ position:absolute; left:6%; right:6%; bottom:-.2rem; width:88%; height:22px; overflow:visible; }
+.hero__flourish .ld{
+  fill:none; stroke:var(--brass); stroke-width:2; stroke-linecap:round; stroke-dasharray:1; stroke-dashoffset:1;
+  animation:draw 1.4s var(--ease) forwards 1.5s;
+}
+@media (prefers-reduced-motion: reduce){
+  .hero__lede, .hero__slogan{ opacity:1; animation:none; }
+  .hero__flourish .ld{ stroke-dashoffset:0; animation:none; }
+}
+
+.hero__actions{ display:flex; gap:.9rem; flex-wrap:wrap; justify-content:center; margin-bottom:2.2rem; opacity:0; animation:fadein .9s ease forwards 1.2s; }
+.hero__meta{
+  list-style:none; margin:0; padding:1.6rem clamp(1rem,4vw,2rem) 0; border-top:1px solid var(--line-light);
+  display:flex; gap:clamp(2rem,6vw,4.5rem); justify-content:center; opacity:0; animation:fadein .9s ease forwards 1.35s;
+}
+.hero__meta strong{
+  font-family:var(--serif); font-weight:500; font-size:clamp(1.5rem,3vw,2rem); display:block; color:var(--cream);
+  font-variant-numeric:tabular-nums;
+}
+.hero__meta span{ font-size:.66rem; letter-spacing:.18em; text-transform:uppercase; color:rgba(244,240,230,.6); }
+
+/* ---------- Strip ---------- */
+.strip{ background:var(--cream-warm); border-block:1px solid var(--line); overflow:hidden; }
+.strip__track{
+  display:flex; gap:2.4rem; align-items:center; white-space:nowrap; width:max-content; padding:1rem 0;
+  animation:marquee 32s linear infinite; font-family:var(--serif); font-style:italic; font-size:1.15rem; color:var(--green);
+}
+.strip__track span:nth-child(even){ color:var(--brass); font-style:normal; font-size:.8rem; }
+@media (prefers-reduced-motion: reduce){ .strip__track{ animation:none; } }
+
+/* ---------- Story ---------- */
+.story{ background:var(--cream); padding:clamp(4rem,9vw,8rem) 0; position:relative; overflow:hidden; }
+.story__inner{ position:relative; z-index:1; max-width:var(--maxw); margin:0 auto; padding:0 var(--pad); display:grid; grid-template-columns:.3fr .7fr; gap:clamp(2rem,5vw,4rem); }
+.story__label{ display:flex; flex-direction:column; gap:.2rem; }
+.story__label .eyebrow{ margin:0; }
+.story__body .display{ margin-bottom:1.8rem; max-width:18ch; }
+.story__body p{ font-size:1.05rem; max-width:54ch; color:rgba(28,27,22,.78); margin:0 0 1.2rem; }
+.story__body .textlink{ margin-top:.6rem; }
+
+/* ---------- The Beer ---------- */
+.beer{ background:var(--paper); padding:clamp(4rem,9vw,8rem) 0; border-top:1px solid var(--line); }
+.beer__inner{ max-width:var(--maxw); margin:0 auto; padding:0 var(--pad); display:grid; grid-template-columns:1fr 1fr; gap:clamp(2.5rem,6vw,5rem); align-items:center; }
+.beer__visual{ display:flex; justify-content:center; }
+.beer__crest{ width:min(78%, 380px); aspect-ratio:1; color:var(--green); display:grid; place-items:center; position:relative; }
+.beer__crest::before{ content:''; position:absolute; inset:-8%; background:radial-gradient(circle, rgba(183,144,85,.1), transparent 68%); }
+.beer__crest svg{ display:block; height:100%; width:auto; max-width:100%; margin-inline:auto; animation:crestFloat 7s ease-in-out infinite; }
+@keyframes crestFloat{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-9px);} }
+@media (prefers-reduced-motion: reduce){ .beer__crest svg{ animation:none; } }
+.beer__content .num{ margin-top:0; }
+.beer__content .display{ margin-bottom:1.4rem; max-width:16ch; }
+.beer__lede{ font-size:1.08rem; color:rgba(28,27,22,.8); max-width:46ch; margin:0 0 2rem; }
+.notes{ list-style:none; margin:0; padding:0; border-top:1px solid var(--line); }
+.notes li{ display:flex; justify-content:space-between; gap:1rem; align-items:baseline; padding:.95rem 0; border-bottom:1px solid var(--line); }
+.notes__k{ font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--brass); }
+.notes__v{ font-family:var(--serif); font-size:1.05rem; text-align:right; }
+.ingredients{ margin-top:2.2rem; padding:1.5rem 1.6rem; background:rgba(11,61,46,.035); border:1px solid var(--line); border-left:3px solid var(--brass); border-radius:8px; }
+.ingredients__title{ font-size:.7rem; letter-spacing:.22em; text-transform:uppercase; color:var(--brass); margin:0 0 1.1rem; }
+.ingredients__list{ list-style:none; margin:0; padding:0; display:grid; gap:1rem; }
+.ingredients__list li{ display:grid; grid-template-columns:58px 1fr; gap:1rem; align-items:baseline; }
+.ingredients__k{ font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; color:var(--brass); }
+.ingredients__v{ font-family:var(--serif); font-size:1.02rem; line-height:1.4; color:#1C1B16; }
+
+/* ---------- Membership ---------- */
+.membership{ background:var(--green); color:var(--cream); padding:clamp(4rem,9vw,8rem) 0; }
+.membership__head{ max-width:var(--maxw); margin:0 auto; padding:0 var(--pad) clamp(2.5rem,5vw,4rem); text-align:center; }
+.membership__head .num, .membership__head .eyebrow{ margin-left:auto; margin-right:auto; }
+.membership__head .display{ max-width:18ch; margin:0 auto 1.4rem; }
+.membership__lede{ max-width:52ch; margin:0 auto; color:rgba(244,240,230,.78); font-size:1.05rem; }
+.steps{ max-width:var(--maxw); margin:0 auto; padding:0 var(--pad); display:grid; grid-template-columns:repeat(4,1fr); gap:1.6rem; }
+.step{ border:1px solid var(--line-light); border-radius:3px; padding:2rem 1.6rem; background:rgba(244,240,230,.02); transition:transform .4s var(--ease), background .4s var(--ease), border-color .4s var(--ease); }
+.step:hover{ transform:translateY(-6px); background:rgba(244,240,230,.05); border-color:var(--brass-soft); }
+.step__num{ font-family:var(--serif); font-style:italic; font-size:1.5rem; color:var(--brass-soft); display:block; margin-bottom:1.1rem; }
+.step h3{ font-family:var(--serif); font-weight:500; font-size:1.25rem; margin-bottom:.6rem; }
+.step p{ font-size:.92rem; color:rgba(244,240,230,.82); margin:0; }
+
+/* ---------- Rewards ---------- */
+.rewards{ background:var(--cream); padding:clamp(4rem,9vw,8rem) 0; }
+.rewards__head{ max-width:var(--maxw); margin:0 auto; padding:0 var(--pad) clamp(2rem,4vw,3rem); }
+.rewards__head .display{ max-width:14ch; margin-bottom:1rem; }
+.rewards__lede{ max-width:48ch; color:rgba(28,27,22,.72); font-size:1.05rem; margin:0; }
+.rewards__grid{ max-width:var(--maxw); margin:0 auto; padding:0 var(--pad); display:grid; grid-template-columns:repeat(4,1fr); gap:1.4rem; grid-auto-rows:1fr; }
+.reward{ position:relative; overflow:hidden; border:1px solid var(--line); border-radius:4px; padding:1.8rem 1.6rem; background:var(--paper); min-height:210px; display:flex; flex-direction:column; transition:transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease); }
+.reward:hover{ transform:translateY(-6px); box-shadow:0 24px 40px -28px rgba(11,61,46,.5); border-color:var(--brass); }
+.reward__tag{ font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--brass); margin-bottom:auto; }
+.reward h3{ font-family:var(--serif); font-weight:500; font-size:1.4rem; margin:1.4rem 0 .5rem; }
+.reward p{ font-size:.9rem; color:rgba(28,27,22,.72); margin:0; }
+.reward--wide{ grid-column:span 2; grid-row:span 2; background:var(--green); color:var(--cream); border-color:var(--green); }
+.reward--wide .reward__tag{ color:var(--brass-soft); }
+.reward--wide h3{ font-size:2.2rem; }
+.reward--wide p{ color:rgba(244,240,230,.78); max-width:34ch; font-size:1rem; }
+.reward__art{ margin-top:1.6rem; flex:1; border-radius:3px; position:relative; }
+.reward__art--jersey{
+  background:repeating-linear-gradient(135deg, rgba(244,240,230,.06) 0 14px, rgba(244,240,230,.02) 14px 28px);
+  border:1px solid var(--line-light); min-height:120px;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cpath d='M30 8 L42 4 a8 8 0 0 0 16 0 L70 8 L88 22 L80 36 L72 30 L72 84 L28 84 L28 30 L20 36 L12 22 Z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cpath d='M30 8 L42 4 a8 8 0 0 0 16 0 L70 8 L88 22 L80 36 L72 30 L72 84 L28 84 L28 30 L20 36 L12 22 Z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+/* ---------- Future / timeline ---------- */
+.future{ background:var(--green-deep); color:var(--cream); padding:clamp(4rem,9vw,8rem) 0; }
+.future__head{ max-width:var(--maxw); margin:0 auto; padding:0 var(--pad) clamp(2.5rem,5vw,3.5rem); }
+.future__head .display{ max-width:16ch; }
+.timeline{ max-width:var(--maxw); margin:0 auto; padding:0 var(--pad); list-style:none; display:grid; grid-template-columns:repeat(4,1fr); gap:0; }
+.timeline li{ position:relative; padding:2.2rem 1.6rem 0 0; border-top:1px solid var(--line-light); }
+.timeline li::before{ content:''; position:absolute; top:-5px; left:0; width:9px; height:9px; border-radius:50%; background:var(--brass); }
+.timeline__yr{ font-family:var(--serif); font-style:italic; color:var(--brass-soft); font-size:.95rem; display:block; margin-bottom:.8rem; }
+.timeline h3{ font-family:var(--serif); font-weight:500; font-size:1.35rem; margin-bottom:.6rem; }
+.timeline p{ font-size:.9rem; color:rgba(244,240,230,.82); margin:0; padding-right:1rem; }
+
+/* ---------- Join ---------- */
+.join{ background:var(--cream); padding:clamp(4rem,9vw,8rem) 0; }
+.join__inner{ max-width:var(--maxw); margin:0 auto; padding:0 var(--pad); display:grid; grid-template-columns:1fr 1fr; gap:clamp(2.5rem,6vw,5rem); align-items:center; }
+.join__copy .display{ max-width:14ch; margin-bottom:1.2rem; }
+.join__copy p{ color:rgba(28,27,22,.78); max-width:42ch; font-size:1.05rem; }
+.join__form{ display:grid; gap:1.1rem; }
+.field{ display:grid; gap:.4rem; }
+.field label{ font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; color:var(--brass); }
+.field__opt{ color:rgba(28,27,22,.45); letter-spacing:.08em; }
+.field input{
+  font-family:var(--sans); font-size:1rem; padding:.9rem 1rem; border:1px solid var(--line); border-radius:2px;
+  background:var(--paper); color:var(--ink); transition:border-color .3s var(--ease), outline-color .3s var(--ease);
+}
+.field input::placeholder{ color:rgba(28,27,22,.38); }
+.field input:focus-visible{ outline:2px solid var(--brass); outline-offset:2px; border-color:var(--green); }
+.field input.is-error{ border-color:#9b2c2c; }
+.field input.is-error:focus-visible{ outline-color:#9b2c2c; }
+.join__note{ font-size:.8rem; color:rgba(28,27,22,.62); margin:.4rem 0 0; }
+.join__note.is-success{ color:var(--green); font-weight:500; }
+
+/* ---------- Partner CTA ---------- */
+.partner{ background:var(--green-soft); color:var(--cream); }
+.partner__inner{ max-width:var(--maxw); margin:0 auto; padding:clamp(3rem,6vw,5rem) var(--pad); display:flex; align-items:center; justify-content:space-between; gap:2.5rem; flex-wrap:wrap; }
+.partner__inner > div{ max-width:46ch; }
+.partner__inner .display{ margin:.4rem 0 1rem; }
+.partner__inner p{ color:rgba(244,240,230,.82); margin:0; }
+
+/* ---------- Sign-off ---------- */
+.signoff{ background:var(--green-deep); color:var(--brass-soft); display:flex; align-items:center; gap:clamp(1rem,4vw,2.5rem); padding:clamp(2.5rem,5vw,4rem) var(--pad); }
+.signoff__rule{ flex:1; height:1px; background:var(--line-light); }
+.signoff__line{ font-size:clamp(2.6rem,5.4vw,4rem); white-space:nowrap; padding-bottom:.2rem; }
+
+/* ---------- Footer ---------- */
+.footer{ background:var(--green-deep); color:var(--cream); padding:clamp(3rem,6vw,5rem) 0 2rem; }
+.footer__inner{ max-width:var(--maxw); margin:0 auto; padding:0 var(--pad); display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:2.5rem; }
+.footer__mark{ display:inline-flex; align-items:center; gap:.6rem; color:var(--cream); }
+.footer__logomark{ width:34px; height:34px; flex:none; }
+.footer__mark span{ font-family:"Fraunces", ui-serif, Georgia, serif; font-weight:600; font-style:italic; font-size:1.5rem; letter-spacing:-0.025em; }
+.footer__tag{ font-size:.9rem; color:rgba(244,240,230,.68); margin:1rem 0 0; line-height:1.7; }
+.footer__col h4{ font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--brass-soft); margin:0 0 1.1rem; }
+.footer__col a{ display:block; font-size:.9rem; color:rgba(244,240,230,.78); padding:.32rem 0; transition:color .3s var(--ease); }
+.footer__col a:hover{ color:var(--cream); }
+.footer__base{ max-width:var(--maxw); margin:3rem auto 0; padding:1.6rem var(--pad) 0; border-top:1px solid var(--line-light); display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; font-size:.74rem; letter-spacing:.06em; color:rgba(244,240,230,.68); }
+
+/* ---------- Reveal ---------- */
+.reveal{ opacity:0; transform:translateY(26px); transition:opacity .9s var(--ease), transform .9s var(--ease); }
+.reveal.is-in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 980px){
+  .nav__links, .nav__cta{ display:none; }
+  .nav__burger{ display:flex; }
+  .nav.is-open .nav__links{
+    display:flex; flex-direction:column; gap:1.1rem; align-items:stretch;
+    position:absolute; top:100%; left:0; right:0; background:var(--cream);
+    padding:1.8rem var(--pad) 2.2rem; box-shadow:0 20px 30px -20px rgba(0,0,0,.3);
+  }
+  .nav.is-open .nav__links a{ font-size:1rem; padding:.55rem 0; }
+  .nav.is-open .nav__menu-cta{ display:inline-flex; margin-top:.5rem; padding:.95rem 1.7rem; font-size:.78rem; }
+  .hero__lede, .hero__meta{ margin-left:auto; margin-right:auto; }
+  .hero__actions, .hero__meta{ justify-content:center; }
+  .hero__title{ margin-inline:auto; }
+  .story__inner, .beer__inner, .join__inner{ grid-template-columns:1fr; }
+  .steps{ grid-template-columns:repeat(2,1fr); }
+  .rewards__grid{ grid-template-columns:repeat(2,1fr); }
+  .reward--wide{ grid-column:span 2; grid-row:auto; }
+  .timeline{ grid-template-columns:repeat(2,1fr); gap:1.5rem 1.4rem; }
+  .footer__inner{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width: 560px){
+  .steps, .rewards__grid{ grid-template-columns:1fr; }
+  .reward--wide{ grid-column:auto; }
+  .timeline{ grid-template-columns:1fr; }
+  .footer__inner{ grid-template-columns:1fr 1fr; }
+  .hero__meta{ gap:1.4rem; }
+  .hero__meta strong{ font-size:1.3rem; }
+  .partner__inner{ flex-direction:column; align-items:flex-start; }
+}
+</style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="announce" id="top">
+    <div class="announce__track">
+      <span>Now pouring in Danish golf clubhouses</span><span class="dot">·</span>
+      <span>Membership-only</span><span class="dot">·</span>
+      <span>Est. MMXXVI · København</span><span class="dot">·</span>
+      <span>Now pouring in Danish golf clubhouses</span><span class="dot">·</span>
+      <span>Membership-only</span><span class="dot">·</span>
+      <span>Est. MMXXVI · København</span><span class="dot">·</span>
+    </div>
+  </div>
+
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#top" class="nav__brand" aria-label="CLUBHUS home">
+        <svg class="nav__mark" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7,23 L24,8 L41,23"/>
+          <path d="M11,23 L11,40 L37,40 L37,23"/>
+          <path d="M20,40 L20,31 a4,4 0 0 1 8,0 L28,40"/>
+          <path d="M24,8 L24,3"/>
+          <path class="flag" d="M24,4 C28,4 31,6 34,6 C31,8 28,9 24,9 Z" fill="currentColor" stroke="none"/>
+        </svg>
+        <span class="nav__word">CLUBHUS</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#beer">The Lager</a>
+        <a href="#story">Heritage</a>
+        <a href="#membership">Membership</a>
+        <a href="#rewards">Rewards</a>
+        <a href="#future">What&rsquo;s Next</a>
+        <a href="#join" class="btn btn--gold nav__menu-cta">Become a Member</a>
+      </nav>
+      <a href="#join" class="btn btn--ghost nav__cta">Become a Member</a>
+      <button class="nav__burger" aria-label="Open menu" aria-expanded="false" id="burger">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="hero" id="main">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="hero__aurora" aria-hidden="true"></div>
+    <div class="hero__inner">
+      <svg class="hero__emblem" id="heroEmblem" viewBox="0 0 120 120" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path class="ld" pathLength="1" d="M16,60 L60,24 L104,60"></path>
+        <path class="ld d1" pathLength="1" d="M26,60 L26,98 L94,98 L94,60"></path>
+        <path class="ld d2" pathLength="1" d="M50,98 L50,80 a10,10 0 0 1 20,0 L70,98"></path>
+        <path class="ld d2" pathLength="1" d="M60,24 L60,8"></path>
+        <path class="em-head" d="M60,9 C68,9 74,12 79,12 C74,15 68,17 60,17 Z"></path>
+      </svg>
+
+      <p class="eyebrow eyebrow--light hero__eyebrow">The Clubhouse Lager · Members Only</p>
+
+      <h1 class="hero__title">
+        <span class="line"><span>Welcome to the</span></span>
+        <span class="line"><span>members-only</span></span>
+        <span class="line"><span><em>members&rsquo; club.</em></span></span>
+      </h1>
+
+      <p class="hero__lede">A premium Danish lager, poured exclusively in membership-only clubhouses. Quietly crafted, properly cold, and reserved for those who belong.</p>
+
+      <p class="hero__slogan script">See you in the Clubhouse
+        <svg class="hero__flourish" viewBox="0 0 320 24" aria-hidden="true" preserveAspectRatio="none">
+          <path class="ld" pathLength="1" d="M6,16 C70,2 130,2 180,12 C220,20 280,20 314,8"></path>
+        </svg>
+      </p>
+
+      <div class="hero__actions">
+        <a href="#join" class="btn btn--gold">Become a Member</a>
+        <a href="#partner" class="btn btn--line">Partner Your Clubhouse</a>
+      </div>
+
+      <ul class="hero__meta">
+        <li><strong data-count="4.8" data-suffix="%">0</strong><span>ABV · Sessionable</span></li>
+        <li><strong>Draught</strong><span>Pours Only</span></li>
+        <li><strong data-count="100" data-suffix="%">0</strong><span>Members Only</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="strip__track">
+      <span>Heritage</span><span>✦</span><span>Members Only</span><span>✦</span><span>Brewed in Denmark</span><span>✦</span><span>The Clubhouse Standard</span><span>✦</span>
+      <span>Heritage</span><span>✦</span><span>Members Only</span><span>✦</span><span>Brewed in Denmark</span><span>✦</span><span>The Clubhouse Standard</span><span>✦</span>
+    </div>
+  </div>
+
+  <section class="story" id="story">
+    <div class="story__inner">
+      <div class="story__label reveal">
+        <span class="num">01</span>
+        <span class="eyebrow">The Idea</span>
+      </div>
+      <div class="story__body reveal">
+        <h2 class="display">A clubhouse is not a bar. It is a standard that deserves a lager of its own.</h2>
+        <p>CLUBHUS began with a simple conviction: the finest rooms in sport are served the same beer as everywhere else. So we brewed one that isn&rsquo;t. A clean, bright Danish lager, made in small batches from exceptional ingredients, and poured only where membership means something.</p>
+        <p>You won&rsquo;t find us in supermarkets or on billboards. You&rsquo;ll find us behind the bar of your clubhouse and, increasingly, in the company you keep there.</p>
+        <a href="#beer" class="textlink">Meet the lager →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="beer" id="beer">
+    <div class="beer__inner">
+      <div class="beer__visual reveal">
+        <div class="beer__crest" aria-hidden="true">
+          <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16,60 L60,24 L104,60"/>
+            <path d="M26,60 L26,98 L94,98 L94,60"/>
+            <path d="M50,98 L50,80 a10,10 0 0 1 20,0 L70,98"/>
+            <path d="M60,24 L60,8"/>
+            <path d="M60,9 C68,9 74,12 79,12 C74,15 68,17 60,17 Z" fill="var(--brass)" stroke="none"/>
+          </svg>
+        </div>
+      </div>
+      <div class="beer__content reveal">
+        <span class="num">02</span>
+        <p class="eyebrow">The Lager · No. 01</p>
+        <h2 class="display">Quietly exceptional. The way the best things are.</h2>
+        <p class="beer__lede">A bottom-fermented pilsner brewed with Danish floor-malted barley and noble hops. Bright gold, softly bitter, and built for the long afternoon.</p>
+        <ul class="notes">
+          <li><span class="notes__k">Style</span><span class="notes__v">Premium Pilsner Lager</span></li>
+          <li><span class="notes__k">Nose</span><span class="notes__v">Fresh bread, meadow, faint citrus</span></li>
+          <li><span class="notes__k">Palate</span><span class="notes__v">Crisp, dry, clean bitterness</span></li>
+          <li><span class="notes__k">Serve</span><span class="notes__v">3°C, tall glass, no rush</span></li>
+        </ul>
+        <div class="ingredients">
+          <p class="ingredients__title">Organic Ingredients · Provenance</p>
+          <ul class="ingredients__list">
+            <li><span class="ingredients__k">Malt</span><span class="ingredients__v">Gyrup Organic Danish Pilsner Malt</span></li>
+            <li><span class="ingredients__k">Hops</span><span class="ingredients__v">German Organic Perle</span></li>
+            <li><span class="ingredients__k">Yeast</span><span class="ingredients__v">White Labs Copenhagen WLP830 Organic German Lager Yeast</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="membership" id="membership">
+    <div class="membership__head reveal">
+      <span class="num num--light">03</span>
+      <p class="eyebrow eyebrow--light">Membership</p>
+      <h2 class="display display--light">Belong to your club. Then belong to ours.</h2>
+      <p class="membership__lede">If you&rsquo;re a member of a partnered club, you can become a member of CLUBHUS, and your afternoons start working a little harder for you.</p>
+    </div>
+    <div class="steps">
+      <article class="step reveal">
+        <span class="step__num">I</span>
+        <h3>Join through your club</h3>
+        <p>Members of partnered golf and sports clubs are invited into CLUBHUS. Free, by association.</p>
+      </article>
+      <article class="step reveal">
+        <span class="step__num">II</span>
+        <h3>10% off every pour</h3>
+        <p>Members enjoy a standing 10% on CLUBHUS at any partnered clubhouse. No fuss, no app required.</p>
+      </article>
+      <article class="step reveal">
+        <span class="step__num">III</span>
+        <h3>Earn points as you go</h3>
+        <p>Every round and every pour earns points toward merch and partner rewards across travel, fashion and sport.</p>
+      </article>
+      <article class="step reveal">
+        <span class="step__num">IV</span>
+        <h3>Spend them well</h3>
+        <p>Redeem on club jerseys or curated partner perks: hotels, lounges, car hire and more.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="rewards" id="rewards">
+    <div class="rewards__head reveal">
+      <span class="num">04</span>
+      <p class="eyebrow">The Rewards Locker</p>
+      <h2 class="display">Points, well spent.</h2>
+      <p class="rewards__lede">A members&rsquo; currency that moves between the things our members already love.</p>
+    </div>
+    <div class="rewards__grid">
+      <article class="reward reward--wide reveal">
+        <div class="reward__tag">Merch · The Jersey Series</div>
+        <h3>Wear the club.</h3>
+        <p>A rotating collection of sport jerseys and clubhouse staples: heritage cuts, racing-green trims, made to be kept.</p>
+        <div class="reward__art reward__art--jersey" aria-hidden="true"></div>
+      </article>
+      <article class="reward reveal">
+        <div class="reward__tag">Travel</div>
+        <h3>Hotels &amp; airport lounges</h3>
+        <p>Members&rsquo; rates and quiet upgrades where you land.</p>
+      </article>
+      <article class="reward reveal">
+        <div class="reward__tag">Drive</div>
+        <h3>Car hire partners</h3>
+        <p>Preferred terms for the drive to the first tee.</p>
+      </article>
+      <article class="reward reveal">
+        <div class="reward__tag">Fashion</div>
+        <h3>Brand collaborations</h3>
+        <p>Limited drops with like-minded houses.</p>
+      </article>
+      <article class="reward reveal">
+        <div class="reward__tag">Sport</div>
+        <h3>Cross-club deals</h3>
+        <p>Access and offers across our partner clubs.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="future" id="future">
+    <div class="future__head reveal">
+      <span class="num num--light">05</span>
+      <p class="eyebrow eyebrow--light">The Long Game</p>
+      <h2 class="display display--light">This is the first pour, not the last.</h2>
+    </div>
+    <ol class="timeline">
+      <li class="reveal">
+        <span class="timeline__yr">Now</span>
+        <h3>The Lager</h3>
+        <p>Premium CLUBHUS lager in Danish golf clubhouses. Membership and rewards go live.</p>
+      </li>
+      <li class="reveal">
+        <span class="timeline__yr">Next</span>
+        <h3>Cocktails in a Can</h3>
+        <p>Beyond lager: considered cans like a King&rsquo;s Ginger for the shooting clubs, and more by season.</p>
+      </li>
+      <li class="reveal">
+        <span class="timeline__yr">Then</span>
+        <h3>The Social Side</h3>
+        <p>Exclusive members&rsquo; events, networking, and CLUBHUS-sponsored sport.</p>
+      </li>
+      <li class="reveal">
+        <span class="timeline__yr">Soon</span>
+        <h3>The App</h3>
+        <p>Points, partners, and a members&rsquo; social feed. The clubhouse, in your pocket.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="join" id="join">
+    <div class="join__inner">
+      <div class="join__copy reveal">
+        <span class="num">06</span>
+        <p class="eyebrow">The Invitation</p>
+        <h2 class="display">Request your membership.</h2>
+        <p>Tell us where you play. We&rsquo;ll let you know the moment CLUBHUS arrives at your clubhouse, and reserve your place among the first members.</p>
+      </div>
+      <form class="join__form reveal" id="joinForm" novalidate aria-describedby="formNote">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" autocomplete="name" autocapitalize="words" placeholder="Your name&hellip;" required aria-required="true" />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="you@email.com" required aria-required="true" />
+        </div>
+        <div class="field">
+          <label for="club">Your club <span class="field__opt">(optional)</span></label>
+          <input type="text" id="club" name="club" autocapitalize="words" placeholder="e.g. Rungsted Golf Klub&hellip;" />
+        </div>
+        <button type="submit" class="btn btn--gold btn--block">Request Membership</button>
+        <p class="join__note" id="formNote" role="status" aria-live="polite">Free to join · No spam · Unsubscribe anytime.</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="partner" id="partner">
+    <div class="partner__inner reveal">
+      <div>
+        <p class="eyebrow eyebrow--light">For Clubhouses</p>
+        <h2 class="display display--light">Pour CLUBHUS at your club.</h2>
+        <p>We partner with a select number of membership-only clubhouses each season. If yours sets a standard, we should talk.</p>
+      </div>
+      <a href="mailto:hello@clubhus.dk?subject=Clubhouse%20Partnership" class="btn btn--gold">Enquire about partnership</a>
+    </div>
+  </section>
+
+  <div class="signoff">
+    <span class="signoff__rule"></span>
+    <p class="signoff__line script reveal">See you in the Clubhouse</p>
+    <span class="signoff__rule"></span>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__mark">
+          <svg class="footer__logomark" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7,23 L24,8 L41,23"/>
+            <path d="M11,23 L11,40 L37,40 L37,23"/>
+            <path d="M20,40 L20,31 a4,4 0 0 1 8,0 L28,40"/>
+            <path d="M24,8 L24,3"/>
+            <path class="flag" d="M24,4 C28,4 31,6 34,6 C31,8 28,9 24,9 Z" fill="currentColor" stroke="none"/>
+          </svg>
+          <span>CLUBHUS</span>
+        </div>
+        <p class="footer__tag">The Clubhouse Lager.<br/>Brewed in Denmark, for members only.</p>
+      </div>
+      <nav class="footer__col" aria-label="Explore">
+        <h4>Explore</h4>
+        <a href="#beer">The Lager</a>
+        <a href="#membership">Membership</a>
+        <a href="#rewards">Rewards</a>
+        <a href="#future">What&rsquo;s Next</a>
+      </nav>
+      <nav class="footer__col" aria-label="Company">
+        <h4>House</h4>
+        <a href="#partner">Partnerships</a>
+        <a href="mailto:hello@clubhus.dk">Contact</a>
+        <a href="#join">Membership</a>
+      </nav>
+      <div class="footer__col">
+        <h4>Social</h4>
+        <a href="#" aria-label="CLUBHUS on Instagram">Instagram</a>
+        <a href="#" aria-label="CLUBHUS on LinkedIn">LinkedIn</a>
+        <a href="#" aria-label="CLUBHUS journal">Journal</a>
+      </div>
+    </div>
+    <div class="footer__base">
+      <span>© <span id="year">2026</span> CLUBHUS ApS · København · Brewed by White Labs Copenhagen ApS</span>
+      <span class="footer__resp">Enjoy responsibly · Members must be 18+</span>
+    </div>
+  </footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var nav = document.getElementById('nav');
+  var onScroll = function () {
+    if (window.scrollY > 24) nav.classList.add('is-stuck');
+    else nav.classList.remove('is-stuck');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var burger = document.getElementById('burger');
+  if (burger) {
+    burger.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('.nav__links a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        nav.classList.remove('is-open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-in'); });
+  }
+
+  var allowMotion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var bar = document.getElementById('progress');
+  if (bar) {
+    var setProgress = function () {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+    };
+    window.addEventListener('scroll', setProgress, { passive: true });
+    window.addEventListener('resize', setProgress, { passive: true });
+    setProgress();
+  }
+
+  var counts = document.querySelectorAll('[data-count]');
+  var runCount = function (el) {
+    var target = parseFloat(el.getAttribute('data-count'));
+    var suffix = el.getAttribute('data-suffix') || '';
+    var decimals = (el.getAttribute('data-count').split('.')[1] || '').length;
+    if (!allowMotion) { el.textContent = target.toFixed(decimals) + suffix; return; }
+    var start = null, dur = 1400;
+    var tick = function (ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = (target * eased).toFixed(decimals) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  if ('IntersectionObserver' in window) {
+    var co = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { runCount(e.target); co.unobserve(e.target); }
+      });
+    }, { threshold: 0.6 });
+    counts.forEach(function (el) { co.observe(el); });
+  } else {
+    counts.forEach(runCount);
+  }
+
+  /* +1 motion: hero crest tilts gently toward the pointer — a single new,
+     tasteful moment rather than adding motion everywhere. */
+  var emblem = document.getElementById('heroEmblem');
+  var heroEl = document.querySelector('.hero');
+  if (emblem && heroEl && allowMotion && window.matchMedia('(hover: hover)').matches) {
+    heroEl.addEventListener('pointermove', function (e) {
+      var r = heroEl.getBoundingClientRect();
+      var nx = (e.clientX - r.left) / r.width - 0.5;
+      var ny = (e.clientY - r.top) / r.height - 0.5;
+      emblem.style.setProperty('--tx', (-nx).toFixed(3));
+      emblem.style.setProperty('--ty', ny.toFixed(3));
+      emblem.style.setProperty('--tilt', (Math.max(-8, Math.min(8, (nx + ny) * 10))).toFixed(2) + 'deg');
+    }, { passive: true });
+    heroEl.addEventListener('pointerleave', function () {
+      emblem.style.setProperty('--tilt', '0deg');
+    });
+  }
+
+  var form = document.getElementById('joinForm');
+  var note = document.getElementById('formNote');
+  if (form) {
+    var setError = function (field, on) {
+      field.classList.toggle('is-error', on);
+      field.setAttribute('aria-invalid', on ? 'true' : 'false');
+    };
+    form.querySelectorAll('input').forEach(function (input) {
+      input.addEventListener('input', function () {
+        if (input.classList.contains('is-error')) setError(input, false);
+      });
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = form.querySelector('#email');
+      var name = form.querySelector('#name');
+      var nameBad = !name.value.trim();
+      var emailBad = !email.checkValidity();
+      setError(name, nameBad);
+      setError(email, emailBad);
+      if (nameBad || emailBad) {
+        note.textContent = nameBad
+          ? 'Please add your name so we know who to welcome.'
+          : 'That email doesn’t look right. Mind checking it?';
+        note.classList.remove('is-success');
+        (nameBad ? name : email).focus();
+        return;
+      }
+      note.textContent = 'Thank you, your place is reserved. We’ll be in touch.';
+      note.classList.add('is-success');
+      form.querySelector('button[type="submit"]').textContent = 'Request Sent ✓';
+      form.querySelectorAll('input').forEach(function (i) { i.disabled = true; });
+    });
+  }
+
+  var yr = document.getElementById('year');
+  if (yr) yr.textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
