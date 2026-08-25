@@ -1,362 +1,737 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#072A20" />
-  <meta name="color-scheme" content="light only" />
-  <title>CLUBHUS · The Clubhouse Lager · Members Only</title>
-  <meta name="description" content="CLUBHUS is a premium Danish lager brewed exclusively for membership-only sports clubhouses. Heritage, craft, and quiet exclusivity. Beginning with golf clubs in Denmark." />
-  <meta name="robots" content="noindex, nofollow" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLUBHUS Lager</title>
+<meta name="description" content="CLUBHUS Lager. A 5% Danish lager, brewed for the first pour after the match. Draught only.">
+<meta name="theme-color" content="#2E5339">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%232E5339'/%3E%3Cg fill='none' stroke='%23F4F1EA' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 25 L24 12 L37 25'/%3E%3Cpath d='M15 25 L15 37 L33 37 L33 25'/%3E%3Cpath d='M20.6 37 L20.6 31 a3.4 3.4 0 0 1 6.8 0 L27.4 37'/%3E%3C/g%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<style>
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="CLUBHUS · The Clubhouse Lager" />
-  <meta property="og:description" content="A premium lager for membership-only clubhouses. Heritage in every pour." />
-  <meta property="og:type" content="website" />
+/* ============ TOKENS ============ */
+:root{
+  /* palette (locked) */
+  --green-deep: #1F3B28;
+  --green:      #2E5339;
+  --chalk:      #F4F1EA;
+  --wood:       #8C6A4F;
+  --ink:        #1A1A1A;
+  --chalk-dim:  #E7E2D6;
+  --green-line: rgba(46,83,57,0.18);
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='8' fill='%230B3D2E'/%3E%3Cg fill='none' stroke='%23F4F0E6' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 24 L24 12 L37 24'/%3E%3Cpath d='M14 24 L14 37 L34 37 L34 24'/%3E%3Cpath d='M24 12 L24 8'/%3E%3C/g%3E%3Cpath d='M24 8 C27 8 29 9.5 31 9.5 C29 11 27 12 24 12 Z' fill='%23B79055'/%3E%3C/svg%3E" />
+  --display: "Bricolage Grotesque", ui-sans-serif, sans-serif;
+  --body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --accent: "Instrument Serif", Georgia, serif;
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Gabarito:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  --container: 1160px;
+  --gutter: clamp(22px, 6vw, 96px);
 
-  <link rel="stylesheet" href="css/styles.css" />
+  /* spacing scale: one 8px rhythm, used everywhere */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --section-y: clamp(72px, 10vw, 120px);
+
+  /* type scale: display steps down cleanly h1 > h2 > h3 > lead > body */
+  --fs-display:  clamp(44px, 6.4vw, 80px);
+  --fs-lead:     clamp(22px, 2.8vw, 32px);
+  --fs-h2:       clamp(28px, 3.4vw, 42px);
+  --fs-h3:       clamp(21px, 2.2vw, 27px);
+  --fs-body-lg:  clamp(17px, 1.4vw, 19px);
+  --fs-body:     17px;
+
+  /* motion */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* single content-stacking breakpoint */
+  --stack: 880px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--chalk);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+
+/* LOCKED TYPE SYSTEM: Bricolage Grotesque (display) + Inter (body/main
+   text) + Instrument Serif (italic accent). Every display element shares
+   one treatment with optical sizing on, so it holds from 12px labels up
+   to the hero. */
+h1, h2, h3, .wordmark, .footer-word, .fact dd, .provenance dd, .manifesto-text, .meta-item b{
+  font-family:var(--display);
+  font-optical-sizing:auto;
+}
+h1, h2, h3{ text-wrap:balance; }
+
+@media (prefers-reduced-motion: reduce){
+  *{
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+
+a{color:inherit;}
+a:focus-visible, button:focus-visible{
+  outline:2px solid var(--wood);
+  outline-offset:3px;
+}
+img{max-width:100%;display:block;}
+
+/* ============ TAP LINE (signature structural device) ============
+   A vertical brass rule runs the length of the page, like the line down a
+   tap handle. It holds at narrow widths too: it simply becomes the left
+   margin rule of the text column, and only softens on the tightest phones. */
+.tapline{
+  position:absolute;
+  left:calc(var(--gutter) - 1px);
+  top:0;
+  bottom:0;
+  width:2px;
+  background:var(--wood);
+  opacity:0.28;
+  z-index:0;
+}
+@media (max-width:460px){
+  .tapline{opacity:0.2;}
+}
+
+.plaque{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-family:var(--body);
+  font-size:12px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--wood);
+  font-weight:600;
+  line-height:1;
+}
+.plaque::before{
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--wood);
+  display:inline-block;
+}
+
+/* ============ LAYOUT SHELL ============ */
+.wrap{
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 var(--gutter);
+  position:relative;
+}
+section{
+  position:relative;
+  padding:var(--section-y) 0;
+}
+section[id]{ scroll-margin-top:88px; } /* clear the sticky nav on anchor jumps */
+
+/* ============ NAV ============ */
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(244,241,234,0.85);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--green-line);
+}
+.nav{
+  max-width:var(--container);
+  margin:0 auto;
+  padding:18px var(--gutter);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.brand{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  text-decoration:none;
+}
+.brand-mark{
+  width:22px;
+  height:auto;
+  color:var(--green-deep);
+  flex:none;
+  position:relative;
+  top:-0.5px; /* optical: sit the roofline against the cap height */
+}
+.wordmark{
+  font-weight:600;
+  font-size:21px;
+  line-height:1;
+  letter-spacing:0.01em;
+  color:var(--green-deep);
+  text-decoration:none;
+}
+.nav-links{
+  display:flex;
+  gap:var(--space-4);
+  list-style:none;
+  font-size:14px;
+  font-weight:500;
+}
+.nav-links a{
+  text-decoration:none;
+  color:var(--ink);
+  opacity:0.68;
+  transition:opacity 0.2s var(--ease);
+}
+.nav-links a:hover{opacity:1;}
+@media (max-width:600px){
+  .nav-links{display:none;}
+}
+
+/* ============ HERO ============ */
+.hero{
+  padding-block:clamp(56px, 9vh, 112px);
+  min-height:82vh;
+  display:flex;
+  align-items:center;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.05fr 0.95fr;
+  gap:clamp(32px, 6vw, 80px);
+  align-items:center;
+  width:100%;
+}
+@media (max-width:880px){
+  .hero-grid{grid-template-columns:1fr; gap:var(--space-6);}
+  .hero-art{order:-1;}
+}
+
+.hero h1{
+  font-weight:600;
+  font-size:var(--fs-display);
+  line-height:0.98;
+  letter-spacing:-0.015em;
+  color:var(--green-deep);
+  margin:var(--space-3) 0 var(--space-4);
+}
+.hero h1 em{
+  font-family:var(--accent);
+  font-style:italic;
+  font-weight:400;
+  color:var(--wood);
+}
+.hero p{
+  font-size:var(--fs-body-lg);
+  line-height:1.55;
+  max-width:44ch;
+  color:var(--ink);
+}
+.hero-meta{
+  margin-top:var(--space-5);
+  display:flex;
+  gap:var(--space-4);
+  flex-wrap:wrap;
+}
+.meta-item{
+  font-size:12px;
+  letter-spacing:0.09em;
+  text-transform:uppercase;
+  color:var(--green);
+  font-weight:600;
+  border-top:1px solid var(--green-line);
+  padding-top:10px;
+  min-width:88px;
+}
+.meta-item b{
+  display:block;
+  font-size:22px;
+  letter-spacing:0;
+  text-transform:none;
+  color:var(--green-deep);
+  font-weight:600;
+  margin-top:4px;
+}
+
+/* Hero entrance: one quiet staggered rise, then still. */
+.hero-eyebrow{opacity:0; animation:rise 0.7s var(--ease) forwards 0.05s;}
+.hero h1{opacity:0; animation:rise 0.8s var(--ease) forwards 0.15s;}
+.hero p{opacity:0; animation:rise 0.8s var(--ease) forwards 0.30s;}
+.hero-meta{opacity:0; animation:rise 0.8s var(--ease) forwards 0.45s;}
+.hero-art{opacity:0; animation:rise 1s var(--ease) forwards 0.20s;}
+@keyframes rise{
+  from{opacity:0; transform:translateY(16px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* ---- Hero art: tap handle line-art, scaled to sit against the display type ---- */
+.hero-art{
+  display:flex;
+  justify-content:center;
+}
+.tap-illustration{
+  width:clamp(210px, 26vw, 300px);
+  height:auto;
+}
+/* graduated pour: dashed stream that flows continuously down into the glass */
+.tap-illustration .pour{
+  stroke-dasharray:4 7;
+  animation:flow 1.8s linear infinite;
+}
+@keyframes flow{ to{stroke-dashoffset:-110;} }
+@media (prefers-reduced-motion: reduce){
+  .tap-illustration .pour{animation:none; stroke-dashoffset:0;}
+}
+@media (max-width:880px){
+  .tap-illustration{width:clamp(180px, 40vw, 230px);}
+}
+
+/* ============ SECTION HEADINGS ============ */
+.section-head{
+  margin-bottom:var(--space-5);
+  max-width:680px;
+}
+.section-head .plaque{margin-bottom:20px;}
+.section-head h2{
+  font-weight:600;
+  font-size:var(--fs-h2);
+  color:var(--green-deep);
+  line-height:1.08;
+  letter-spacing:-0.01em;
+}
+
+/* ============ MANIFESTO ============ */
+.manifesto{
+  background:var(--green-deep);
+  color:var(--chalk);
+}
+.manifesto .tapline{opacity:0.42;}
+.manifesto .plaque{color:var(--chalk-dim); opacity:0.85; margin-bottom:var(--space-3);}
+.manifesto .plaque::before{background:var(--wood);}
+.manifesto-text{
+  max-width:760px;
+  font-size:var(--fs-lead);
+  font-weight:400;
+  line-height:1.34;
+  letter-spacing:-0.005em;
+}
+.manifesto-text + .manifesto-text{margin-top:var(--space-4);}
+.manifesto-text .accent{
+  font-family:var(--accent);
+  color:var(--wood);
+  font-style:italic;
+}
+
+/* ============ THE BEER ============ */
+.beer-grid{
+  display:grid;
+  grid-template-columns:0.8fr 1.2fr;
+  gap:clamp(40px, 6vw, 88px);
+  align-items:start;
+}
+@media (max-width:880px){
+  .beer-grid{grid-template-columns:1fr; gap:var(--space-6);}
+}
+.glass-art{
+  display:flex;
+  justify-content:center;
+  padding-top:6px;
+}
+.glass-illustration{
+  width:clamp(170px, 20vw, 230px);
+}
+
+.beer-copy h3{
+  font-size:var(--fs-h3);
+  font-weight:600;
+  color:var(--green-deep);
+  line-height:1.15;
+  margin-bottom:var(--space-2);
+}
+.beer-copy p{
+  font-size:var(--fs-body);
+  max-width:56ch;
+  margin-bottom:var(--space-2);
+}
+.beer-copy p:last-of-type{margin-bottom:0;}
+
+.facts{
+  margin-top:var(--space-5);
+  border-top:1px solid var(--green-line);
+  padding-top:var(--space-4);
+  display:grid;
+  grid-template-columns:repeat(3, auto);
+  gap:var(--space-3) var(--space-6);
+  justify-content:start;
+}
+@media (max-width:540px){
+  .facts{grid-template-columns:repeat(2, 1fr);}
+}
+.fact dt{
+  font-size:12px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--wood);
+  font-weight:600;
+  margin-bottom:6px;
+}
+.fact dd{
+  font-size:19px;
+  color:var(--green-deep);
+  font-weight:600;
+}
+
+/* ---- Provenance: full spec list, room for the strain name ---- */
+.provenance{
+  margin-top:var(--space-4);
+  border-top:1px solid var(--green-line);
+  padding-top:var(--space-4);
+}
+.provenance .plabel{
+  font-size:12px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--wood);
+  font-weight:600;
+  margin-bottom:var(--space-2);
+}
+.provenance .prow{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:var(--space-4);
+  padding:11px 0;
+  border-top:1px solid var(--green-line);
+}
+.provenance .prow:first-of-type{border-top:none; padding-top:0;}
+.provenance dt{
+  font-size:14px;
+  color:var(--wood);
+  font-weight:600;
+  white-space:nowrap;
+}
+.provenance dd{
+  font-size:16px;
+  color:var(--green-deep);
+  font-weight:600;
+  text-align:right;
+}
+@media (max-width:480px){
+  .provenance .prow{flex-direction:column; gap:2px;}
+  .provenance dd{text-align:left;}
+}
+
+/* ============ ABOUT / CLUBS ROW ============ */
+.about-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(32px, 6vw, 72px);
+}
+@media (max-width:880px){
+  .about-row{grid-template-columns:1fr; gap:var(--space-5);}
+}
+.about-row p{
+  font-size:var(--fs-body);
+  margin-bottom:var(--space-2);
+  max-width:48ch;
+}
+.about-row p:last-child{margin-bottom:0;}
+
+.clubs-list{
+  margin-top:var(--space-3);
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.club-tag{
+  font-size:13px;
+  letter-spacing:0.04em;
+  padding:8px 16px;
+  border:1px solid var(--green-line);
+  border-radius:100px;
+  color:var(--green-deep);
+  font-weight:500;
+  background:rgba(46,83,57,0.04);
+}
+
+/* ============ FIND IT ============ */
+.find{
+  background:var(--chalk-dim);
+}
+.find-grid{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:var(--space-6);
+  flex-wrap:wrap;
+}
+.find-text h2{
+  font-size:var(--fs-h2);
+  color:var(--green-deep);
+  font-weight:600;
+  line-height:1.08;
+  letter-spacing:-0.01em;
+  margin-bottom:var(--space-2);
+  max-width:14ch;
+}
+.find-text p{
+  max-width:42ch;
+  font-size:var(--fs-body);
+}
+
+.club-cta{
+  border-top:1px solid var(--wood);
+  padding-top:var(--space-3);
+  max-width:320px;
+}
+.club-cta p{
+  font-size:15px;
+  color:var(--ink);
+  opacity:0.85;
+  margin-bottom:12px;
+}
+.club-cta a{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:600;
+  font-size:15px;
+  text-decoration:none;
+  color:var(--green-deep);
+  border-bottom:1px solid var(--green-deep);
+  padding-bottom:3px;
+  transition:gap 0.25s var(--ease);
+}
+.club-cta a:hover{gap:13px;}
+
+/* ============ FOOTER ============ */
+footer{
+  background:var(--ink);
+  color:var(--chalk-dim);
+  padding:var(--space-5) 0 var(--space-4);
+}
+.footer-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:var(--space-2);
+  font-size:13px;
+}
+.footer-row > span:last-child{opacity:0.6;}
+.footer-word{
+  font-size:18px;
+  color:var(--chalk);
+  font-weight:600;
+  letter-spacing:0.01em;
+}
+
+/* ============ REVEAL ON SCROLL ============
+   Only hidden when JS is present, so no-JS still shows everything. */
+.js .reveal{
+  opacity:0;
+  transform:translateY(18px);
+  transition:opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.js .reveal.is-visible{
+  opacity:1;
+  transform:none;
+}
+@media (prefers-reduced-motion: reduce){
+  .js .reveal{opacity:1 !important; transform:none !important;}
+}
+
+</style>
 </head>
 <body>
 
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <!-- Announcement bar -->
-  <div class="announce" id="top">
-    <div class="announce__track">
-      <span>Now pouring in Danish golf clubhouses</span><span class="dot">·</span>
-      <span>Membership-only</span><span class="dot">·</span>
-      <span>Est. MMXXVI · København</span><span class="dot">·</span>
-      <span>Now pouring in Danish golf clubhouses</span><span class="dot">·</span>
-      <span>Membership-only</span><span class="dot">·</span>
-      <span>Est. MMXXVI · København</span><span class="dot">·</span>
-    </div>
-  </div>
-
-  <!-- Scroll progress -->
-  <div class="progress" id="progress" aria-hidden="true"></div>
-
-  <!-- Nav -->
-  <header class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="#top" class="nav__brand" aria-label="CLUBHUS home">
-        <svg class="nav__mark" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M7,23 L24,8 L41,23"/>
-          <path d="M11,23 L11,40 L37,40 L37,23"/>
-          <path d="M20,40 L20,31 a4,4 0 0 1 8,0 L28,40"/>
-          <path d="M24,8 L24,3"/>
-          <path class="flag" d="M24,4 C28,4 31,6 34,6 C31,8 28,9 24,9 Z" fill="currentColor" stroke="none"/>
-        </svg>
-        <span class="nav__word">CLUBHUS</span>
-      </a>
-      <nav class="nav__links" aria-label="Primary">
-        <a href="#beer">The Lager</a>
-        <a href="#story">Heritage</a>
-        <a href="#membership">Membership</a>
-        <a href="#rewards">Rewards</a>
-        <a href="#future">What's Next</a>
-        <a href="#join" class="btn btn--gold nav__menu-cta">Become a Member</a>
-      </nav>
-      <a href="#join" class="btn btn--ghost nav__cta">Become a Member</a>
-      <button class="nav__burger" aria-label="Open menu" aria-expanded="false" id="burger">
-        <span></span><span></span>
-      </button>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section class="hero" id="main">
-    <div class="hero__bg" aria-hidden="true"></div>
-    <div class="hero__aurora" aria-hidden="true"></div>
-    <div class="hero__inner">
-      <svg class="hero__emblem" viewBox="0 0 120 120" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path class="ld" pathLength="1" d="M16,60 L60,24 L104,60"></path>
-        <path class="ld d1" pathLength="1" d="M26,60 L26,98 L94,98 L94,60"></path>
-        <path class="ld d2" pathLength="1" d="M50,98 L50,80 a10,10 0 0 1 20,0 L70,98"></path>
-        <path class="ld d2" pathLength="1" d="M60,24 L60,8"></path>
-        <path class="em-head" d="M60,9 C68,9 74,12 79,12 C74,15 68,17 60,17 Z"></path>
+<header>
+  <nav class="nav">
+    <a href="#top" class="brand" aria-label="CLUBHUS home">
+      <svg class="brand-mark" viewBox="5.5 6.5 37 35" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M7,23 L24,8 L41,23"/>
+        <path d="M11,23 L11,40 L37,40 L37,23"/>
+        <path d="M20,40 L20,31 a4,4 0 0 1 8,0 L28,40"/>
       </svg>
+      <span class="wordmark">CLUBHUS</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#beer">The beer</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#find">Find it</a></li>
+    </ul>
+  </nav>
+</header>
 
-      <p class="eyebrow eyebrow--light hero__eyebrow">The Clubhouse Lager · Members Only</p>
+<main id="top">
 
-      <h1 class="hero__title">
-        <span class="line"><span>Welcome to the</span></span>
-        <span class="line"><span>members-only</span></span>
-        <span class="line"><span><em>members' club.</em></span></span>
-      </h1>
-
-      <p class="hero__lede">A premium Danish lager, poured exclusively in membership-only clubhouses. Quietly crafted, properly cold, and reserved for those who belong.</p>
-
-      <p class="hero__slogan script">See you in the Clubhouse
-        <svg class="hero__flourish" viewBox="0 0 320 24" aria-hidden="true" preserveAspectRatio="none">
-          <path class="ld" pathLength="1" d="M6,16 C70,2 130,2 180,12 C220,20 280,20 314,8"></path>
-        </svg>
-      </p>
-
-      <div class="hero__actions">
-        <a href="#join" class="btn btn--gold">Become a Member</a>
-        <a href="#partner" class="btn btn--line">Partner Your Clubhouse</a>
-      </div>
-
-      <ul class="hero__meta">
-        <li><strong data-count="4.8" data-suffix="%">0</strong><span>ABV · Sessionable</span></li>
-        <li><strong>Draught</strong><span>Pours Only</span></li>
-        <li><strong data-count="100" data-suffix="%">0</strong><span>Members Only</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Marquee strip -->
-  <div class="strip">
-    <div class="strip__track">
-      <span>Heritage</span><span>✦</span><span>Members Only</span><span>✦</span><span>Brewed in Denmark</span><span>✦</span><span>The Clubhouse Standard</span><span>✦</span>
-      <span>Heritage</span><span>✦</span><span>Members Only</span><span>✦</span><span>Brewed in Denmark</span><span>✦</span><span>The Clubhouse Standard</span><span>✦</span>
-    </div>
-  </div>
-
-  <!-- Heritage / story -->
-  <section class="story" id="story">
-    <div class="story__inner">
-      <div class="story__label reveal">
-        <span class="num">01</span>
-        <span class="eyebrow">The Idea</span>
-      </div>
-      <div class="story__body reveal">
-        <h2 class="display">A clubhouse is not a bar. It is a standard that deserves a lager of its own.</h2>
-        <p>CLUBHUS began with a simple conviction: the finest rooms in sport are served the same beer as everywhere else. So we brewed one that isn't. A clean, bright Danish lager, made in small batches from exceptional ingredients, and poured only where membership means something.</p>
-        <p>You won't find us in supermarkets or on billboards. You'll find us behind the bar of your clubhouse and, increasingly, in the company you keep there.</p>
-        <a href="#beer" class="textlink">Meet the lager →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- The Beer -->
-  <section class="beer" id="beer">
-    <div class="beer__inner">
-      <div class="beer__visual reveal">
-        <div class="beer__crest" aria-hidden="true">
-          <img src="assets/house.svg" alt="CLUBHUS clubhouse emblem" width="120" height="120" loading="lazy" decoding="async" />
-        </div>
-      </div>
-      <div class="beer__content reveal">
-        <span class="num">02</span>
-        <p class="eyebrow">The Lager · No. 01</p>
-        <h2 class="display">Quietly exceptional. The way the best things are.</h2>
-        <p class="beer__lede">A bottom-fermented pilsner brewed with Danish floor-malted barley and noble hops. Bright gold, softly bitter, and built for the long afternoon.</p>
-        <ul class="notes">
-          <li><span class="notes__k">Style</span><span class="notes__v">Premium Pilsner Lager</span></li>
-          <li><span class="notes__k">Nose</span><span class="notes__v">Fresh bread, meadow, faint citrus</span></li>
-          <li><span class="notes__k">Palate</span><span class="notes__v">Crisp, dry, clean bitterness</span></li>
-          <li><span class="notes__k">Serve</span><span class="notes__v">3°C, tall glass, no rush</span></li>
-        </ul>
-        <div class="ingredients">
-          <p class="ingredients__title">Organic Ingredients · Provenance</p>
-          <ul class="ingredients__list">
-            <li><span class="ingredients__k">Malt</span><span class="ingredients__v">Gyrup Organic Danish Pilsner Malt</span></li>
-            <li><span class="ingredients__k">Hops</span><span class="ingredients__v">German Organic Perle</span></li>
-            <li><span class="ingredients__k">Yeast</span><span class="ingredients__v">White Labs Copenhagen WLP830 Organic German Lager Yeast</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Membership -->
-  <section class="membership" id="membership">
-    <div class="membership__head reveal">
-      <span class="num num--light">03</span>
-      <p class="eyebrow eyebrow--light">Membership</p>
-      <h2 class="display display--light">Belong to your club. Then belong to ours.</h2>
-      <p class="membership__lede">If you're a member of a partnered club, you can become a member of CLUBHUS, and your afternoons start working a little harder for you.</p>
-    </div>
-    <div class="steps">
-      <article class="step reveal">
-        <span class="step__num">I</span>
-        <h3>Join through your club</h3>
-        <p>Members of partnered golf and sports clubs are invited into CLUBHUS. Free, by association.</p>
-      </article>
-      <article class="step reveal">
-        <span class="step__num">II</span>
-        <h3>10% off every pour</h3>
-        <p>Members enjoy a standing 10% on CLUBHUS at any partnered clubhouse. No fuss, no app required.</p>
-      </article>
-      <article class="step reveal">
-        <span class="step__num">III</span>
-        <h3>Earn points as you go</h3>
-        <p>Every round and every pour earns points toward merch and partner rewards across travel, fashion and sport.</p>
-      </article>
-      <article class="step reveal">
-        <span class="step__num">IV</span>
-        <h3>Spend them well</h3>
-        <p>Redeem on club jerseys or curated partner perks: hotels, lounges, car hire and more.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- Rewards -->
-  <section class="rewards" id="rewards">
-    <div class="rewards__head reveal">
-      <span class="num">04</span>
-      <p class="eyebrow">The Rewards Locker</p>
-      <h2 class="display">Points, well spent.</h2>
-      <p class="rewards__lede">A members' currency that moves between the things our members already love.</p>
-    </div>
-    <div class="rewards__grid">
-      <article class="reward reward--wide reveal">
-        <div class="reward__tag">Merch · The Jersey Series</div>
-        <h3>Wear the club.</h3>
-        <p>A rotating collection of sport jerseys and clubhouse staples: heritage cuts, racing-green trims, made to be kept.</p>
-        <div class="reward__art reward__art--jersey" aria-hidden="true"></div>
-      </article>
-      <article class="reward reveal">
-        <div class="reward__tag">Travel</div>
-        <h3>Hotels & airport lounges</h3>
-        <p>Members' rates and quiet upgrades where you land.</p>
-      </article>
-      <article class="reward reveal">
-        <div class="reward__tag">Drive</div>
-        <h3>Car hire partners</h3>
-        <p>Preferred terms for the drive to the first tee.</p>
-      </article>
-      <article class="reward reveal">
-        <div class="reward__tag">Fashion</div>
-        <h3>Brand collaborations</h3>
-        <p>Limited drops with like-minded houses.</p>
-      </article>
-      <article class="reward reveal">
-        <div class="reward__tag">Sport</div>
-        <h3>Cross-club deals</h3>
-        <p>Access and offers across our partner clubs.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- What's next / roadmap -->
-  <section class="future" id="future">
-    <div class="future__head reveal">
-      <span class="num num--light">05</span>
-      <p class="eyebrow eyebrow--light">The Long Game</p>
-      <h2 class="display display--light">This is the first pour, not the last.</h2>
-    </div>
-    <ol class="timeline">
-      <li class="reveal">
-        <span class="timeline__yr">Now</span>
-        <h3>The Lager</h3>
-        <p>Premium CLUBHUS lager in Danish golf clubhouses. Membership and rewards go live.</p>
-      </li>
-      <li class="reveal">
-        <span class="timeline__yr">Next</span>
-        <h3>Cocktails in a Can</h3>
-        <p>Beyond lager: considered cans like a King's Ginger for the shooting clubs, and more by season.</p>
-      </li>
-      <li class="reveal">
-        <span class="timeline__yr">Then</span>
-        <h3>The Social Side</h3>
-        <p>Exclusive members' events, networking, and CLUBHUS-sponsored sport.</p>
-      </li>
-      <li class="reveal">
-        <span class="timeline__yr">Soon</span>
-        <h3>The App</h3>
-        <p>Points, partners, and a members' social feed. The clubhouse, in your pocket.</p>
-      </li>
-    </ol>
-  </section>
-
-  <!-- Join / waitlist -->
-  <section class="join" id="join">
-    <div class="join__inner">
-      <div class="join__copy reveal">
-        <span class="num">06</span>
-        <p class="eyebrow">The Invitation</p>
-        <h2 class="display">Request your membership.</h2>
-        <p>Tell us where you play. We'll let you know the moment CLUBHUS arrives at your clubhouse, and reserve your place among the first members.</p>
-      </div>
-      <form class="join__form reveal" id="joinForm" novalidate aria-describedby="formNote">
-        <div class="field">
-          <label for="name">Full name</label>
-          <input type="text" id="name" name="name" autocomplete="name" autocapitalize="words" placeholder="Your name" required aria-required="true" />
-        </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" autocomplete="email" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="you@email.com" required aria-required="true" />
-        </div>
-        <div class="field">
-          <label for="club">Your club <span class="field__opt">(optional)</span></label>
-          <input type="text" id="club" name="club" autocapitalize="words" placeholder="e.g. Rungsted Golf Klub" />
-        </div>
-        <button type="submit" class="btn btn--gold btn--block">Request Membership</button>
-        <p class="join__note" id="formNote" role="status" aria-live="polite">Free to join · No spam · Unsubscribe anytime.</p>
-      </form>
-    </div>
-  </section>
-
-  <!-- Partner CTA -->
-  <section class="partner" id="partner">
-    <div class="partner__inner reveal">
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="tapline" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow eyebrow--light">For Clubhouses</p>
-        <h2 class="display display--light">Pour CLUBHUS at your club.</h2>
-        <p>We partner with a select number of membership-only clubhouses each season. If yours sets a standard, we should talk.</p>
+        <div class="plaque hero-eyebrow">CLUBHUS Lager &middot; 5%</div>
+        <h1>The match ends.<br>The clubhouse <em>opens.</em></h1>
+        <p>A Danish lager, brewed for the first pour after the match. Cold, simple, and exactly where it should be.</p>
+        <div class="hero-meta">
+          <div class="meta-item">ABV<b>5%</b></div>
+          <div class="meta-item">Style<b>Lager</b></div>
+          <div class="meta-item">Format<b>Draught</b></div>
+        </div>
       </div>
-      <a href="mailto:hello@clubhus.dk?subject=Clubhouse%20Partnership" class="btn btn--gold">Enquire about partnership</a>
+      <div class="hero-art">
+        <svg class="tap-illustration" viewBox="0 0 200 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Line illustration of a tap handle pouring into a glass">
+          <!-- tap handle -->
+          <rect x="86" y="14" width="28" height="64" rx="6" stroke="#2E5339" stroke-width="3"/>
+          <line x1="100" y1="78" x2="100" y2="108" stroke="#2E5339" stroke-width="3"/>
+          <circle cx="100" cy="46" r="9" stroke="#8C6A4F" stroke-width="2.2"/>
+          <!-- spout -->
+          <path d="M82 108 H118 V120 Q118 128 110 128 H90 Q82 128 82 120 Z" stroke="#2E5339" stroke-width="3" stroke-linejoin="round"/>
+          <!-- pour stream -->
+          <line class="pour" x1="100" y1="128" x2="100" y2="206" stroke="#8C6A4F" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- glass -->
+          <path d="M64 206 L72 296 Q73 304 81 304 H119 Q127 304 128 296 L136 206 Z" stroke="#1A1A1A" stroke-width="2.5" stroke-linejoin="round"/>
+          <line x1="70" y1="246" x2="130" y2="246" stroke="#1A1A1A" stroke-width="1.4" opacity="0.4"/>
+        </svg>
+      </div>
     </div>
   </section>
 
-  <!-- Sign-off -->
-  <div class="signoff">
-    <span class="signoff__rule"></span>
-    <p class="signoff__line script reveal">See you in the Clubhouse</p>
-    <span class="signoff__rule"></span>
-  </div>
+  <!-- ============ MANIFESTO ============ -->
+  <section class="manifesto">
+    <div class="tapline" aria-hidden="true"></div>
+    <div class="wrap reveal">
+      <div class="plaque">Why we made it</div>
+      <p class="manifesto-text">
+        Every clubhouse pours the same beer as the pub down the road.
+        We thought that was strange, so we changed it.
+      </p>
+      <p class="manifesto-text">
+        No billboard, no supermarket shelf. Just a clean, quietly confident
+        lager, waiting behind the bar. The perfect sportsbajer.
+      </p>
+    </div>
+  </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__brand">
-        <div class="footer__mark">
-          <svg class="footer__logomark" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M7,23 L24,8 L41,23"/>
-            <path d="M11,23 L11,40 L37,40 L37,23"/>
-            <path d="M20,40 L20,31 a4,4 0 0 1 8,0 L28,40"/>
-            <path d="M24,8 L24,3"/>
-            <path class="flag" d="M24,4 C28,4 31,6 34,6 C31,8 28,9 24,9 Z" fill="currentColor" stroke="none"/>
+  <!-- ============ THE BEER ============ -->
+  <section id="beer">
+    <div class="tapline" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="plaque">The beer</div>
+        <h2>One lager. One moment.</h2>
+      </div>
+      <div class="beer-grid reveal">
+        <div class="glass-art">
+          <svg class="glass-illustration" viewBox="0 0 160 240" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Line illustration of a glass of lager">
+            <path d="M22 18 L34 210 Q35 222 47 222 H113 Q125 222 126 210 L138 18 Z" stroke="#2E5339" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M30 90 H130" stroke="#2E5339" stroke-width="1.2" opacity="0.3"/>
+            <path d="M26 50 H134" stroke="#8C6A4F" stroke-width="2.5"/>
+            <path d="M20 18 H140" stroke="#1A1A1A" stroke-width="2"/>
           </svg>
-          <span>CLUBHUS</span>
         </div>
-        <p class="footer__tag">The Clubhouse Lager.<br/>Brewed in Denmark, for members only.</p>
-      </div>
-      <nav class="footer__col" aria-label="Explore">
-        <h4>Explore</h4>
-        <a href="#beer">The Lager</a>
-        <a href="#membership">Membership</a>
-        <a href="#rewards">Rewards</a>
-        <a href="#future">What's Next</a>
-      </nav>
-      <nav class="footer__col" aria-label="Company">
-        <h4>House</h4>
-        <a href="#partner">Partnerships</a>
-        <a href="mailto:hello@clubhus.dk">Contact</a>
-        <a href="#join">Membership</a>
-      </nav>
-      <div class="footer__col">
-        <h4>Social</h4>
-        <a href="#" aria-label="CLUBHUS on Instagram">Instagram</a>
-        <a href="#" aria-label="CLUBHUS on LinkedIn">LinkedIn</a>
-        <a href="#" aria-label="CLUBHUS journal">Journal</a>
+        <div class="beer-copy">
+          <h3>CLUBHUS Lager</h3>
+          <p>A 5% lager brewed in Denmark for one moment: the first one after the match. Crisp, bright, balanced. Made to quench thirst, not to make a statement.</p>
+          <p>Brewed by White Labs Copenhagen. Light enough for after sport, proper enough for the bar.</p>
+          <dl class="facts">
+            <div class="fact"><dt>ABV</dt><dd>5%</dd></div>
+            <div class="fact"><dt>Style</dt><dd>German lager</dd></div>
+            <div class="fact"><dt>Format</dt><dd>Draught only</dd></div>
+          </dl>
+          <div class="provenance">
+            <p class="plabel">Provenance</p>
+            <dl>
+              <div class="prow"><dt>Malt</dt><dd>Gyrup organic Pilsner malt</dd></div>
+              <div class="prow"><dt>Hops</dt><dd>German Perle</dd></div>
+              <div class="prow"><dt>Yeast</dt><dd>White Labs Copenhagen WLP830 Organic German Lager Yeast</dd></div>
+            </dl>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="footer__base">
-      <span>© <span id="year">2026</span> CLUBHUS ApS · København · Brewed by White Labs Copenhagen ApS</span>
-      <span class="footer__resp">Enjoy responsibly · Members must be 18+</span>
-    </div>
-  </footer>
+  </section>
 
-  <script src="js/script.js"></script>
+  <!-- ============ ABOUT ============ -->
+  <section id="about">
+    <div class="tapline" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="plaque">About</div>
+        <h2>Same moment,<br>different game.</h2>
+      </div>
+      <div class="about-row reveal">
+        <div>
+          <p>CLUBHUS started with a simple observation: the beer after the match rarely matches the moment. So we made one that does.</p>
+          <p>We're not chasing the hop arms race, and we're not borrowing sports culture as a vibe.</p>
+        </div>
+        <div>
+          <p>We're learning the actual rhythm of the clubhouse, the post-match quiet, the second beer with friends, one club at a time.</p>
+          <div class="clubs-list">
+            <span class="club-tag">Golf</span>
+            <span class="club-tag">Tennis</span>
+            <span class="club-tag">Padel</span>
+            <span class="club-tag">Rowing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FIND IT ============ -->
+  <section id="find" class="find">
+    <div class="wrap find-grid reveal">
+      <div class="find-text">
+        <h2>Where to find it</h2>
+        <p>CLUBHUS Lager is on tap at clubhouses across Denmark. Ask at the bar.</p>
+      </div>
+      <div class="club-cta">
+        <p>Run a clubhouse and want to pour CLUBHUS?</p>
+        <a href="mailto:hello@clubhus.dk">Get in touch &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span class="footer-word">CLUBHUS</span>
+    <span>&copy; 2026 CLUBHUS. Brewed in Denmark.</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal: simple, no library, respects reduced motion via CSS above
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>
