@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLUBHUS Export Lager</title>
+<meta name="description" content="CLUBHUS Export Lager. A fuller-bodied Danish export lager for the clubhouse, built to travel, still sessionable.">
+<meta name="theme-color" content="#1F3B28">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%231F3B28'/%3E%3Cg fill='none' stroke='%23F4F1EA' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 25 L24 12 L37 25'/%3E%3Cpath d='M15 25 L15 37 L33 37 L33 25'/%3E%3Cpath d='M20.6 37 L20.6 31 a3.4 3.4 0 0 1 6.8 0 L27.4 37'/%3E%3C/g%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:ital,opsz,wght@0,12..96,400;0,12..96,600;0,12..96,700;1,12..96,400;1,12..96,600;1,12..96,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ============ Design Read ============
+   Single-SKU product page for CLUBHUS Export Lager, one entry in a
+   multi-beer club-culture lineup (siblings unconfirmed / not yet built).
+   Premium Scandinavian clubhouse audience, calm editorial language,
+   sharing the house system (Bricolage Grotesque + Inter, tapline motif,
+   green-deep/chalk/ink neutrals from origin/main's index.html) with its
+   own accent for this SKU: copper, standing in for "Export" - bolder,
+   fuller-bodied - vs. the flagship's wood accent. No hero photography:
+   no image-gen tool is available in this environment, so the product
+   shot is an honestly-labeled placeholder frame, not another illustration
+   invented to fill the space.
+
+   Dials set per brief, applied conversationally (not by editing the
+   shared skill file, which the skill itself says never to do):
+   DESIGN_VARIANCE 5 - MOTION_INTENSITY 4 - VISUAL_DENSITY 3. */
+
+:root{
+  /* shared house neutrals - unchanged from the flagship page */
+  --green-deep: #1F3B28;
+  --green:      #2E5339;
+  --chalk:      #F4F1EA;
+  --chalk-dim:  #E7E2D6;
+  --ink:        #1A1A1A;
+  --green-line: rgba(46,83,57,0.18);
+
+  /* this SKU's own accent - copper, not the flagship's wood */
+  --copper:      #A2542E;
+  --copper-soft: #C17C4E;
+  --copper-line: rgba(162,84,46,0.22);
+
+  --display: "Bricolage Grotesque", ui-sans-serif, sans-serif;
+  --body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --container: 1160px;
+  --gutter: clamp(22px, 6vw, 96px);
+
+  --space-1: 8px; --space-2: 16px; --space-3: 24px;
+  --space-4: 32px; --space-5: 48px; --space-6: 64px;
+  --section-y: clamp(80px, 11vw, 132px); /* density 3: airier than the flagship's 72-120 */
+
+  --fs-display: clamp(38px, 5vw, 58px);
+  --fs-lead:    clamp(20px, 2.4vw, 26px);
+  --fs-h2:      clamp(26px, 3vw, 38px);
+  --fs-h3:      clamp(20px, 2vw, 25px);
+  --fs-body-lg: clamp(17px, 1.4vw, 19px);
+  --fs-body:    17px;
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--chalk);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+h1, h2, h3, .wordmark, .footer-word, .spec dd, .provenance dd{
+  font-family:var(--display);
+  font-optical-sizing:auto;
+}
+h1, h2, h3{ text-wrap:balance; }
+
+@media (prefers-reduced-motion: reduce){
+  *{
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+
+a{color:inherit;}
+a:focus-visible, button:focus-visible{
+  outline:2px solid var(--copper);
+  outline-offset:3px;
+}
+img,svg{max-width:100%;display:block;}
+
+.skip-link{
+  position:fixed; top:10px; left:10px; z-index:200;
+  transform:translateY(-160%);
+  background:var(--green-deep); color:var(--chalk);
+  padding:10px 16px; border-radius:4px;
+  font-size:13px; font-weight:600; letter-spacing:0.04em;
+  transition:transform 0.25s var(--ease);
+}
+.skip-link:focus-visible{ transform:translateY(0); outline-offset:2px; }
+
+.tapline{
+  position:absolute; left:calc(var(--gutter) - 1px); top:0; bottom:0; width:2px;
+  background:var(--copper); opacity:0.28; z-index:0;
+}
+@media (max-width:460px){ .tapline{opacity:0.2;} }
+
+.plaque{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--body); font-size:12px; letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--copper); font-weight:600; line-height:1;
+}
+.plaque::before{ content:""; width:7px; height:7px; border-radius:50%; background:var(--copper); }
+
+.wrap{ max-width:var(--container); margin:0 auto; padding:0 var(--gutter); position:relative; }
+section{ position:relative; padding:var(--section-y) 0; }
+section[id]{ scroll-margin-top:88px; }
+
+/* ============ NAV ============ */
+header{
+  position:sticky; top:0; z-index:50;
+  background:rgba(244,241,234,0.85);
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--green-line);
+}
+.nav{ max-width:var(--container); margin:0 auto; padding:18px var(--gutter); display:flex; align-items:center; justify-content:space-between; }
+.brand{ display:inline-flex; align-items:center; gap:8px; text-decoration:none; }
+.brand-mark{ width:22px; height:auto; color:var(--green-deep); flex:none; position:relative; top:-0.5px; }
+.wordmark{ font-weight:600; font-size:21px; line-height:1; letter-spacing:0.01em; color:var(--green-deep); }
+.sku-tag{
+  font-family:var(--body); font-size:12px; font-weight:600; letter-spacing:0.06em;
+  color:var(--copper); border-left:1px solid var(--green-line); padding-left:10px; margin-left:2px;
+}
+.nav-links{ display:flex; gap:var(--space-4); list-style:none; font-size:14px; font-weight:500; }
+.nav-links a{ text-decoration:none; color:var(--ink); opacity:0.68; transition:opacity 0.2s var(--ease); }
+.nav-links a:hover{opacity:1;}
+@media (max-width:600px){ .nav-links{display:none;} }
+
+/* ============ HERO ============ */
+.hero{ padding-block:clamp(56px, 8vh, 100px); min-height:78vh; display:flex; align-items:center; }
+.hero-grid{
+  display:grid; grid-template-columns:1.15fr 0.85fr;
+  gap:clamp(32px, 6vw, 80px); align-items:center; width:100%;
+}
+@media (max-width:880px){ .hero-grid{grid-template-columns:1fr; gap:var(--space-6);} .hero-art{order:-1;} }
+
+.hero h1{
+  font-weight:600; font-size:var(--fs-display); line-height:1.04; letter-spacing:-0.015em;
+  color:var(--green-deep); margin:var(--space-3) 0 var(--space-4);
+}
+.hero h1 em{
+  font-style:italic; font-weight:600; color:var(--copper);
+  line-height:1.1; display:inline-block; padding-bottom:0.06em;
+}
+.hero p{ font-size:var(--fs-body-lg); line-height:1.55; max-width:42ch; color:var(--ink); }
+.hero-meta{ margin-top:var(--space-5); display:flex; gap:var(--space-4); flex-wrap:wrap; }
+.meta-item{
+  font-size:12px; letter-spacing:0.09em; text-transform:uppercase; color:var(--green);
+  font-weight:600; border-top:1px solid var(--green-line); padding-top:10px; min-width:96px;
+}
+.meta-item b{
+  display:block; font-size:22px; letter-spacing:0; text-transform:none;
+  color:var(--green-deep); font-weight:600; margin-top:4px; font-variant-numeric:tabular-nums;
+}
+
+/* subtle reveals only (MOTION_INTENSITY 4) - one quiet entrance, then still */
+.hero-eyebrow{opacity:0; animation:rise 0.6s var(--ease) forwards 0.05s;}
+.hero h1{opacity:0; animation:rise 0.7s var(--ease) forwards 0.15s;}
+.hero p{opacity:0; animation:rise 0.7s var(--ease) forwards 0.28s;}
+.hero-meta{opacity:0; animation:rise 0.7s var(--ease) forwards 0.4s;}
+.hero-art{opacity:0; animation:rise 0.8s var(--ease) forwards 0.2s;}
+@keyframes rise{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
+
+/* ---- Product shot: honestly-labeled placeholder, not invented illustration ---- */
+.shot-frame{
+  aspect-ratio:4/5; border:1.5px dashed var(--copper-line);
+  border-radius:6px; background:rgba(162,84,46,0.03);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+  padding:24px; text-align:center;
+}
+.shot-frame__icon{ width:34px; height:34px; color:var(--copper-soft); }
+.shot-frame__label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--copper); font-weight:600; }
+.shot-frame__spec{ font-size:11px; color:rgba(26,26,26,0.5); font-variant-numeric:tabular-nums; }
+@media (max-width:880px){ .shot-frame{ max-width:280px; margin-inline:auto; } }
+
+/* ============ SECTION HEADINGS ============ */
+.section-head{ margin-bottom:var(--space-5); max-width:640px; }
+.section-head .plaque{margin-bottom:20px;}
+.section-head h2{ font-weight:600; font-size:var(--fs-h2); color:var(--green-deep); line-height:1.1; letter-spacing:-0.01em; }
+
+/* ============ CHARACTER (tasting notes) ============ */
+.character-grid{
+  display:grid; grid-template-columns:0.75fr 1.25fr;
+  gap:clamp(40px, 6vw, 88px); align-items:start;
+}
+@media (max-width:880px){ .character-grid{grid-template-columns:1fr; gap:var(--space-6);} }
+.character-copy p{ font-size:var(--fs-body); max-width:56ch; margin-bottom:var(--space-2); }
+.character-copy p:last-of-type{margin-bottom:0;}
+
+.specs{
+  border-top:1px solid var(--green-line); padding-top:var(--space-4);
+  display:grid; grid-template-columns:repeat(2, auto); gap:var(--space-3) var(--space-6); justify-content:start;
+}
+.spec dt{ font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--copper); font-weight:600; margin-bottom:6px; }
+.spec dd{ font-size:19px; color:var(--green-deep); font-weight:600; }
+
+.provenance{ margin-top:var(--space-4); border-top:1px solid var(--green-line); padding-top:var(--space-4); }
+.provenance .plabel{ font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--copper); font-weight:600; margin-bottom:var(--space-2); }
+.provenance .prow{ display:flex; justify-content:space-between; align-items:baseline; gap:var(--space-4); padding:11px 0; border-top:1px solid var(--green-line); }
+.provenance .prow:first-of-type{border-top:none; padding-top:0;}
+.provenance dt{ font-size:14px; color:var(--copper); font-weight:600; white-space:nowrap; }
+.provenance dd{ font-size:16px; color:var(--green-deep); font-weight:600; text-align:right; }
+.provenance .tbd{ font-family:var(--body); font-weight:500; font-style:italic; color:rgba(26,26,26,0.5); }
+@media (max-width:480px){ .provenance .prow{flex-direction:column; gap:2px;} .provenance dd{text-align:left;} }
+
+/* ============ CLUB CULTURE (find it / tie-in) ============ */
+.culture{ background:var(--green-deep); color:var(--chalk); }
+.culture .tapline{opacity:0.42;}
+.culture .plaque{ color:rgba(244,241,234,0.85); }
+.culture .plaque::before{ background:var(--copper-soft); }
+.culture h2{ color:var(--chalk); }
+.culture-row{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px, 6vw, 72px); }
+@media (max-width:880px){ .culture-row{grid-template-columns:1fr; gap:var(--space-5);} }
+.culture-row p{ font-size:var(--fs-body); margin-bottom:var(--space-2); max-width:48ch; color:rgba(244,241,234,0.82); }
+.culture-row p:last-child{margin-bottom:0;}
+.moments-list{ margin-top:var(--space-3); display:flex; flex-wrap:wrap; gap:10px; }
+.moment-tag{
+  font-size:13px; letter-spacing:0.04em; padding:8px 16px; border-radius:100px;
+  color:var(--chalk); font-weight:500; border:1px solid rgba(244,241,234,0.22); background:rgba(244,241,234,0.05);
+}
+
+/* ============ FIND IT ============ */
+.find{ background:var(--chalk-dim); }
+.find-grid{ display:flex; justify-content:space-between; align-items:flex-end; gap:var(--space-6); flex-wrap:wrap; }
+.find-text h2{ font-size:var(--fs-h2); color:var(--green-deep); font-weight:600; line-height:1.1; letter-spacing:-0.01em; margin-bottom:var(--space-2); max-width:16ch; }
+.find-text p{ max-width:42ch; font-size:var(--fs-body); }
+.club-cta{ border-top:1px solid var(--copper); padding-top:var(--space-3); max-width:320px; }
+.club-cta p{ font-size:15px; color:var(--ink); opacity:0.85; margin-bottom:12px; }
+.club-cta a{
+  display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:15px; text-decoration:none;
+  color:var(--green-deep); border-bottom:1px solid var(--green-deep); padding-bottom:3px; transition:gap 0.25s var(--ease);
+}
+.club-cta a:hover{gap:13px;}
+
+/* ============ FOOTER ============ */
+footer{ background:var(--ink); color:var(--chalk-dim); padding:var(--space-5) 0 var(--space-4); }
+.footer-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-2); font-size:13px; }
+.footer-row > span:last-child{opacity:0.6;}
+.footer-word{ font-size:18px; color:var(--chalk); font-weight:600; letter-spacing:0.01em; }
+
+.js .reveal{ opacity:0; transform:translateY(16px); transition:opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+.js .reveal.is-visible{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){ .js .reveal{opacity:1 !important; transform:none !important;} }
+
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#top">Skip to content</a>
+
+<header>
+  <nav class="nav">
+    <a href="#top" class="brand" aria-label="CLUBHUS home">
+      <svg class="brand-mark" viewBox="5.5 6.5 37 35" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M7,23 L24,8 L41,23"/>
+        <path d="M11,23 L11,40 L37,40 L37,23"/>
+        <path d="M20,40 L20,31 a4,4 0 0 1 8,0 L28,40"/>
+      </svg>
+      <span class="wordmark">CLUBHUS</span>
+      <span class="sku-tag">Export Lager</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#character">Character</a></li>
+      <li><a href="#culture">Club Culture</a></li>
+      <li><a href="#find">Find it</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="tapline" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <div class="plaque hero-eyebrow">CLUBHUS &middot; Export Lager</div>
+        <h1>Built with a little<br>more <em>body.</em></h1>
+        <p>A fuller-bodied export lager, brewed to hold its character from the cellar to the clubhouse. Still crisp. Still sessionable. Just built to travel.</p>
+        <div class="hero-meta">
+          <div class="meta-item">ABV<b>5.8%</b></div>
+          <div class="meta-item">Style<b>Export Lager</b></div>
+          <div class="meta-item">Format<b>Bottle</b></div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="shot-frame">
+          <svg class="shot-frame__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="8" y="8" width="32" height="32" rx="2"/>
+            <circle cx="18" cy="18" r="3.5"/>
+            <path d="M8 30 L18 22 L26 28 L34 20 L40 26"/>
+          </svg>
+          <span class="shot-frame__label">Product shot placeholder</span>
+          <span class="shot-frame__spec">Bottle + glass &middot; 1600&times;2000 &middot; TBD</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHARACTER ============ -->
+  <section id="character">
+    <div class="tapline" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="plaque">Character</div>
+        <h2>More body, same standard.</h2>
+      </div>
+      <div class="character-grid reveal">
+        <div>
+          <dl class="specs">
+            <div class="spec"><dt>ABV</dt><dd>5.8%</dd></div>
+            <div class="spec"><dt>Style</dt><dd>Export lager</dd></div>
+            <div class="spec"><dt>Body</dt><dd>Full, round</dd></div>
+            <div class="spec"><dt>Finish</dt><dd>Crisp, dry</dd></div>
+          </dl>
+        </div>
+        <div class="character-copy">
+          <p>Export Lager takes the CLUBHUS standard and gives it more to say. A fuller malt backbone and a slightly higher gravity than the flagship lager, built the way export styles always were: with enough character to survive the trip and still taste right when it gets there.</p>
+          <p>It stays crisp. It stays sessionable. It just arrives with a little more weight in the glass.</p>
+          <div class="provenance">
+            <p class="plabel">Yeast &amp; Provenance</p>
+            <dl>
+              <div class="prow"><dt>Yeast</dt><dd class="tbd">White Labs Copenhagen strain, TBD - to be finalised with brewing</dd></div>
+              <div class="prow"><dt>Malt</dt><dd>Danish Pilsner malt, extended</dd></div>
+              <div class="prow"><dt>Hops</dt><dd>German Perle</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ YEAST STRAIN STORY (kept brief, folded under Character) ============ -->
+  <section id="story">
+    <div class="tapline" aria-hidden="true"></div>
+    <div class="wrap reveal" style="max-width:760px;">
+      <div class="plaque" style="margin-bottom:var(--space-3);">The strain</div>
+      <p style="font-size:var(--fs-lead); font-weight:400; line-height:1.34; letter-spacing:-0.005em; color:var(--green-deep);">
+        Every CLUBHUS beer starts with a White Labs Copenhagen strain chosen for one job: staying clean under more malt. Export Lager needed a yeast that wouldn&rsquo;t get lost under the extra body, so that&rsquo;s where we started.
+      </p>
+      <p style="margin-top:var(--space-3); font-size:var(--fs-body); max-width:56ch; color:rgba(26,26,26,0.78);">We&rsquo;re not going to pretend to be brewers here. What matters to you: it&rsquo;s a proper lager yeast, fermented cold and patient, so nothing gets in the way of the malt doing the talking.</p>
+    </div>
+  </section>
+
+  <!-- ============ CLUB CULTURE ============ -->
+  <section id="culture" class="culture">
+    <div class="tapline" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="plaque">Club Culture</div>
+        <h2>For the ritual after,<br>not the one before.</h2>
+      </div>
+      <div class="culture-row reveal">
+        <div>
+          <p>Export Lager is the bottle you reach for when the round runs long, or when the clubhouse crowd wants something with a bit more presence than the draught pour.</p>
+          <p>Same house, same standard, just the version built for the occasion that deserves it.</p>
+        </div>
+        <div>
+          <p>Wherever the CLUBHUS lineup is finding its footing across Scandinavian club culture, Export Lager plays the same role: the bottle for after, not the beer for during.</p>
+          <div class="moments-list">
+            <span class="moment-tag">Post-round</span>
+            <span class="moment-tag">Clubhouse bar</span>
+            <span class="moment-tag">19th hole</span>
+            <span class="moment-tag">Members&rsquo; table</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FIND IT ============ -->
+  <section id="find" class="find">
+    <div class="wrap find-grid reveal">
+      <div class="find-text">
+        <h2>Where to find it</h2>
+        <p>CLUBHUS Export Lager is rolling out to partnered clubhouses across Denmark. Ask at the bar.</p>
+      </div>
+      <div class="club-cta">
+        <p>Run a clubhouse and want to pour Export Lager?</p>
+        <a href="mailto:hello@clubhus.dk?subject=Export%20Lager">Get in touch &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span class="footer-word">CLUBHUS</span>
+    <span>&copy; 2026 CLUBHUS. Brewed in Denmark.</span>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
