@@ -21,6 +21,7 @@
   --green:      #2E5339;
   --chalk:      #F4F1EA;
   --wood:       #8C6A4F;
+  --wood-text:  #6E5039; /* same hue as --wood, darkened for small text: 4.34:1 on chalk fails WCAG AA (needs 4.5:1), this is 6.49:1. --wood itself is untouched for the tapline, plaque dot, and other decorative/large-text uses. */
   --ink:        #1A1A1A;
   --chalk-dim:  #E7E2D6;
   --green-line: rgba(46,83,57,0.18);
@@ -57,7 +58,7 @@
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth; overflow-x:hidden;}
 body{
   background:var(--chalk);
   color:var(--ink);
@@ -122,7 +123,7 @@ img{max-width:100%;display:block;}
   font-size:12px;
   letter-spacing:0.16em;
   text-transform:uppercase;
-  color:var(--wood);
+  color:var(--wood-text);
   font-weight:600;
   line-height:1;
 }
@@ -202,8 +203,66 @@ header{
   transition:opacity 0.2s var(--ease);
 }
 .nav-links a:hover{opacity:1;}
+
+/* ---- Mobile nav: hamburger + drawer (was display:none with no way
+   back in, below 600px - #beer/#about/#find were unreachable on
+   mobile) ---- */
+.nav-toggle{
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  gap:5px;
+  width:34px;
+  height:34px;
+  background:none;
+  border:0;
+  padding:0;
+  cursor:pointer;
+}
+.nav-toggle span{
+  width:100%;
+  height:1.5px;
+  background:var(--green-deep);
+  transition:transform 0.3s var(--ease), opacity 0.2s var(--ease);
+}
+.nav-toggle[aria-expanded="true"] span:first-child{ transform:translateY(3.25px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:last-child{ transform:translateY(-3.25px) rotate(-45deg); }
+
+.nav-backdrop{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(26,26,26,0.28);
+  z-index:39;
+  opacity:0;
+  transition:opacity 0.3s var(--ease);
+}
+
 @media (max-width:600px){
-  .nav-links{display:none;}
+  .nav-toggle{ display:flex; }
+  .nav-links{
+    position:fixed;
+    inset:0 0 0 auto;
+    width:min(280px, 78vw);
+    height:100vh;
+    height:100dvh;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:center;
+    gap:var(--space-4);
+    background:var(--chalk);
+    padding:var(--space-5) var(--gutter);
+    box-shadow:-16px 0 40px -20px rgba(26,26,26,0.3);
+    transform:translateX(100%);
+    transition:transform 0.35s var(--ease);
+    z-index:40;
+  }
+  .nav-links a{ font-size:19px; opacity:1; }
+  .nav.is-open .nav-links{ transform:translateX(0); }
+  .nav.is-open .nav-backdrop{ display:block; opacity:1; }
+}
+@media (prefers-reduced-motion: reduce){
+  .nav-links, .nav-toggle span, .nav-backdrop{ transition:none; }
 }
 
 /* ============ HERO ============ */
@@ -389,7 +448,7 @@ header{
   font-size:12px;
   letter-spacing:0.1em;
   text-transform:uppercase;
-  color:var(--wood);
+  color:var(--wood-text);
   font-weight:600;
   margin-bottom:6px;
 }
@@ -409,7 +468,7 @@ header{
   font-size:12px;
   letter-spacing:0.1em;
   text-transform:uppercase;
-  color:var(--wood);
+  color:var(--wood-text);
   font-weight:600;
   margin-bottom:var(--space-2);
 }
@@ -424,7 +483,7 @@ header{
 .provenance .prow:first-of-type{border-top:none; padding-top:0;}
 .provenance dt{
   font-size:14px;
-  color:var(--wood);
+  color:var(--wood-text);
   font-weight:600;
   white-space:nowrap;
 }
@@ -439,21 +498,38 @@ header{
   .provenance dd{text-align:left;}
 }
 
-/* ============ ABOUT / CLUBS ROW ============ */
-.about-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:clamp(32px, 6vw, 72px);
+/* ============ ABOUT / CLUBS ============
+   Off-center pull-quote instead of a third two-column proportional
+   split (hero and beer-grid already use that move). Single column,
+   deliberately asymmetric: the quote sits right-aligned and offset
+   with its own rule, the detail copy sits at the normal left margin
+   below it - an intentionally unbalanced rhythm, not a grid. */
+.about-quote{
+  font-family:var(--display);
+  font-weight:500;
+  font-size:var(--fs-lead);
+  line-height:1.3;
+  letter-spacing:-0.005em;
+  color:var(--green-deep);
+  max-width:34ch;
+  margin-left:auto;
+  padding-left:var(--space-4);
+  border-left:2px solid var(--wood);
+  text-wrap:balance;
 }
-@media (max-width:880px){
-  .about-row{grid-template-columns:1fr; gap:var(--space-5);}
+.about-detail{
+  margin-top:var(--space-6);
+  max-width:50ch;
 }
-.about-row p{
+.about-detail p{
   font-size:var(--fs-body);
   margin-bottom:var(--space-2);
-  max-width:48ch;
 }
-.about-row p:last-child{margin-bottom:0;}
+.about-detail p:last-of-type{margin-bottom:0;}
+@media (max-width:880px){
+  .about-quote{ margin-left:0; font-size:calc(var(--fs-lead) * 0.86); }
+  .about-detail{ margin-top:var(--space-5); }
+}
 
 .clubs-list{
   margin-top:var(--space-3);
@@ -472,9 +548,25 @@ header{
   background:rgba(46,83,57,0.04);
 }
 
-/* ============ FIND IT ============ */
+/* ============ FIND IT ============
+   Second structural move, different from About's off-center quote:
+   a full-bleed rule that ignores .wrap's padding entirely and runs
+   edge-to-edge, plus a closing headline borrowed from the hero's
+   display scale instead of the standard --fs-h2 every other section
+   uses. */
 .find{
   background:var(--chalk-dim);
+  position:relative;
+}
+.find::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:50%;
+  width:100vw;
+  height:1px;
+  transform:translateX(-50%);
+  background:var(--green-line);
 }
 .find-grid{
   display:flex;
@@ -484,13 +576,14 @@ header{
   flex-wrap:wrap;
 }
 .find-text h2{
-  font-size:var(--fs-h2);
+  font-size:clamp(34px, 4.6vw, 56px);
   color:var(--green-deep);
   font-weight:600;
-  line-height:1.08;
-  letter-spacing:-0.01em;
+  line-height:1;
+  letter-spacing:-0.015em;
   margin-bottom:var(--space-2);
-  max-width:14ch;
+  margin-left:calc(-1 * var(--space-1));
+  max-width:9ch;
 }
 .find-text p{
   max-width:42ch;
@@ -564,7 +657,7 @@ footer{
 <body>
 
 <header>
-  <nav class="nav">
+  <nav class="nav" id="nav">
     <a href="#top" class="brand" aria-label="CLUBHUS home">
       <svg class="brand-mark" viewBox="5.5 6.5 37 35" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M7,23 L24,8 L41,23"/>
@@ -573,11 +666,15 @@ footer{
       </svg>
       <span class="wordmark">CLUBHUS</span>
     </a>
-    <ul class="nav-links">
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
       <li><a href="#beer">The beer</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#find">Find it</a></li>
     </ul>
+    <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
   </nav>
 </header>
 
@@ -678,19 +775,15 @@ footer{
         <div class="plaque">About</div>
         <h2>Same moment,<br>different game.</h2>
       </div>
-      <div class="about-row reveal">
-        <div>
-          <p>CLUBHUS started with a simple observation: the beer after the match rarely matches the moment. So we made one that does.</p>
-          <p>We're not chasing the hop arms race, and we're not borrowing sports culture as a vibe.</p>
-        </div>
-        <div>
-          <p>We're learning the actual rhythm of the clubhouse, the post-match quiet, the second beer with friends, one club at a time.</p>
-          <div class="clubs-list">
-            <span class="club-tag">Golf</span>
-            <span class="club-tag">Tennis</span>
-            <span class="club-tag">Padel</span>
-            <span class="club-tag">Rowing</span>
-          </div>
+      <p class="about-quote reveal">CLUBHUS started with a simple observation: the beer after the match rarely matches the moment. So we made one that does.</p>
+      <div class="about-detail reveal">
+        <p>We're not chasing the hop arms race, and we're not borrowing sports culture as a vibe.</p>
+        <p>We're learning the actual rhythm of the clubhouse, the post-match quiet, the second beer with friends, one club at a time.</p>
+        <div class="clubs-list">
+          <span class="club-tag">Golf</span>
+          <span class="club-tag">Tennis</span>
+          <span class="club-tag">Padel</span>
+          <span class="club-tag">Rowing</span>
         </div>
       </div>
     </div>
@@ -720,6 +813,28 @@ footer{
 </footer>
 
 <script>
+  // Mobile nav drawer
+  const nav = document.getElementById('nav');
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  const navBackdrop = document.getElementById('navBackdrop');
+  const closeNav = () => {
+    nav.classList.remove('is-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  };
+  const openNav = () => {
+    nav.classList.add('is-open');
+    navToggle.setAttribute('aria-expanded', 'true');
+  };
+  navToggle.addEventListener('click', () => {
+    nav.classList.contains('is-open') ? closeNav() : openNav();
+  });
+  navBackdrop.addEventListener('click', closeNav);
+  navLinks.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeNav));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('is-open')) closeNav();
+  });
+
   // Scroll reveal: simple, no library, respects reduced motion via CSS above
   const revealEls = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
